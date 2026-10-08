@@ -1,0 +1,24 @@
+{
+  "wall_seconds": 0.12206462500034831,
+  "process_cpu_seconds": 0.10669600000000001,
+  "gpu_occupation_seconds": 0.0,
+  "counts": {},
+  "exclusive_walls": {
+    "mathematical_and_actual_tiny_backend_unit_tests": 0.071629167010542
+  },
+  "events": 1,
+  "peak_cpu_rss_bytes": 32276480,
+  "CPU_memory_measurement_available": true,
+  "peak_gpu_allocated_bytes": 0,
+  "peak_gpu_reserved_bytes": 0,
+  "device": "cpu",
+  "CPU_in_GPU_job_included": true,
+  "deployment_wall_definition": "inclusive parent elapsed; never sum nested spans",
+  "status": "FAILED",
+  "job": "a23-phase0-local-001",
+  "stage": "phase0",
+  "error": {
+    "type": "ValueError",
+    "reason": "PHASE0_IMPLEMENTATION_TEST_FAILED"
+  }
+}

@@ -1,0 +1,14 @@
+{
+  "scope": "mocked phase-cap/reservation/history guard tests; no Maxwell solves",
+  "tests_run": 8,
+  "success": true,
+  "failures": [],
+  "errors": [],
+  "skips": [],
+  "process_cpu_seconds": 0.10805899999999999,
+  "wall_seconds": 0.1151774580066558,
+  "device": "cpu",
+  "physical_full_state_runs": 0,
+  "gpu_occupation_seconds": 0.0,
+  "python_version": "3.13.13"
+}

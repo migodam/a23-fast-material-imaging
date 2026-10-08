@@ -8,7 +8,7 @@
 
 ## 检查公开证据
 
-`results/a23`保存所有CSV、数组、失败、逐操作账本与终止receipt。`FROZEN_CONFIG.json`和`configs/SCIENTIFIC_AGGREGATION_FREEZE.json`在候选质量输出前冻结。`RUN_SOURCE_SNAPSHOT.json`记录实际pilot源码commit；job manifests保存各阶段实际来源。
+`results/a23`保存所有CSV、数组、失败、逐操作账本与终止receipt。`FROZEN_CONFIG.json`和`configs/SCIENTIFIC_AGGREGATION_FREEZE.json`在候选质量输出前冻结。`RUN_SOURCE_SNAPSHOT.json`记录实际后期phase0/pilot源码commit。部分早期phase0/micro/H1 manifest没有A23源码snapshot；该来源缺口保留为missing，不事后反推或伪造commit。冻结backend文件与原资产直接字节一致。
 
 公开目录不含约3.15GB可再生成的receiver/transfer/current-basis缓存。这些缓存保留在原运行机器；结果pull receipt记录省略的文件/字节。重建所需代码、全部合法输入、随机probe bank和raw结果已公开。发布的zip也不冒充完整Maxwell workspace。
 
@@ -44,3 +44,5 @@ native CLI自身执行累计计费与锁。需要严谨的远端进程外硬期�
 - RHS计数按L/F/G/S、伴随、forward/adjoint solve、LU等分别保存，不把聚合计数重复求和或等价为时间。
 
 报告端只读取保存证据，不调用Maxwell、不训练模型、不改变冻结配置。`src/a23/report.py`复现gate表，中文解释由主线程审阅。复制源代码也包含tiny反例；它们支持实现一致性，不构成完整成像证据。
+
+`validation/*_VALIDATION.json`是原理论包的历史运行；`results/a23/theory_verification/`是本次重跑的独立数值/runtime记录。原脚本保留，但两次运行输出不必逐字相等，不混淆成一个receipt。`src/a23/cached_diagnostics.py`的四张表已生成，它禁止覆盖；无需为拿到表重新运行物理。

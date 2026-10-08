@@ -1,0 +1,30 @@
+{
+  "action": "deploy",
+  "connection_values_stored": false,
+  "local_process_cpu_seconds": 0.03162,
+  "local_wall_seconds": 3.8505472089746036,
+  "physics_launch_authority": "parent only; run action explicitly required",
+  "remote": {
+    "action": "deploy",
+    "child_CPU_measurement_available": true,
+    "connection_values_stored": false,
+    "gpu_tail_seconds": 0.0,
+    "local_archive_compressed_bytes": 118095,
+    "member_count": 26,
+    "offline_evaluator_only": false,
+    "physics_job_launched": false,
+    "private_files_transferred": false,
+    "queue_query_cpu_seconds": 0.078125,
+    "remote_controller_cpu_seconds": 0.015625,
+    "remote_process_cpu_seconds": 0.09375,
+    "remote_wall_seconds": 1.7500009999494068,
+    "scope": "online",
+    "status": "COMPLETE",
+    "transport_attempt": "cb3b261556214394b121faed9e78333e",
+    "uncompressed_bytes": 310158,
+    "utc": "2026-10-08T07:45:58.406598+00:00"
+  },
+  "schema": "a23.local_transport.v1",
+  "status": "COMPLETE",
+  "transport_attempt": "cb3b261556214394b121faed9e78333e"
+}

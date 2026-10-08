@@ -1,0 +1,126 @@
+{
+  "schema": "a23.final_evidence_audit.v1",
+  "status": "COMPLETE",
+  "scope": "read-only cached evidence reconciliation; no scientific gate authority",
+  "measured_process_cpu_seconds": 0.13615,
+  "process_cpu_seconds": 0.13615,
+  "gpu_occupation_seconds": 0.0,
+  "physical_calls": 0,
+  "new_labels": 0,
+  "tests_rerun": 0,
+  "plots_regenerated": 0,
+  "frozen_gates_modified": false,
+  "raw_results_modified": false,
+  "writer_process_cpu_seconds": 0.036537,
+  "prior_successful_array_audit_cpu_seconds": 0.085651,
+  "prior_successful_table_inspection_cpu_seconds": 0.013962,
+  "writer_wall_seconds": 0.01260624997667037,
+  "measurement_scope": "successful recorded Python CPU intervals plus final writer self user/system CPU; preliminary shell/controller work and one failed file inspection excluded",
+  "array_audit": {
+    "audit": "cached_arrays_only",
+    "rows_verified": 204,
+    "observations_verified": 28,
+    "calibration_noise_matches_nominal": 4,
+    "maximum_absolute_metric_differences": {
+      "material_interpolation_relative_error": 0,
+      "clean_packing_relative_error": 1.2893118321102421e-16,
+      "saved_truth_matches_labels": 0,
+      "measurement_packing_relative_error": 1.2893118321102421e-16,
+      "full_chi_NRMSE": 8.104628079763643e-15,
+      "delta_chi_NRMSE": 1.2212453270876722e-15,
+      "real_NRMSE": 3.219646771412954e-15,
+      "imag_NRMSE": 5.10702591327572e-15,
+      "absolute_mass_error": 7.771561172376096e-16,
+      "physical_violation": 0
+    },
+    "curvature_scalar_differences_and_algebra": {
+      "linear_norm": 1.4210854715202004e-14,
+      "finite_remainder_norm": 7.105427357601002e-15,
+      "full_Q_norm": 1.7763568394002505e-15,
+      "feedback_Q_norm": 7.105427357601002e-15,
+      "local_a_second_norm": 3.552713678800501e-15,
+      "quadratic_remainder_norm": 8.881784197001252e-16,
+      "total_decomposition_relative_error": 0,
+      "t2_scaling_relative_error": 2.473573944879073e-15
+    },
+    "noise_definition": [
+      {
+        "scene": 2001,
+        "scale": 0.007175300851818393,
+        "sigma": 0.0005632210855405235,
+        "sigma_definition_relative_error": 1.9250028102996095e-16,
+        "reference_RMS_relative_error": 0
+      },
+      {
+        "scene": 2003,
+        "scale": 0.007173961684107208,
+        "sigma": 0.0023781987810711823,
+        "sigma_definition_relative_error": 1.8235686286865572e-16,
+        "reference_RMS_relative_error": 1.2090414978238704e-16
+      },
+      {
+        "scene": 2014,
+        "scale": 0.007175611516490668,
+        "sigma": 0.00019774975688212788,
+        "sigma_definition_relative_error": 0,
+        "reference_RMS_relative_error": 1.2087635123432641e-16
+      },
+      {
+        "scene": 2009,
+        "scale": 0.007177293919534872,
+        "sigma": 0.0007244702937472911,
+        "sigma_definition_relative_error": 0,
+        "reference_RMS_relative_error": 0
+      }
+    ],
+    "problems": [],
+    "process_cpu_seconds": 0.085651,
+    "wall_seconds": 0.10610449998057447,
+    "gpu_seconds": 0,
+    "physical_calls": 0
+  },
+  "row_counts": {
+    "H1": 32,
+    "H2_comparison": 48,
+    "full_image": 204,
+    "pareto": 204,
+    "curvature": 12
+  },
+  "physical_status_counts": {
+    "OK": 79,
+    "REJECTED_PHYSICAL": 125
+  },
+  "full_validation_counts": {
+    "NOT_RUN": 184,
+    "REJECTED": 19,
+    "RUN": 1
+  },
+  "gate_statuses": {
+    "H1": "FAIL",
+    "H2": "FAIL",
+    "H3": "FAIL"
+  },
+  "best_raw_born_groups": 1,
+  "best_legal_born_groups": 8,
+  "primary_raw_baselines_unchanged": true,
+  "complete_pairs": 1,
+  "eligible_quality": 0,
+  "full_tangent_complement_max_absolute": {
+    "total": 6.395903658258505e-11,
+    "feedback": 8.056006868356956e-11,
+    "local": 7.064083732973956e-11
+  },
+  "full_tangent_complement_max_relative": {
+    "total": 1.8939069046690628e-12,
+    "feedback": 2.0246710256741125e-12,
+    "local": 2.0489255493660607e-12
+  },
+  "notes": [
+    "漏列 Born BP 的报告缺口已由父线程修正，当前48行H2对照已逐行复核；原始204行和冻结门槛未改变。",
+    "保存的 calibration_nuisance 字段对应6个源增益和128个观测分量独立增益，秩133；实际stress使用64个receiver增益，各receiver的两分量共享。它是较大空间的离线诊断，不能称为该stress的精确切空间。",
+    "common_lambda在所有方法行上作为共同配置记录；BP/ratio本身不使用Tikhonov λ。共享λ的字面主张仅适用于相应正则化decoder及feedback分支。",
+    "COST_SUMMARY在report内生成时可以包含该report尚未终止的作业；最终完整成本状态需以父线程在全部终止receipt之后的刷新为准。此审计不重写总账。"
+  ],
+  "document": "docs/A23_FINAL_EVIDENCE_CONSISTENCY.md",
+  "counts": {}
+}

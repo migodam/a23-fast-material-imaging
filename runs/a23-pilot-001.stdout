@@ -1,0 +1,5 @@
+{"stage": "pilot", "scene": 2001, "image_rows": 51, "curvature_rows": 3}
+{"stage": "pilot", "scene": 2003, "image_rows": 102, "curvature_rows": 6}
+{"stage": "pilot", "scene": 2014, "image_rows": 153, "curvature_rows": 9}
+{"stage": "pilot", "scene": 2009, "image_rows": 204, "curvature_rows": 12}
+{"job": "a23-pilot-001", "status": "COMPLETE", "gpu_seconds": 514.0052757000085, "cpu_seconds": 488.5, "error": null}

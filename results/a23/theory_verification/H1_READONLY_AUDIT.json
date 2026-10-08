@@ -1,0 +1,677 @@
+{
+  "scope": "read-only H1 numerical/protocol audit; no scientific gate decision",
+  "csv_rows": 32,
+  "json_rows": 32,
+  "scene_set": [
+    2001,
+    2003,
+    2009,
+    2014
+  ],
+  "all_32_rows_status_OK": true,
+  "issues": [],
+  "records": [
+    {
+      "scene": 2001,
+      "method": "original_opm",
+      "status": "OK",
+      "rank": 32,
+      "transfer_error": 0.054624550671187065,
+      "decoder_weighted_error": 0.2902444760540012,
+      "cached_original_difference": 5.331118211846375e-15,
+      "source_capture_error": null,
+      "repeats": 6,
+      "all_repeat_statuses": [
+        "OK",
+        "OK",
+        "OK",
+        "OK",
+        "OK",
+        "OK"
+      ]
+    },
+    {
+      "scene": 2001,
+      "method": "cached_opm",
+      "status": "OK",
+      "rank": 32,
+      "transfer_error": 0.05462455067118702,
+      "decoder_weighted_error": 0.2902444760540009,
+      "cached_original_difference": 5.331118211846375e-15,
+      "source_capture_error": null,
+      "repeats": 6,
+      "all_repeat_statuses": [
+        "OK",
+        "OK",
+        "OK",
+        "OK",
+        "OK",
+        "OK"
+      ]
+    },
+    {
+      "scene": 2001,
+      "method": "source_anchored_opm",
+      "status": "OK",
+      "rank": 24,
+      "transfer_error": 0.09673472008380796,
+      "decoder_weighted_error": 0.547224986203929,
+      "cached_original_difference": null,
+      "source_capture_error": 1.3511619130225388e-15,
+      "repeats": 6,
+      "all_repeat_statuses": [
+        "OK",
+        "OK",
+        "OK",
+        "OK",
+        "OK",
+        "OK"
+      ]
+    },
+    {
+      "scene": 2001,
+      "method": "source_anchored_om",
+      "status": "OK",
+      "rank": 24,
+      "transfer_error": 0.09673472008380796,
+      "decoder_weighted_error": 0.547224986203929,
+      "cached_original_difference": null,
+      "source_capture_error": 1.3511619130225388e-15,
+      "repeats": 6,
+      "all_repeat_statuses": [
+        "OK",
+        "OK",
+        "OK",
+        "OK",
+        "OK",
+        "OK"
+      ]
+    },
+    {
+      "scene": 2001,
+      "method": "mp",
+      "status": "OK",
+      "rank": 24,
+      "transfer_error": 0.10752391844511806,
+      "decoder_weighted_error": 0.5424482051676495,
+      "cached_original_difference": null,
+      "source_capture_error": null,
+      "repeats": 6,
+      "all_repeat_statuses": [
+        "OK",
+        "OK",
+        "OK",
+        "OK",
+        "OK",
+        "OK"
+      ]
+    },
+    {
+      "scene": 2001,
+      "method": "m_only",
+      "status": "OK",
+      "rank": 16,
+      "transfer_error": 0.24131396133813623,
+      "decoder_weighted_error": 0.9462380138100379,
+      "cached_original_difference": null,
+      "source_capture_error": null,
+      "repeats": 6,
+      "all_repeat_statuses": [
+        "OK",
+        "OK",
+        "OK",
+        "OK",
+        "OK",
+        "OK"
+      ]
+    },
+    {
+      "scene": 2001,
+      "method": "randomized_transfer",
+      "status": "OK",
+      "rank": 32,
+      "transfer_error": 0.1031898639606956,
+      "decoder_weighted_error": 0.9316345321071726,
+      "cached_original_difference": null,
+      "source_capture_error": null,
+      "repeats": 6,
+      "all_repeat_statuses": [
+        "OK",
+        "OK",
+        "OK",
+        "OK",
+        "OK",
+        "OK"
+      ]
+    },
+    {
+      "scene": 2001,
+      "method": "direct_adjoint",
+      "status": "OK",
+      "rank": null,
+      "transfer_error": 0.0,
+      "decoder_weighted_error": 0.0,
+      "cached_original_difference": null,
+      "source_capture_error": null,
+      "repeats": 6,
+      "all_repeat_statuses": [
+        "OK",
+        "OK",
+        "OK",
+        "OK",
+        "OK",
+        "OK"
+      ]
+    },
+    {
+      "scene": 2003,
+      "method": "original_opm",
+      "status": "OK",
+      "rank": 32,
+      "transfer_error": 0.06151660423895073,
+      "decoder_weighted_error": 0.3006205214812591,
+      "cached_original_difference": 5.9185991870415126e-15,
+      "source_capture_error": null,
+      "repeats": 6,
+      "all_repeat_statuses": [
+        "OK",
+        "OK",
+        "OK",
+        "OK",
+        "OK",
+        "OK"
+      ]
+    },
+    {
+      "scene": 2003,
+      "method": "cached_opm",
+      "status": "OK",
+      "rank": 32,
+      "transfer_error": 0.061516604238950716,
+      "decoder_weighted_error": 0.300620521481259,
+      "cached_original_difference": 5.9185991870415126e-15,
+      "source_capture_error": null,
+      "repeats": 6,
+      "all_repeat_statuses": [
+        "OK",
+        "OK",
+        "OK",
+        "OK",
+        "OK",
+        "OK"
+      ]
+    },
+    {
+      "scene": 2003,
+      "method": "source_anchored_opm",
+      "status": "OK",
+      "rank": 24,
+      "transfer_error": 0.10411611131650628,
+      "decoder_weighted_error": 0.47168375119371014,
+      "cached_original_difference": null,
+      "source_capture_error": 9.844515856053586e-16,
+      "repeats": 6,
+      "all_repeat_statuses": [
+        "OK",
+        "OK",
+        "OK",
+        "OK",
+        "OK",
+        "OK"
+      ]
+    },
+    {
+      "scene": 2003,
+      "method": "source_anchored_om",
+      "status": "OK",
+      "rank": 24,
+      "transfer_error": 0.10411611131650628,
+      "decoder_weighted_error": 0.47168375119371014,
+      "cached_original_difference": null,
+      "source_capture_error": 9.844515856053586e-16,
+      "repeats": 6,
+      "all_repeat_statuses": [
+        "OK",
+        "OK",
+        "OK",
+        "OK",
+        "OK",
+        "OK"
+      ]
+    },
+    {
+      "scene": 2003,
+      "method": "mp",
+      "status": "OK",
+      "rank": 24,
+      "transfer_error": 0.11715337365497062,
+      "decoder_weighted_error": 0.49501333253286006,
+      "cached_original_difference": null,
+      "source_capture_error": null,
+      "repeats": 6,
+      "all_repeat_statuses": [
+        "OK",
+        "OK",
+        "OK",
+        "OK",
+        "OK",
+        "OK"
+      ]
+    },
+    {
+      "scene": 2003,
+      "method": "m_only",
+      "status": "OK",
+      "rank": 16,
+      "transfer_error": 0.24569988399949766,
+      "decoder_weighted_error": 1.013522207333382,
+      "cached_original_difference": null,
+      "source_capture_error": null,
+      "repeats": 6,
+      "all_repeat_statuses": [
+        "OK",
+        "OK",
+        "OK",
+        "OK",
+        "OK",
+        "OK"
+      ]
+    },
+    {
+      "scene": 2003,
+      "method": "randomized_transfer",
+      "status": "OK",
+      "rank": 32,
+      "transfer_error": 0.0958825412570055,
+      "decoder_weighted_error": 0.8648694251636115,
+      "cached_original_difference": null,
+      "source_capture_error": null,
+      "repeats": 6,
+      "all_repeat_statuses": [
+        "OK",
+        "OK",
+        "OK",
+        "OK",
+        "OK",
+        "OK"
+      ]
+    },
+    {
+      "scene": 2003,
+      "method": "direct_adjoint",
+      "status": "OK",
+      "rank": null,
+      "transfer_error": 0.0,
+      "decoder_weighted_error": 0.0,
+      "cached_original_difference": null,
+      "source_capture_error": null,
+      "repeats": 6,
+      "all_repeat_statuses": [
+        "OK",
+        "OK",
+        "OK",
+        "OK",
+        "OK",
+        "OK"
+      ]
+    },
+    {
+      "scene": 2009,
+      "method": "original_opm",
+      "status": "OK",
+      "rank": 32,
+      "transfer_error": 0.04938148359954425,
+      "decoder_weighted_error": 0.24587283180495798,
+      "cached_original_difference": 5.472241851416832e-15,
+      "source_capture_error": null,
+      "repeats": 6,
+      "all_repeat_statuses": [
+        "OK",
+        "OK",
+        "OK",
+        "OK",
+        "OK",
+        "OK"
+      ]
+    },
+    {
+      "scene": 2009,
+      "method": "cached_opm",
+      "status": "OK",
+      "rank": 32,
+      "transfer_error": 0.049381483599544224,
+      "decoder_weighted_error": 0.24587283180495784,
+      "cached_original_difference": 5.472241851416832e-15,
+      "source_capture_error": null,
+      "repeats": 6,
+      "all_repeat_statuses": [
+        "OK",
+        "OK",
+        "OK",
+        "OK",
+        "OK",
+        "OK"
+      ]
+    },
+    {
+      "scene": 2009,
+      "method": "source_anchored_opm",
+      "status": "OK",
+      "rank": 24,
+      "transfer_error": 0.09875997323810352,
+      "decoder_weighted_error": 0.4418126651069738,
+      "cached_original_difference": null,
+      "source_capture_error": 1.3923792239037708e-15,
+      "repeats": 6,
+      "all_repeat_statuses": [
+        "OK",
+        "OK",
+        "OK",
+        "OK",
+        "OK",
+        "OK"
+      ]
+    },
+    {
+      "scene": 2009,
+      "method": "source_anchored_om",
+      "status": "OK",
+      "rank": 24,
+      "transfer_error": 0.09875997323810352,
+      "decoder_weighted_error": 0.4418126651069738,
+      "cached_original_difference": null,
+      "source_capture_error": 1.3923792239037708e-15,
+      "repeats": 6,
+      "all_repeat_statuses": [
+        "OK",
+        "OK",
+        "OK",
+        "OK",
+        "OK",
+        "OK"
+      ]
+    },
+    {
+      "scene": 2009,
+      "method": "mp",
+      "status": "OK",
+      "rank": 24,
+      "transfer_error": 0.10748716932826473,
+      "decoder_weighted_error": 0.44271892160110515,
+      "cached_original_difference": null,
+      "source_capture_error": null,
+      "repeats": 6,
+      "all_repeat_statuses": [
+        "OK",
+        "OK",
+        "OK",
+        "OK",
+        "OK",
+        "OK"
+      ]
+    },
+    {
+      "scene": 2009,
+      "method": "m_only",
+      "status": "OK",
+      "rank": 16,
+      "transfer_error": 0.24806615521677003,
+      "decoder_weighted_error": 0.9425215852297771,
+      "cached_original_difference": null,
+      "source_capture_error": null,
+      "repeats": 6,
+      "all_repeat_statuses": [
+        "OK",
+        "OK",
+        "OK",
+        "OK",
+        "OK",
+        "OK"
+      ]
+    },
+    {
+      "scene": 2009,
+      "method": "randomized_transfer",
+      "status": "OK",
+      "rank": 32,
+      "transfer_error": 0.09775993384128609,
+      "decoder_weighted_error": 0.8884220313770684,
+      "cached_original_difference": null,
+      "source_capture_error": null,
+      "repeats": 6,
+      "all_repeat_statuses": [
+        "OK",
+        "OK",
+        "OK",
+        "OK",
+        "OK",
+        "OK"
+      ]
+    },
+    {
+      "scene": 2009,
+      "method": "direct_adjoint",
+      "status": "OK",
+      "rank": null,
+      "transfer_error": 0.0,
+      "decoder_weighted_error": 0.0,
+      "cached_original_difference": null,
+      "source_capture_error": null,
+      "repeats": 6,
+      "all_repeat_statuses": [
+        "OK",
+        "OK",
+        "OK",
+        "OK",
+        "OK",
+        "OK"
+      ]
+    },
+    {
+      "scene": 2014,
+      "method": "original_opm",
+      "status": "OK",
+      "rank": 32,
+      "transfer_error": 0.048642795147722524,
+      "decoder_weighted_error": 0.2582975146696878,
+      "cached_original_difference": 5.475048096704366e-15,
+      "source_capture_error": null,
+      "repeats": 6,
+      "all_repeat_statuses": [
+        "OK",
+        "OK",
+        "OK",
+        "OK",
+        "OK",
+        "OK"
+      ]
+    },
+    {
+      "scene": 2014,
+      "method": "cached_opm",
+      "status": "OK",
+      "rank": 32,
+      "transfer_error": 0.0486427951477225,
+      "decoder_weighted_error": 0.25829751466968776,
+      "cached_original_difference": 5.475048096704366e-15,
+      "source_capture_error": null,
+      "repeats": 6,
+      "all_repeat_statuses": [
+        "OK",
+        "OK",
+        "OK",
+        "OK",
+        "OK",
+        "OK"
+      ]
+    },
+    {
+      "scene": 2014,
+      "method": "source_anchored_opm",
+      "status": "OK",
+      "rank": 24,
+      "transfer_error": 0.09904766857840051,
+      "decoder_weighted_error": 0.43727206470229024,
+      "cached_original_difference": null,
+      "source_capture_error": 1.414538770189147e-15,
+      "repeats": 6,
+      "all_repeat_statuses": [
+        "OK",
+        "OK",
+        "OK",
+        "OK",
+        "OK",
+        "OK"
+      ]
+    },
+    {
+      "scene": 2014,
+      "method": "source_anchored_om",
+      "status": "OK",
+      "rank": 24,
+      "transfer_error": 0.09904766857840051,
+      "decoder_weighted_error": 0.43727206470229024,
+      "cached_original_difference": null,
+      "source_capture_error": 1.414538770189147e-15,
+      "repeats": 6,
+      "all_repeat_statuses": [
+        "OK",
+        "OK",
+        "OK",
+        "OK",
+        "OK",
+        "OK"
+      ]
+    },
+    {
+      "scene": 2014,
+      "method": "mp",
+      "status": "OK",
+      "rank": 24,
+      "transfer_error": 0.11093005564206422,
+      "decoder_weighted_error": 0.48639055814600274,
+      "cached_original_difference": null,
+      "source_capture_error": null,
+      "repeats": 6,
+      "all_repeat_statuses": [
+        "OK",
+        "OK",
+        "OK",
+        "OK",
+        "OK",
+        "OK"
+      ]
+    },
+    {
+      "scene": 2014,
+      "method": "m_only",
+      "status": "OK",
+      "rank": 16,
+      "transfer_error": 0.25296076595056477,
+      "decoder_weighted_error": 0.9018839019202629,
+      "cached_original_difference": null,
+      "source_capture_error": null,
+      "repeats": 6,
+      "all_repeat_statuses": [
+        "OK",
+        "OK",
+        "OK",
+        "OK",
+        "OK",
+        "OK"
+      ]
+    },
+    {
+      "scene": 2014,
+      "method": "randomized_transfer",
+      "status": "OK",
+      "rank": 32,
+      "transfer_error": 0.11704476579180507,
+      "decoder_weighted_error": 1.021701834608042,
+      "cached_original_difference": null,
+      "source_capture_error": null,
+      "repeats": 6,
+      "all_repeat_statuses": [
+        "OK",
+        "OK",
+        "OK",
+        "OK",
+        "OK",
+        "OK"
+      ]
+    },
+    {
+      "scene": 2014,
+      "method": "direct_adjoint",
+      "status": "OK",
+      "rank": null,
+      "transfer_error": 0.0,
+      "decoder_weighted_error": 0.0,
+      "cached_original_difference": null,
+      "source_capture_error": null,
+      "repeats": 6,
+      "all_repeat_statuses": [
+        "OK",
+        "OK",
+        "OK",
+        "OK",
+        "OK",
+        "OK"
+      ]
+    }
+  ],
+  "backend_identity": [
+    {
+      "file": "results/a23/BACKEND_IDENTITY_2001.json",
+      "source_residual": 4.787594229527433e-15,
+      "streamed_vs_paid_tangent": 6.263973087607572e-15,
+      "real_adjoint_dot_error": 3.762202274332928e-15,
+      "quadratic_symmetry_error": 7.635906501162259e-16,
+      "source_count": 6,
+      "material_dimension": 3456,
+      "real_data_dimension": 1536
+    },
+    {
+      "file": "results/a23/BACKEND_IDENTITY_2003.json",
+      "source_residual": 5.193627811927711e-15,
+      "streamed_vs_paid_tangent": 6.276700779527805e-15,
+      "real_adjoint_dot_error": 7.867138540761153e-14,
+      "quadratic_symmetry_error": 7.88104196959758e-16,
+      "source_count": 6,
+      "material_dimension": 3456,
+      "real_data_dimension": 1536
+    },
+    {
+      "file": "results/a23/BACKEND_IDENTITY_2009.json",
+      "source_residual": 4.7312043413050466e-15,
+      "streamed_vs_paid_tangent": 5.239389604596191e-15,
+      "real_adjoint_dot_error": 0.0,
+      "quadratic_symmetry_error": 9.444280168378607e-16,
+      "source_count": 6,
+      "material_dimension": 3456,
+      "real_data_dimension": 1536
+    },
+    {
+      "file": "results/a23/BACKEND_IDENTITY_2014.json",
+      "source_residual": 4.716343514100726e-15,
+      "streamed_vs_paid_tangent": 5.246855135632819e-15,
+      "real_adjoint_dot_error": 5.929822269636272e-16,
+      "quadratic_symmetry_error": 8.294015804511576e-16,
+      "source_count": 6,
+      "material_dimension": 3456,
+      "real_data_dimension": 1536
+    }
+  ],
+  "sources": [
+    "results/a23/h1/scene_2001/H1_METRICS.json",
+    "results/a23/h1/scene_2003/H1_METRICS.json",
+    "results/a23/h1/scene_2009/H1_METRICS.json",
+    "results/a23/h1/scene_2014/H1_METRICS.json"
+  ],
+  "interpretation_limitations": [
+    "direct_adjoint cold_wall_seconds in H1 row is cache-read/evaluation/export only; caller-measured independent_preparation must be added for deployment timing",
+    "randomized rank is in data space; OPM ranks are current basis dimensions",
+    "transfer errors and decoder-weighted errors above one are retained; no clipping or gate conclusion",
+    "all input summaries were read only; no physical actions were launched"
+  ]
+}

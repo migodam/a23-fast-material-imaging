@@ -1,0 +1,45 @@
+{
+  "status": "COMPLETE",
+  "device": "cpu",
+  "process_cpu_seconds": 0.0019459999999999963,
+  "wall_seconds": 0.002927875,
+  "gpu_occupation_seconds": 0.0,
+  "physics_actions": 0,
+  "new_labels": 0,
+  "redacted_public_copies": [
+    {
+      "path": "research/delegated/a23-tests/TEST_AUDIT.md",
+      "original_bytes": 8001,
+      "public_bytes": 7965,
+      "scope": "local absolute workspace/research/user-home paths only",
+      "scientific_numbers_changed": false,
+      "original_preserved_ignored": true
+    },
+    {
+      "path": "results/a23/theory_verification/ADAPTER_TEST_RUN_0003.json",
+      "original_bytes": 17324,
+      "public_bytes": 17258,
+      "scope": "local absolute workspace/research/user-home paths only",
+      "scientific_numbers_changed": false,
+      "original_preserved_ignored": true
+    },
+    {
+      "path": "results/a23/theory_verification/ADAPTER_TEST_RUN_0003.log",
+      "original_bytes": 6145,
+      "public_bytes": 6079,
+      "scope": "local absolute workspace/research/user-home paths only",
+      "scientific_numbers_changed": false,
+      "original_preserved_ignored": true
+    },
+    {
+      "path": "results/a23/theory_verification/ORIGINAL_VALIDATORS_LEDGER.jsonl",
+      "original_bytes": 902,
+      "public_bytes": 830,
+      "scope": "local absolute workspace/research/user-home paths only",
+      "scientific_numbers_changed": false,
+      "original_preserved_ignored": true
+    }
+  ],
+  "private_originals_published": false,
+  "new_SHA256_checks": 0
+}

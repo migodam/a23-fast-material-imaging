@@ -1,0 +1,82 @@
+[
+  {
+    "rank": 32,
+    "requested_rank": 32,
+    "mean_retained": true,
+    "training_probes": 32,
+    "holdout_probes": 8,
+    "independent_probe_errors": [
+      0.6670281863588993,
+      0.7556506898107457,
+      0.5859308885488624,
+      0.613803951314582,
+      0.6310794961482122,
+      0.6778219755582289,
+      0.6467676082239976,
+      0.5694502640676802
+    ],
+    "empirical_only": true,
+    "tensor_constructed": false,
+    "scene": 2001
+  },
+  {
+    "rank": 32,
+    "requested_rank": 32,
+    "mean_retained": true,
+    "training_probes": 32,
+    "holdout_probes": 8,
+    "independent_probe_errors": [
+      0.6034799833893404,
+      0.5909529017334262,
+      0.6018557968509382,
+      0.6807774432561318,
+      0.6827307312175305,
+      0.5924292234373097,
+      0.47152424415140864,
+      0.693889817506868
+    ],
+    "empirical_only": true,
+    "tensor_constructed": false,
+    "scene": 2003
+  },
+  {
+    "rank": 32,
+    "requested_rank": 32,
+    "mean_retained": true,
+    "training_probes": 32,
+    "holdout_probes": 8,
+    "independent_probe_errors": [
+      0.5702343114174367,
+      0.6575894389825646,
+      0.6545620547325849,
+      0.7317658881686834,
+      0.6981756766988991,
+      0.5534585484766605,
+      0.5907789024458703,
+      0.5781142596256758
+    ],
+    "empirical_only": true,
+    "tensor_constructed": false,
+    "scene": 2014
+  },
+  {
+    "rank": 32,
+    "requested_rank": 32,
+    "mean_retained": true,
+    "training_probes": 32,
+    "holdout_probes": 8,
+    "independent_probe_errors": [
+      0.638050948944598,
+      0.6490602198736128,
+      0.6349114622632736,
+      0.7273901796985105,
+      0.5607255856727952,
+      0.5211642291245497,
+      0.5999583072314219,
+      0.5618807434665876
+    ],
+    "empirical_only": true,
+    "tensor_constructed": false,
+    "scene": 2009
+  }
+]

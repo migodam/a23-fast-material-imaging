@@ -1,0 +1,501 @@
+{
+  "scope": "same-backend eight-cell implementation checks; NOT production imaging evidence",
+  "run_id": 3,
+  "tests_run": 31,
+  "success": false,
+  "failures": [
+    {
+      "test": "test_quadratic_is_symmetric_bilinear_and_contains_half_hessian (tests.test_a23_physics.ReferenceResponseTests.test_quadratic_is_symmetric_bilinear_and_contains_half_hessian)",
+      "traceback": "Traceback (most recent call last):\n  File \"<WORKSPACE>/tests/test_a23_physics.py\", line 196, in test_quadratic_is_symmetric_bilinear_and_contains_half_hessian\n    self.assertLess(min(errors), 2e-6)\n    ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^\nAssertionError: 3.3077985307356094e-06 not less than 2e-06\n"
+    }
+  ],
+  "errors": [],
+  "skips": [],
+  "wall_seconds": 0.14579062501434237,
+  "process_cpu_seconds": 0.137206,
+  "device": "cpu",
+  "gpu_occupation_seconds": 0.0,
+  "largest_N_cells": 8,
+  "python_version": "3.13.13",
+  "numpy": "2.5.3",
+  "scipy": "1.18.1",
+  "separate_from_primary_forward_caps": true,
+  "book_receipts": [
+    {
+      "wall_seconds": 0.04291758401086554,
+      "process_cpu_seconds": 0.035024,
+      "gpu_occupation_seconds": 0.0,
+      "counts": {
+        "full_forward_calls": 1,
+        "full_forward_RHS": 6,
+        "full_LU_factorizations": 1,
+        "full_state_backward_residual_L_rhs": 6,
+        "full_state_receiver_rhs": 6,
+        "full_state_Goff_rhs": 6,
+        "material_operator_refreshes": 1,
+        "full_tangent_calls": 1,
+        "full_tangent_RHS": 6,
+        "full_tangent_receiver_rhs": 6,
+        "full_adjoint_calls": 1,
+        "full_adjoint_RHS": 6,
+        "full_adjoint_receiver_rhs": 6
+      },
+      "exclusive_walls": {
+        "physical_geometry_setup": 0.00035270900116302073,
+        "full_forward": 0.00014012499013915658,
+        "material_operator_refresh": 3.7919962778687477e-06,
+        "full_tangent": 8.175001130439341e-05,
+        "full_adjoint": 7.449998520314693e-05
+      },
+      "events": 5,
+      "peak_cpu_rss_bytes": 72761344,
+      "CPU_memory_measurement_available": true,
+      "peak_gpu_allocated_bytes": 0,
+      "peak_gpu_reserved_bytes": 0,
+      "device": "cpu",
+      "CPU_in_GPU_job_included": true,
+      "deployment_wall_definition": "inclusive parent elapsed; never sum nested spans",
+      "test_scope": "tiny_adapter_only",
+      "test_book": 1
+    },
+    {
+      "wall_seconds": 0.04021279199514538,
+      "process_cpu_seconds": 0.03239699999999998,
+      "gpu_occupation_seconds": 0.0,
+      "counts": {
+        "full_forward_calls": 19,
+        "full_forward_RHS": 114,
+        "full_LU_factorizations": 19,
+        "full_state_backward_residual_L_rhs": 114,
+        "full_state_receiver_rhs": 114,
+        "full_state_Goff_rhs": 114,
+        "material_operator_refreshes": 18,
+        "S_adjoint_rhs": 24,
+        "solve_adjoint_rhs": 24,
+        "L_adjoint_residual_audit_rhs": 24,
+        "B_adjoint_rhs": 144,
+        "solve_forward_rhs": 252,
+        "G_rhs": 240,
+        "S_rhs": 360,
+        "S_actions": 12,
+        "full_tangent_calls": 1,
+        "full_tangent_RHS": 6,
+        "full_tangent_receiver_rhs": 6
+      },
+      "exclusive_walls": {
+        "physical_geometry_setup": 0.0002545839815866202,
+        "full_forward": 0.0011548319307621568,
+        "material_operator_refresh": 4.304401227273047e-05,
+        "reference_adjoint_solve": 3.2499985536560416e-05,
+        "direct_receiver_adjoint_prepare": 0.00012608300312422216,
+        "direct_streamed_transfer": 6.0040998505428433e-05,
+        "reference_solve": 0.0005826259148307145,
+        "G": 0.00015428999904543161,
+        "quadratic_receiver_contraction": 0.00024354111519642174,
+        "S": 6.624992238357663e-06,
+        "full_tangent": 4.75000124424696e-05
+      },
+      "events": 186,
+      "peak_cpu_rss_bytes": 72761344,
+      "CPU_memory_measurement_available": true,
+      "peak_gpu_allocated_bytes": 0,
+      "peak_gpu_reserved_bytes": 0,
+      "device": "cpu",
+      "CPU_in_GPU_job_included": true,
+      "deployment_wall_definition": "inclusive parent elapsed; never sum nested spans",
+      "test_scope": "tiny_adapter_only",
+      "test_book": 2
+    },
+    {
+      "wall_seconds": 0.03877487502177246,
+      "process_cpu_seconds": 0.031038999999999983,
+      "gpu_occupation_seconds": 0.0,
+      "counts": {
+        "decoder_prepare_compact_SVD": 1,
+        "decoder_matrix_bytes": 36864
+      },
+      "exclusive_walls": {},
+      "events": 0,
+      "peak_cpu_rss_bytes": 0,
+      "CPU_memory_measurement_available": false,
+      "peak_gpu_allocated_bytes": 0,
+      "peak_gpu_reserved_bytes": 0,
+      "device": "cpu",
+      "CPU_in_GPU_job_included": true,
+      "deployment_wall_definition": "inclusive parent elapsed; never sum nested spans",
+      "test_scope": "tiny_adapter_only",
+      "test_book": 3
+    },
+    {
+      "wall_seconds": 0.0368785000173375,
+      "process_cpu_seconds": 0.029532000000000003,
+      "gpu_occupation_seconds": 0.0,
+      "counts": {},
+      "exclusive_walls": {},
+      "events": 0,
+      "peak_cpu_rss_bytes": 0,
+      "CPU_memory_measurement_available": false,
+      "peak_gpu_allocated_bytes": 0,
+      "peak_gpu_reserved_bytes": 0,
+      "device": "cpu",
+      "CPU_in_GPU_job_included": true,
+      "deployment_wall_definition": "inclusive parent elapsed; never sum nested spans",
+      "test_scope": "tiny_adapter_only",
+      "test_book": 4
+    },
+    {
+      "wall_seconds": 0.03682358399964869,
+      "process_cpu_seconds": 0.029478000000000004,
+      "gpu_occupation_seconds": 0.0,
+      "counts": {},
+      "exclusive_walls": {},
+      "events": 0,
+      "peak_cpu_rss_bytes": 0,
+      "CPU_memory_measurement_available": false,
+      "peak_gpu_allocated_bytes": 0,
+      "peak_gpu_reserved_bytes": 0,
+      "device": "cpu",
+      "CPU_in_GPU_job_included": true,
+      "deployment_wall_definition": "inclusive parent elapsed; never sum nested spans",
+      "test_scope": "tiny_adapter_only",
+      "test_book": 5
+    },
+    {
+      "wall_seconds": 0.03568450000602752,
+      "process_cpu_seconds": 0.02862199999999998,
+      "gpu_occupation_seconds": 0.0,
+      "counts": {
+        "full_forward_calls": 1,
+        "full_forward_RHS": 6,
+        "full_LU_factorizations": 1,
+        "full_state_backward_residual_L_rhs": 6,
+        "full_state_receiver_rhs": 6,
+        "full_state_Goff_rhs": 6,
+        "material_operator_refreshes": 1
+      },
+      "exclusive_walls": {
+        "physical_geometry_setup": 0.00024470797507092357,
+        "full_forward": 5.8999983593821526e-05,
+        "material_operator_refresh": 2.374988980591297e-06
+      },
+      "events": 3,
+      "peak_cpu_rss_bytes": 72761344,
+      "CPU_memory_measurement_available": true,
+      "peak_gpu_allocated_bytes": 0,
+      "peak_gpu_reserved_bytes": 0,
+      "device": "cpu",
+      "CPU_in_GPU_job_included": true,
+      "deployment_wall_definition": "inclusive parent elapsed; never sum nested spans",
+      "test_scope": "tiny_adapter_only",
+      "test_book": 6
+    },
+    {
+      "wall_seconds": 0.009271916002035141,
+      "process_cpu_seconds": 0.00887099999999999,
+      "gpu_occupation_seconds": 0.0,
+      "counts": {},
+      "exclusive_walls": {
+        "physical_geometry_setup": 0.000280167005257681
+      },
+      "events": 1,
+      "peak_cpu_rss_bytes": 72761344,
+      "CPU_memory_measurement_available": true,
+      "peak_gpu_allocated_bytes": 0,
+      "peak_gpu_reserved_bytes": 0,
+      "device": "cpu",
+      "CPU_in_GPU_job_included": true,
+      "deployment_wall_definition": "inclusive parent elapsed; never sum nested spans",
+      "test_scope": "tiny_adapter_only",
+      "test_book": 7
+    },
+    {
+      "wall_seconds": 0.008846042008372024,
+      "process_cpu_seconds": 0.008446999999999982,
+      "gpu_occupation_seconds": 0.0,
+      "counts": {
+        "decoder_prepare_compact_SVD": 1,
+        "decoder_matrix_bytes": 36864
+      },
+      "exclusive_walls": {},
+      "events": 0,
+      "peak_cpu_rss_bytes": 0,
+      "CPU_memory_measurement_available": false,
+      "peak_gpu_allocated_bytes": 0,
+      "peak_gpu_reserved_bytes": 0,
+      "device": "cpu",
+      "CPU_in_GPU_job_included": true,
+      "deployment_wall_definition": "inclusive parent elapsed; never sum nested spans",
+      "test_scope": "tiny_adapter_only",
+      "test_book": 8
+    },
+    {
+      "wall_seconds": 0.008560000016586855,
+      "process_cpu_seconds": 0.00816,
+      "gpu_occupation_seconds": 0.0,
+      "counts": {
+        "full_forward_calls": 1,
+        "full_forward_RHS": 6,
+        "full_LU_factorizations": 1,
+        "full_state_backward_residual_L_rhs": 6,
+        "full_state_receiver_rhs": 6,
+        "full_state_Goff_rhs": 6,
+        "material_operator_refreshes": 1
+      },
+      "exclusive_walls": {
+        "physical_geometry_setup": 0.00024783299886621535,
+        "full_forward": 6.408299668692052e-05,
+        "material_operator_refresh": 2.333021257072687e-06
+      },
+      "events": 3,
+      "peak_cpu_rss_bytes": 72761344,
+      "CPU_memory_measurement_available": true,
+      "peak_gpu_allocated_bytes": 0,
+      "peak_gpu_reserved_bytes": 0,
+      "device": "cpu",
+      "CPU_in_GPU_job_included": true,
+      "deployment_wall_definition": "inclusive parent elapsed; never sum nested spans",
+      "test_scope": "tiny_adapter_only",
+      "test_book": 9
+    },
+    {
+      "wall_seconds": 0.007772457989631221,
+      "process_cpu_seconds": 0.007440000000000002,
+      "gpu_occupation_seconds": 0.0,
+      "counts": {
+        "full_forward_calls": 1,
+        "full_forward_RHS": 6,
+        "full_LU_factorizations": 1,
+        "full_state_backward_residual_L_rhs": 6,
+        "full_state_receiver_rhs": 6,
+        "full_state_Goff_rhs": 6,
+        "material_operator_refreshes": 1,
+        "B_rhs": 24,
+        "solve_forward_rhs": 24,
+        "S_actions": 24,
+        "full_adjoint_calls": 1,
+        "full_adjoint_RHS": 6,
+        "full_adjoint_receiver_rhs": 6,
+        "S_adjoint_rhs": 24,
+        "solve_adjoint_rhs": 24,
+        "L_adjoint_residual_audit_rhs": 24,
+        "B_adjoint_rhs": 144
+      },
+      "exclusive_walls": {
+        "physical_geometry_setup": 0.00023662502644583583,
+        "full_forward": 5.179201252758503e-05,
+        "material_operator_refresh": 2.082990249618888e-06,
+        "B": 2.720800694078207e-05,
+        "reference_solve": 4.837400047108531e-05,
+        "S": 1.0791991371661425e-05,
+        "full_adjoint": 4.300000728107989e-05,
+        "reference_adjoint_solve": 1.8667022231966257e-05,
+        "direct_receiver_adjoint_prepare": 0.00011441597598604858,
+        "direct_streamed_transfer": 4.4374988647177815e-05
+      },
+      "events": 13,
+      "peak_cpu_rss_bytes": 72810496,
+      "CPU_memory_measurement_available": true,
+      "peak_gpu_allocated_bytes": 0,
+      "peak_gpu_reserved_bytes": 0,
+      "device": "cpu",
+      "CPU_in_GPU_job_included": true,
+      "deployment_wall_definition": "inclusive parent elapsed; never sum nested spans",
+      "test_scope": "tiny_adapter_only",
+      "test_book": 10
+    },
+    {
+      "wall_seconds": 0.005639499984681606,
+      "process_cpu_seconds": 0.005510999999999988,
+      "gpu_occupation_seconds": 0.0,
+      "counts": {},
+      "exclusive_walls": {},
+      "events": 0,
+      "peak_cpu_rss_bytes": 0,
+      "CPU_memory_measurement_available": false,
+      "peak_gpu_allocated_bytes": 0,
+      "peak_gpu_reserved_bytes": 0,
+      "device": "cpu",
+      "CPU_in_GPU_job_included": true,
+      "deployment_wall_definition": "inclusive parent elapsed; never sum nested spans",
+      "test_scope": "tiny_adapter_only",
+      "test_book": 11
+    },
+    {
+      "wall_seconds": 0.005302083998685703,
+      "process_cpu_seconds": 0.00517200000000001,
+      "gpu_occupation_seconds": 0.0,
+      "counts": {
+        "solve_forward_rhs": 3
+      },
+      "exclusive_walls": {
+        "tiny_failed_action": 4.083005478605628e-06
+      },
+      "events": 1,
+      "peak_cpu_rss_bytes": 72826880,
+      "CPU_memory_measurement_available": true,
+      "peak_gpu_allocated_bytes": 0,
+      "peak_gpu_reserved_bytes": 0,
+      "device": "cpu",
+      "CPU_in_GPU_job_included": true,
+      "deployment_wall_definition": "inclusive parent elapsed; never sum nested spans",
+      "test_scope": "tiny_adapter_only",
+      "test_book": 12
+    },
+    {
+      "wall_seconds": 0.004984750004950911,
+      "process_cpu_seconds": 0.004855999999999999,
+      "gpu_occupation_seconds": 0.0,
+      "counts": {
+        "B_rhs": 1,
+        "S_rhs": 2
+      },
+      "exclusive_walls": {
+        "child": 6.374990334734321e-06,
+        "parent": 9.462502202950418e-05
+      },
+      "events": 2,
+      "peak_cpu_rss_bytes": 72826880,
+      "CPU_memory_measurement_available": true,
+      "peak_gpu_allocated_bytes": 0,
+      "peak_gpu_reserved_bytes": 0,
+      "device": "cpu",
+      "CPU_in_GPU_job_included": true,
+      "deployment_wall_definition": "inclusive parent elapsed; never sum nested spans",
+      "test_scope": "tiny_adapter_only",
+      "test_book": 13
+    }
+  ],
+  "tiny_numerical_diagnostics": {
+    "gaussian_packed_noise_variance": {
+      "sigma_complex_rms": 0.37,
+      "expected_per_real_component": 0.06845,
+      "minimum_sample_variance": 0.0665222378118354,
+      "maximum_sample_variance": 0.0693443812893302,
+      "complex_mean_energy_ratio": 1.0011406184987488,
+      "samples_per_packed_component": 20000
+    },
+    "nonsymmetric_whitening_real_adjoint_relative_error": 9.35109975557194e-16,
+    "alpha_chi_feedback_relative_error": 3.442819373023238e-16,
+    "exact_alpha_response_and_remainder_bound": [
+      {
+        "amplitude": 0.2,
+        "eta": 0.0017464702411934534,
+        "exact_identity_relative_error": 1.4689827755140372e-14,
+        "quadratic_remainder_norm": 2.3662940115212343e-07,
+        "norm_bound": 3.582867017215669e-06
+      },
+      {
+        "amplitude": 0.1,
+        "eta": 0.0008732351205967266,
+        "exact_identity_relative_error": 2.9334046761182916e-14,
+        "quadratic_remainder_norm": 2.958516272412282e-08,
+        "norm_bound": 4.4746694967975995e-07
+      },
+      {
+        "amplitude": 0.05,
+        "eta": 0.0004366175602983634,
+        "exact_identity_relative_error": 5.336394724684241e-14,
+        "quadratic_remainder_norm": 3.698551048023268e-09,
+        "norm_bound": 5.59089365514752e-08
+      },
+      {
+        "amplitude": 0.025,
+        "eta": 0.0002183087801491818,
+        "exact_identity_relative_error": 9.715790831771292e-14,
+        "quadratic_remainder_norm": 4.623443812965611e-10,
+        "norm_bound": 6.987091059325867e-09
+      }
+    ],
+    "full_forward_and_inverse_orders": {
+      "amplitudes": [
+        0.2,
+        0.1,
+        0.05,
+        0.025
+      ],
+      "slopes": {
+        "linear": 1.9966970443878909,
+        "quadratic": 3.0021453046879385,
+        "inverse_linear": 2.0007258969525066,
+        "inverse_feedback": 3.0012626972333893
+      },
+      "absolute_errors": {
+        "linear": [
+          0.004758383246339934,
+          0.0011943783422856634,
+          0.0002991857765393356,
+          7.486992554563519e-05
+        ],
+        "quadratic": [
+          6.455900269913569e-05,
+          8.049009497954302e-06,
+          1.0048272797545338e-06,
+          1.255223881993808e-07
+        ],
+        "inverse_linear": [
+          6.855759371967056e-05,
+          1.712444391854258e-05,
+          4.279234473822254e-06,
+          1.0695735891223218e-06
+        ],
+        "inverse_feedback": [
+          8.117131640847598e-07,
+          1.013102601999396e-07,
+          1.2654125300091626e-08,
+          1.5811607809274995e-09
+        ]
+      },
+      "decoder": "tiny full-rank Moore-Penrose control; not production Tikhonov"
+    },
+    "polarizability_derivative_plateau": {
+      "epsilon": [
+        0.01,
+        0.003,
+        0.001,
+        0.0003,
+        0.0001,
+        3e-05,
+        1e-05
+      ],
+      "first_relative_errors": [
+        4.016695419543355e-06,
+        3.615013601500901e-07,
+        4.016680004182491e-08,
+        3.615001919829139e-09,
+        4.015946987782108e-10,
+        3.63270328655091e-11,
+        3.334420524082091e-12
+      ],
+      "second_relative_errors": [
+        8.033405847018097e-06,
+        7.230028064659652e-07,
+        8.033367047698083e-08,
+        7.2299508172773695e-09,
+        8.044248797822569e-10,
+        7.3716896857999e-11,
+        5.53511074003013e-11
+      ]
+    },
+    "quadratic_primal_adjoint_outer_relative_errors": {
+      "total": 3.4960978721919595e-16,
+      "feedback": 3.665545415081667e-16,
+      "local": 3.601904710702716e-16
+    },
+    "chi_local_constitutive_relative_error": 2.1362812610335056e-16,
+    "streamed_matrix_native_jvp_relative_error": 5.62805795998853e-16,
+    "reference_real_adjoint_relative_error": 3.355820233275685e-16,
+    "tikhonov_normal_equation_relative_error": 2.374059369781416e-14,
+    "uncached_matrix_response_relative_errors": {
+      "vector": 3.8273960558455106e-16,
+      "batched": 3.822492390268623e-16,
+      "real_adjoint": 4.868317560798189e-16,
+      "second_matrix_call_new_actions": 0
+    }
+  },
+  "scientific_gate_status": {
+    "H1": "NOT_EVALUATED_BY_THESE_TESTS",
+    "H2": "NOT_EVALUATED_BY_THESE_TESTS",
+    "H3": "NOT_EVALUATED_BY_THESE_TESTS"
+  },
+  "sha256_check": "NOT_RUN_user_instruction"
+}

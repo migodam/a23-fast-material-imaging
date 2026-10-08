@@ -1,0 +1,6 @@
+# Recorded Windows pilot numerical versions; CUDA environment is pre-existing.
+numpy==2.2.6
+scipy==1.15.3
+torch==2.6.0
+# Plotting is CPU-only; tested matplotlib version is recorded by the figure tool.
+matplotlib>=3.8,<4

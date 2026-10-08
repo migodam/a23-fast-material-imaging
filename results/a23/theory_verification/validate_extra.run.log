@@ -1,0 +1,9 @@
+{
+  "scope": "Algebra only; not an imaging or posterior-calibration study",
+  "passive_polarizability_min_margin": 4.9918660039701204e-06,
+  "projected_polarizability_min_margin": -1.3322676295501878e-15,
+  "polarizability_inverse_relative_error": 3.9637775278809733e-16,
+  "unitary_gauge_transfer_relative_error": 6.238762762844214e-16,
+  "conditional_Gaussian_KL_example": 0.24499999999999997,
+  "assertions": "ALL PASSED"
+}

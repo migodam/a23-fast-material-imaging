@@ -1,0 +1,55 @@
+test_completed_failed_job_keeps_cost_and_allows_accounting (test_a23_guards.DurableHistoryTests) ... ok
+test_history_takes_per_job_maximum_of_receipt_and_log_then_sums_jobs (test_a23_guards.DurableHistoryTests) ... ok
+test_orphan_manifest_blocks_new_work_before_book_or_job_creation (test_a23_guards.DurableHistoryTests) ... ok
+test_reserved_failed_call_is_recovered_when_no_receipt_was_written (test_a23_guards.DurableHistoryTests) ... ok
+test_cumulative_caps_include_prior_jobs_for_each_registered_phase (test_a23_guards.PredictionCapTests) ... ok
+test_exhausting_one_phase_does_not_consume_other_phase_caps (test_a23_guards.PredictionCapTests) ... ok
+test_physically_rejected_material_does_not_reserve_a_full_call (test_a23_guards.PredictionCapTests) ... ok
+test_reservation_is_on_disk_before_a_simulated_failed_full_state (test_a23_guards.PredictionCapTests) ... ok
+test_build_h1_frozen_repeats_paid_randomized_actions_and_cost_override (test_a23_h1.TestA23H1) ... ok
+test_cached_matches_original_block_actions_without_new_L (test_a23_h1.TestA23H1) ... ok
+test_empty_retained_basis_is_exact_identity_without_actions (test_a23_h1.TestA23H1) ... ok
+test_fixed_probes_are_full_material_deterministic_and_independent (test_a23_h1.TestA23H1) ... ok
+test_frozen_repeats_cannot_be_silently_reduced (test_a23_h1.TestA23H1) ... ok
+test_seed_blocks_cached_original_identity_and_measured_residual_independence (test_a23_h1.TestA23H1) ... ok
+test_source_anchor_P_cancellation_and_approximate_residual_identity (test_a23_h1.TestA23H1) ... ok
+test_streamed_projection_matches_original_real_transfer_and_adjoint (test_a23_h1.TestA23H1) ... ok
+test_unitary_gauge_preserves_cached_operators_and_projection_transfer (test_a23_h1.TestA23H1) ... ok
+test_unsafe_core_rejects_without_petrov_jitter_or_inverse_repair (test_a23_h1.TestA23H1) ... ok
+test_complex_noise_has_declared_total_variance_and_packed_half_variances (test_a23_physics.GaussianNoiseTests) ... ok
+test_zero_noise_invalid_sigma_and_shared_realization (test_a23_physics.GaussianNoiseTests) ... ok
+test_full_chart_is_a_real_mass_isometry (test_a23_physics.RealCoordinateTests) ... ok
+test_per_source_pack_roundtrip_and_real_inner_product (test_a23_physics.RealCoordinateTests) ... ok
+test_whitening_is_applied_after_pack_with_its_real_adjoint (test_a23_physics.RealCoordinateTests) ... ok
+test_actual_backend_reference_and_full_material_dimensions (test_a23_physics.ReferenceResponseTests) ... ok
+test_actual_encoder_uses_measured_minus_reference_and_negative_feedback (test_a23_physics.ReferenceResponseTests) ... ok
+test_alpha_coordinate_pullback_matches_chi_linear_and_quadratic (test_a23_physics.ReferenceResponseTests) ... ok
+test_declared_zero_reference_is_rejected_as_zero_signal (test_a23_physics.ReferenceResponseTests) ... ok
+test_exact_alpha_field_identity_and_norm_remainder_bound (test_a23_physics.ReferenceResponseTests) ... ok
+test_full_forward_remainder_and_inverse_minus_sign_have_expected_orders (test_a23_physics.ReferenceResponseTests) ... ok
+test_half_hessian_finite_difference_regression_probe_converges (test_a23_physics.ReferenceResponseTests) ... ok
+test_invalid_material_and_inverse_pole_are_rejected_without_clipping (test_a23_physics.ReferenceResponseTests) ... ok
+test_polarizability_first_and_second_derivative_plateaus (test_a23_physics.ReferenceResponseTests) ... ok
+test_polarizability_inverse_is_exact_and_zero_signal_is_finite (test_a23_physics.ReferenceResponseTests) ... ok
+test_primal_and_adjoint_quadratic_outer_paths_agree (test_a23_physics.ReferenceResponseTests) ... ok
+test_quadratic_is_symmetric_bilinear_and_contains_half_hessian (test_a23_physics.ReferenceResponseTests) ... ok
+test_real_material_and_data_error_paths (test_a23_physics.ReferenceResponseTests) ... ok
+test_reference_linear_and_real_adjoint_are_exact_on_tiny_backend (test_a23_physics.ReferenceResponseTests) ... ok
+test_reference_rejects_a_restricted_chart (test_a23_physics.ReferenceResponseTests) ... ok
+test_tikhonov_decoder_matches_explicit_regularized_normal_equation (test_a23_physics.ReferenceResponseTests) ... ok
+test_true_constitutive_pole_has_a_specific_rejection_path (test_a23_physics.ReferenceResponseTests) ... ok
+test_uncached_vector_and_batched_response_match_streamed_matrix (test_a23_physics.ReferenceResponseTests) ... ok
+test_cpu_limit_reserves_shutdown_space_before_starting_an_action (test_a23_protocol.AccountingTests) ... ok
+test_failed_actions_are_recorded_and_charged (test_a23_protocol.AccountingTests) ... ok
+test_nested_wall_is_exclusive_and_cpu_receipt_does_not_claim_gpu_work (test_a23_protocol.AccountingTests) ... ok
+test_declared_gates_are_not_moved_by_tests (test_a23_protocol.FrozenContractTests) ... ok
+test_fixed_ranks_degrees_probes_and_expensive_call_caps (test_a23_protocol.FrozenContractTests) ... ok
+test_primary_scene_amplitude_noise_and_full_material_contract_is_frozen (test_a23_protocol.FrozenContractTests) ... ok
+test_basis_capability_rejects_full_state_current_and_truth_access (test_a23_protocol.RuntimeIsolationTests) ... ok
+test_online_file_rejects_all_unregistered_or_offline_keys (test_a23_protocol.RuntimeIsolationTests) ... ok
+test_online_problem_exposes_no_truth_teacher_or_full_derivatives (test_a23_protocol.RuntimeIsolationTests) ... ok
+
+----------------------------------------------------------------------
+Ran 50 tests in 0.453s
+
+OK

@@ -1,0 +1,445 @@
+{
+  "canonical_action_families_by_scope": {
+    "cpu_tests": {
+      "G_matvec_raw": {
+        "G_rhs": 1170,
+        "full_state_Goff_rhs": 738
+      },
+      "L_matvec_and_audit_raw": {
+        "L_adjoint_residual_audit_rhs": 192,
+        "full_state_backward_residual_L_rhs": 738
+      },
+      "S_matvec_and_receiver_contraction_raw": {
+        "S_actions": 108,
+        "S_adjoint_rhs": 192,
+        "S_rhs": 1822,
+        "full_adjoint_receiver_rhs": 48,
+        "full_state_receiver_rhs": 738,
+        "full_tangent_receiver_rhs": 60
+      },
+      "bytes_raw": {
+        "decoder_matrix_bytes": 368640
+      },
+      "factorizations_raw": {
+        "full_LU_factorizations": 123
+      },
+      "full_solve_calls_raw": {
+        "full_adjoint_calls": 8,
+        "full_forward_calls": 123,
+        "full_tangent_calls": 10
+      },
+      "full_solve_rhs_raw": {
+        "full_adjoint_RHS": 48,
+        "full_forward_RHS": 738,
+        "full_tangent_RHS": 60
+      },
+      "linear_solve_rhs_raw": {
+        "solve_adjoint_rhs": 192,
+        "solve_forward_rhs": 1293
+      },
+      "other_raw": {
+        "B_adjoint_rhs": 1152,
+        "B_rhs": 77,
+        "decoder_prepare_compact_SVD": 10,
+        "material_operator_refreshes": 118
+      }
+    },
+    "production": {
+      "F_matvec_raw": {
+        "F_actions": 2016,
+        "F_adjoint_actions": 1536
+      },
+      "G_matvec_raw": {
+        "G_rhs": 3792,
+        "full_state_Goff_rhs": 132
+      },
+      "L_matvec_and_audit_raw": {
+        "L_actions": 4368,
+        "L_adjoint_actions": 576,
+        "L_adjoint_residual_audit_rhs": 3712,
+        "full_state_backward_residual_L_rhs": 132
+      },
+      "S_matvec_and_receiver_contraction_raw": {
+        "S_actions": 10008,
+        "S_adjoint_actions": 3168,
+        "S_adjoint_rhs": 3712,
+        "S_rhs": 2082,
+        "full_adjoint_receiver_rhs": 4668,
+        "full_state_receiver_rhs": 132,
+        "full_tangent_receiver_rhs": 60
+      },
+      "aggregate_instrumentation_no_alias_sum": {
+        "Maxwell_matvec_rhs": 8496
+      },
+      "bytes_raw": {
+        "L_upload_bytes": 9459597312,
+        "cache_read_bytes": 2750455228,
+        "cache_write_bytes": 8474961732,
+        "decoder_matrix_bytes": 721944576,
+        "operator_transfer_bytes": 1409384448,
+        "transfer_bytes": 7134511104
+      },
+      "factorizations_raw": {
+        "full_LU_factorizations": 22,
+        "projected_factorizations": 144,
+        "retained_factorizations": 144
+      },
+      "full_solve_calls_raw": {
+        "full_adjoint_calls": 778,
+        "full_forward_calls": 22,
+        "full_tangent_calls": 5
+      },
+      "full_solve_rhs_raw": {
+        "full_adjoint_RHS": 4668,
+        "full_forward_RHS": 132,
+        "full_tangent_RHS": 60
+      },
+      "linear_solve_rhs_raw": {
+        "solve_adjoint_rhs": 3712,
+        "solve_forward_rhs": 8424
+      },
+      "other_raw": {
+        "B_adjoint_rhs": 22272,
+        "B_rhs": 8064,
+        "candidate_feasibility_checks": 1152,
+        "clean_label_full_state_calls": 12,
+        "compressed_B_current_columns": 21888,
+        "decoder_prepare_compact_SVD": 17,
+        "forcing_rhs": 576,
+        "material_operator_refreshes": 22,
+        "primary_prediction_full_state_calls": 1,
+        "qr_columns": 17712,
+        "receiver_SVD_builds": 4,
+        "reduced_core_rhs": 2985984,
+        "seed_M_input_rhs": 3456,
+        "seed_O_input_rhs": 2304,
+        "seed_P_input_rhs": 576,
+        "svd_calls": 1176
+      }
+    }
+  },
+  "connection_values_stored": false,
+  "cost_components": 71,
+  "cpu_budget_charge_seconds": 1628.446828,
+  "cpu_rule": "job CPU + child CPU tail + remote controller/query once + local transport + standalone measured costs; allowances separate",
+  "cpu_soft_target_seconds": 7200.0,
+  "gpu_budget_charge_seconds": 1628.9255669999984,
+  "gpu_occupation_cap_seconds": 7200.0,
+  "gpu_occupation_seconds": 1628.9255669999984,
+  "input_sources": [
+    "results/a23/EXTERNAL_CPU_LEDGER.jsonl",
+    "results/a23/jobs/a23-h1-001/ACTION_LEDGER.jsonl",
+    "results/a23/jobs/a23-h1-001/job_manifest.json",
+    "results/a23/jobs/a23-h1-001/job_receipt.json",
+    "results/a23/jobs/a23-micro-001/ACTION_LEDGER.jsonl",
+    "results/a23/jobs/a23-micro-001/job_manifest.json",
+    "results/a23/jobs/a23-micro-001/job_receipt.json",
+    "results/a23/jobs/a23-phase0-local-001/ACTION_LEDGER.jsonl",
+    "results/a23/jobs/a23-phase0-local-001/job_manifest.json",
+    "results/a23/jobs/a23-phase0-local-001/job_receipt.json",
+    "results/a23/jobs/a23-phase0-local-002/ACTION_LEDGER.jsonl",
+    "results/a23/jobs/a23-phase0-local-002/job_manifest.json",
+    "results/a23/jobs/a23-phase0-local-002/job_receipt.json",
+    "results/a23/jobs/a23-phase0-local-003/ACTION_LEDGER.jsonl",
+    "results/a23/jobs/a23-phase0-local-003/job_manifest.json",
+    "results/a23/jobs/a23-phase0-local-003/job_receipt.json",
+    "results/a23/jobs/a23-phase0-local-004/ACTION_LEDGER.jsonl",
+    "results/a23/jobs/a23-phase0-local-004/job_manifest.json",
+    "results/a23/jobs/a23-phase0-local-004/job_receipt.json",
+    "results/a23/jobs/a23-phase0-local-005/ACTION_LEDGER.jsonl",
+    "results/a23/jobs/a23-phase0-local-005/job_manifest.json",
+    "results/a23/jobs/a23-phase0-local-005/job_receipt.json",
+    "results/a23/jobs/a23-phase0-remote-001/ACTION_LEDGER.jsonl",
+    "results/a23/jobs/a23-phase0-remote-001/job_manifest.json",
+    "results/a23/jobs/a23-phase0-remote-001/job_receipt.json",
+    "results/a23/jobs/a23-phase0-remote-002/ACTION_LEDGER.jsonl",
+    "results/a23/jobs/a23-phase0-remote-002/job_manifest.json",
+    "results/a23/jobs/a23-phase0-remote-002/job_receipt.json",
+    "results/a23/jobs/a23-pilot-001/ACTION_LEDGER.jsonl",
+    "results/a23/jobs/a23-pilot-001/job_manifest.json",
+    "results/a23/jobs/a23-pilot-001/job_receipt.json",
+    "results/a23/jobs/a23-report-local-001/job_manifest.json",
+    "results/a23/jobs/a23-report-local-001/job_receipt.json",
+    "results/a23/jobs/a23-report-local-002/job_manifest.json",
+    "results/a23/jobs/a23-report-local-002/job_receipt.json",
+    "results/a23/theory_verification/ADAPTER_ACTION_LEDGER.jsonl",
+    "results/a23/theory_verification/ADAPTER_TEST_RUN_0001.json",
+    "results/a23/theory_verification/ADAPTER_TEST_RUN_0002.json",
+    "results/a23/theory_verification/ADAPTER_TEST_RUN_0003.json",
+    "results/a23/theory_verification/ADAPTER_TEST_RUN_0004.json",
+    "results/a23/theory_verification/ADAPTER_TEST_RUN_0005.json",
+    "results/a23/theory_verification/CACHED_DIAGNOSTICS_RECEIPT.json",
+    "results/a23/theory_verification/EXTRA_VALIDATION.json",
+    "results/a23/theory_verification/FINAL_EVIDENCE_AUDIT_RUN_0001.json",
+    "results/a23/theory_verification/GUARD_TEST_RUN_0001.json",
+    "results/a23/theory_verification/H1_READONLY_AUDIT.json",
+    "results/a23/theory_verification/ORIGINAL_VALIDATORS_LEDGER.jsonl",
+    "results/a23/theory_verification/PLOT_PRESENTATION_RUN_0001.json",
+    "results/a23/theory_verification/PUBLIC_EVIDENCE_AUDIT_RUN_0001.json",
+    "results/a23/theory_verification/PUBLIC_SANITATION_RECEIPT.json",
+    "results/a23/theory_verification/PULL_FAILURE_UNION_TEST_RUN_0001.json",
+    "results/a23/theory_verification/THEORY_VALIDATION.json",
+    "results/a23/transport/LOCAL_TRANSPORT_LEDGER.jsonl",
+    "results/a23/transport/REMOTE_TRANSPORT_LEDGER.jsonl",
+    "results/a23/transport/local-0ea51f39e1cd48c6976351b3be20f24f.json",
+    "results/a23/transport/local-21e0f6d132fe4703988c9a572b7c842e.json",
+    "results/a23/transport/local-2697f91f4a5a4a8090309bf40098ad4b.json",
+    "results/a23/transport/local-3ccb6410734b40808e4879b126fa55e9.json",
+    "results/a23/transport/local-4a1258ec27e1418297ee2d35072fb3b2.json",
+    "results/a23/transport/local-500b13bdcbe248bcacb8ca3ba252a6c8.json",
+    "results/a23/transport/local-7a72cdcd01aa429daa4f14e7fb4a9281.json",
+    "results/a23/transport/local-8a2181ef85af46189fa9d7a202f73b2e.json",
+    "results/a23/transport/local-932799d104dc4f57a40fffe968c3f468.json",
+    "results/a23/transport/local-c9d4d454568b48feb36e39d33962bdb7.json",
+    "results/a23/transport/local-cb1aff03bdc740de9354e3c14386235d.json",
+    "results/a23/transport/local-cb3b261556214394b121faed9e78333e.json",
+    "results/a23/transport/local-d3c673d5a9ae47dfabaf92f6a9adeb00.json",
+    "results/a23/transport/local-f03501754bf142a1bd4cc292cdf05533.json",
+    "results/a23/transport/local-f3545fff56a7495bb0e6b06eeed2d03f.json",
+    "results/a23/transport/remote-0ea51f39e1cd48c6976351b3be20f24f.json",
+    "results/a23/transport/remote-21e0f6d132fe4703988c9a572b7c842e.json",
+    "results/a23/transport/remote-2697f91f4a5a4a8090309bf40098ad4b.json",
+    "results/a23/transport/remote-3ccb6410734b40808e4879b126fa55e9.json",
+    "results/a23/transport/remote-4a1258ec27e1418297ee2d35072fb3b2.json",
+    "results/a23/transport/remote-500b13bdcbe248bcacb8ca3ba252a6c8.json",
+    "results/a23/transport/remote-7a72cdcd01aa429daa4f14e7fb4a9281.json",
+    "results/a23/transport/remote-8a2181ef85af46189fa9d7a202f73b2e.json",
+    "results/a23/transport/remote-932799d104dc4f57a40fffe968c3f468.json",
+    "results/a23/transport/remote-c9d4d454568b48feb36e39d33962bdb7.json",
+    "results/a23/transport/remote-cb1aff03bdc740de9354e3c14386235d.json",
+    "results/a23/transport/remote-cb3b261556214394b121faed9e78333e.json",
+    "results/a23/transport/remote-f03501754bf142a1bd4cc292cdf05533.json",
+    "results/a23/transport/remote-f3545fff56a7495bb0e6b06eeed2d03f.json"
+  ],
+  "instrumentation_aliases_are_not_added": true,
+  "issues": [
+    {
+      "code": "PHASE0_PARENT_COUNTERS_DO_NOT_CAPTURE_INNER_UNIT_BOOKS",
+      "job": "a23-phase0-local-001",
+      "source": "results/a23/jobs/a23-phase0-local-001/job_receipt.json"
+    },
+    {
+      "code": "PHASE0_PARENT_COUNTERS_DO_NOT_CAPTURE_INNER_UNIT_BOOKS",
+      "job": "a23-phase0-local-002",
+      "source": "results/a23/jobs/a23-phase0-local-002/job_receipt.json"
+    },
+    {
+      "code": "PHASE0_PARENT_COUNTERS_DO_NOT_CAPTURE_INNER_UNIT_BOOKS",
+      "job": "a23-phase0-local-003",
+      "source": "results/a23/jobs/a23-phase0-local-003/job_receipt.json"
+    },
+    {
+      "code": "PHASE0_PARENT_COUNTERS_DO_NOT_CAPTURE_INNER_UNIT_BOOKS",
+      "job": "a23-phase0-local-004",
+      "source": "results/a23/jobs/a23-phase0-local-004/job_receipt.json"
+    },
+    {
+      "code": "PHASE0_PARENT_COUNTERS_DO_NOT_CAPTURE_INNER_UNIT_BOOKS",
+      "job": "a23-phase0-local-005",
+      "source": "results/a23/jobs/a23-phase0-local-005/job_receipt.json"
+    },
+    {
+      "code": "PHASE0_PARENT_COUNTERS_DO_NOT_CAPTURE_INNER_UNIT_BOOKS",
+      "job": "a23-phase0-remote-001",
+      "source": "results/a23/jobs/a23-phase0-remote-001/job_receipt.json"
+    },
+    {
+      "code": "PHASE0_PARENT_COUNTERS_DO_NOT_CAPTURE_INNER_UNIT_BOOKS",
+      "job": "a23-phase0-remote-002",
+      "source": "results/a23/jobs/a23-phase0-remote-002/job_receipt.json"
+    },
+    {
+      "action_cost_billed_via_test_parent_receipts": true,
+      "code": "ADAPTER_LEDGER_PARENT_RUN_MAPPING_NOT_RECORDED",
+      "source": "results/a23/theory_verification/ADAPTER_ACTION_LEDGER.jsonl"
+    }
+  ],
+  "job_entries_total": 12,
+  "method_cost_attribution": "not inferred by this mechanical summary; parent owns independent method attribution",
+  "new_SHA256_checks": 0,
+  "orphan_or_active_jobs": 0,
+  "prior_costs_in_job_manifests_are_not_added_again": true,
+  "process_cpu_seconds": null,
+  "raw_action_counts_by_scope": {
+    "cpu_tests": {
+      "B_adjoint_rhs": 1152,
+      "B_rhs": 77,
+      "G_rhs": 1170,
+      "L_adjoint_residual_audit_rhs": 192,
+      "S_actions": 108,
+      "S_adjoint_rhs": 192,
+      "S_rhs": 1822,
+      "decoder_matrix_bytes": 368640,
+      "decoder_prepare_compact_SVD": 10,
+      "full_LU_factorizations": 123,
+      "full_adjoint_RHS": 48,
+      "full_adjoint_calls": 8,
+      "full_adjoint_receiver_rhs": 48,
+      "full_forward_RHS": 738,
+      "full_forward_calls": 123,
+      "full_state_Goff_rhs": 738,
+      "full_state_backward_residual_L_rhs": 738,
+      "full_state_receiver_rhs": 738,
+      "full_tangent_RHS": 60,
+      "full_tangent_calls": 10,
+      "full_tangent_receiver_rhs": 60,
+      "material_operator_refreshes": 118,
+      "solve_adjoint_rhs": 192,
+      "solve_forward_rhs": 1293
+    },
+    "production": {
+      "B_adjoint_rhs": 22272,
+      "B_rhs": 8064,
+      "F_actions": 2016,
+      "F_adjoint_actions": 1536,
+      "G_rhs": 3792,
+      "L_actions": 4368,
+      "L_adjoint_actions": 576,
+      "L_adjoint_residual_audit_rhs": 3712,
+      "L_upload_bytes": 9459597312,
+      "Maxwell_matvec_rhs": 8496,
+      "S_actions": 10008,
+      "S_adjoint_actions": 3168,
+      "S_adjoint_rhs": 3712,
+      "S_rhs": 2082,
+      "cache_read_bytes": 2750455228,
+      "cache_write_bytes": 8474961732,
+      "candidate_feasibility_checks": 1152,
+      "clean_label_full_state_calls": 12,
+      "compressed_B_current_columns": 21888,
+      "decoder_matrix_bytes": 721944576,
+      "decoder_prepare_compact_SVD": 17,
+      "forcing_rhs": 576,
+      "full_LU_factorizations": 22,
+      "full_adjoint_RHS": 4668,
+      "full_adjoint_calls": 778,
+      "full_adjoint_receiver_rhs": 4668,
+      "full_forward_RHS": 132,
+      "full_forward_calls": 22,
+      "full_state_Goff_rhs": 132,
+      "full_state_backward_residual_L_rhs": 132,
+      "full_state_receiver_rhs": 132,
+      "full_tangent_RHS": 60,
+      "full_tangent_calls": 5,
+      "full_tangent_receiver_rhs": 60,
+      "material_operator_refreshes": 22,
+      "operator_transfer_bytes": 1409384448,
+      "primary_prediction_full_state_calls": 1,
+      "projected_factorizations": 144,
+      "qr_columns": 17712,
+      "receiver_SVD_builds": 4,
+      "reduced_core_rhs": 2985984,
+      "retained_factorizations": 144,
+      "seed_M_input_rhs": 3456,
+      "seed_O_input_rhs": 2304,
+      "seed_P_input_rhs": 576,
+      "solve_adjoint_rhs": 3712,
+      "solve_forward_rhs": 8424,
+      "svd_calls": 1176,
+      "transfer_bytes": 7134511104
+    }
+  },
+  "report_generation": {
+    "additive_charge": false,
+    "process_cpu_seconds": 0.24578599999999998,
+    "reason": "may be inside a terminal report job or external metadata allowance",
+    "wall_seconds": 0.2868053329875693
+  },
+  "resource_rule": "terminal CUDA job lifetime plus unique controller GPU tail; all host work included",
+  "resources": {
+    "cpu": {
+      "complete": false,
+      "conservative_budget_charge_seconds": 1628.446828,
+      "conservative_charge_complete": true,
+      "exact_total_seconds": null,
+      "known_measured_lower_bound_seconds": 1597.411558,
+      "known_measured_seconds": 1597.346828,
+      "known_partial_measured_seconds": 0.06473,
+      "uncharged_unknown_component_ids": [],
+      "unknown_component_ids": [
+        "external_cpu:4",
+        "parent_allowance:h1_standalone",
+        "parent_allowance:initial_asset_preflight"
+      ]
+    },
+    "gpu": {
+      "complete": true,
+      "conservative_budget_charge_seconds": 1628.9255669999984,
+      "conservative_charge_complete": true,
+      "exact_total_seconds": 1628.9255669999984,
+      "known_measured_lower_bound_seconds": 1628.9255669999984,
+      "known_measured_seconds": 1628.9255669999984,
+      "known_partial_measured_seconds": 0.0,
+      "uncharged_unknown_component_ids": [],
+      "unknown_component_ids": []
+    }
+  },
+  "schema": "a23.cost_summary.v1",
+  "scientific_gates_modified": false,
+  "source_receipts_modified": false,
+  "standalone_unit_costs_separate_from_production": true,
+  "status": "COMPLETE_WITH_UNKNOWN_COSTS",
+  "terminal_or_provisional_jobs": 12,
+  "transfer_totals": {
+    "cache_skipped_bytes": 12580024591.0,
+    "cache_skipped_members": 168.0,
+    "pulled_member_count": 428.0,
+    "pulled_uncompressed_bytes": 82474575.0
+  },
+  "transport_transfers": [
+    {
+      "cache_skipped_bytes": 3142211956.0,
+      "cache_skipped_members": 36.0,
+      "metadata_policy": "update-monitoring",
+      "pulled_member_count": 43.0,
+      "pulled_uncompressed_bytes": 11734029.0,
+      "remote_caches_retained": true,
+      "status": "COMPLETE",
+      "transport_attempt": "500b13bdcbe248bcacb8ca3ba252a6c8"
+    },
+    {
+      "cache_skipped_bytes": 3145937545.0,
+      "cache_skipped_members": 44.0,
+      "metadata_policy": "update-monitoring",
+      "pulled_member_count": 121.0,
+      "pulled_uncompressed_bytes": 22565236.0,
+      "remote_caches_retained": true,
+      "status": "COMPLETE",
+      "transport_attempt": "7a72cdcd01aa429daa4f14e7fb4a9281"
+    },
+    {
+      "cache_skipped_bytes": 3145937545.0,
+      "cache_skipped_members": 44.0,
+      "metadata_policy": null,
+      "pulled_member_count": 120.0,
+      "pulled_uncompressed_bytes": 22563516.0,
+      "remote_caches_retained": true,
+      "status": "COMPLETE",
+      "transport_attempt": "c9d4d454568b48feb36e39d33962bdb7"
+    },
+    {
+      "cache_skipped_bytes": null,
+      "cache_skipped_members": null,
+      "metadata_policy": null,
+      "pulled_member_count": 18.0,
+      "pulled_uncompressed_bytes": 28286.0,
+      "remote_caches_retained": null,
+      "status": "COMPLETE",
+      "transport_attempt": "cb1aff03bdc740de9354e3c14386235d"
+    },
+    {
+      "cache_skipped_bytes": 3145937545.0,
+      "cache_skipped_members": 44.0,
+      "metadata_policy": "preserve-variants",
+      "pulled_member_count": 126.0,
+      "pulled_uncompressed_bytes": 25583508.0,
+      "remote_caches_retained": true,
+      "status": "COMPLETE",
+      "transport_attempt": "d3c673d5a9ae47dfabaf92f6a9adeb00"
+    }
+  ],
+  "unique_local_transport_attempts": 15,
+  "unique_remote_transport_attempts": 15,
+  "unit_action_count_coverage": "partial: separate delegated H1 has no receipt counters; phase0 parent books do not capture inner test books",
+  "wall_rule": "runtime uses inclusive lifetime per record; nested exclusive spans and overlapping walls are never summed"
+}

@@ -1,0 +1,47 @@
+{
+  "action": "pull",
+  "connection_values_stored": false,
+  "local_process_cpu_seconds": 0.085338,
+  "local_wall_seconds": 3.18062483301037,
+  "physics_launch_authority": "parent only; run action explicitly required",
+  "remote": {
+    "action": "pull",
+    "archive": "a23-pull-500b13bdcbe248bcacb8ca3ba252a6c8.zip",
+    "cache_policy": "exclude cache/ and h1/<scene>/*.npz except H1_FIXED_PROBES.npz and H1_RANDOMIZED_TRAINING.npz; regenerate from declared frozen inputs when needed",
+    "child_CPU_measurement_available": true,
+    "connection_values_stored": false,
+    "gpu_tail_seconds": 0.0,
+    "local_files_written": 44,
+    "local_regenerable_bytes_omitted": 0,
+    "local_regenerable_members_omitted": 0,
+    "member_count": 43,
+    "metadata_policy": "update-monitoring",
+    "monitoring_primary_updated": true,
+    "phase0_summary_requires_review": false,
+    "physics_job_launched": false,
+    "platform_variants": [
+      {
+        "local_previous": "results/a23/platform_variants/500b13bdcbe248bcacb8ca3ba252a6c8/local_previous/LATEST_JOB.json",
+        "primary": "results/a23/LATEST_JOB.json",
+        "remote_latest": "results/a23/platform_variants/500b13bdcbe248bcacb8ca3ba252a6c8/remote_latest/LATEST_JOB.json"
+      }
+    ],
+    "queue_query_cpu_seconds": 0.0,
+    "regenerable_cache_bytes_skipped": 3142211956,
+    "regenerable_cache_members_skipped": 36,
+    "remote_caches_retained": true,
+    "remote_controller_cpu_seconds": 0.265625,
+    "remote_process_cpu_seconds": 0.265625,
+    "remote_wall_seconds": 0.6152321000117809,
+    "semantic_json_matches": [
+      "results/a23/PHASE0_TESTS.json"
+    ],
+    "status": "COMPLETE",
+    "transport_attempt": "500b13bdcbe248bcacb8ca3ba252a6c8",
+    "uncompressed_bytes": 11734029,
+    "utc": "2026-10-08T08:08:19.696497+00:00"
+  },
+  "schema": "a23.local_transport.v1",
+  "status": "COMPLETE",
+  "transport_attempt": "500b13bdcbe248bcacb8ca3ba252a6c8"
+}

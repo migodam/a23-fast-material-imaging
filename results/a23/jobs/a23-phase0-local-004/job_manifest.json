@@ -1,0 +1,101 @@
+{
+  "stage": "phase0",
+  "job": "a23-phase0-local-004",
+  "device": "cpu",
+  "precision": "complex128/float64",
+  "platform": "macOS-26.6.2-arm64-arm-64bit-Mach-O",
+  "python": "3.13.13",
+  "frozen_config": {
+    "study": "A23_PILOT_1",
+    "frozen_before_results": true,
+    "upstream_commit": "b85a29a51f4ea7b4d93617e827d88e23933b89df",
+    "scenes": [
+      2001,
+      2003,
+      2014,
+      2009
+    ],
+    "historically_exposed": true,
+    "amplitudes": [
+      0.15,
+      0.5,
+      1.0
+    ],
+    "noise": [
+      "zero",
+      "20dB_nominal_difference"
+    ],
+    "background": [
+      0.1,
+      0.04
+    ],
+    "material_chart": "full-cell real mass normalized [ReN,ImN]",
+    "dtype": "complex128/float64",
+    "master_seed": 2026102301,
+    "prior": "isotropic full-cell physical L2 material delta covariance; identical local pushforward for a",
+    "tikhonov_relative": 0.001,
+    "feedback_gamma": 1.0,
+    "OPM": {
+      "degree": 1,
+      "seed_rank_O": 4,
+      "seed_rank_P": 4,
+      "seed_rank_M": 4,
+      "retained_rank": 8,
+      "orthogonal_rank_rtol": 1e-10,
+      "core_relative_sigma_floor": 1e-10,
+      "core_absolute_scaled_sigma_floor": 1e-10,
+      "core_condition_cap": 10000000000.0,
+      "master_seed": 2026102301
+    },
+    "randomized_transfer_rank": 32,
+    "quadratic_data_rank": 32,
+    "quadratic_training_probes": 32,
+    "quadratic_holdout_probes": 8,
+    "independent_transfer_probes": 8,
+    "physical_real_lower": -0.5,
+    "physical_imag_lower": 0.0,
+    "pole_relative_floor": 1e-10,
+    "material_rejection_not_projection": true,
+    "identity_rtol": 1e-10,
+    "full_backward_residual_rtol": 1e-09,
+    "gpu_occupation_cap_seconds": 7200,
+    "cpu_wall_soft_target_seconds": 7200,
+    "warm_repeats": 5,
+    "cold_repeats": 1,
+    "clean_full_forward_cap": 12,
+    "primary_prediction_full_forward_cap": 12,
+    "calibration_prediction_full_forward_cap": 8,
+    "calibration_source_amplitude": 0.05,
+    "calibration_receiver_gain": 0.03,
+    "gates": {
+      "H1_transfer_error_max": 0.05,
+      "H1_encoder_time_reduction_min": 0.2,
+      "H2_full_material_improvement_min": 0.1,
+      "H2_distinct_shapes_min": 2,
+      "H3_full_material_NRMSE_max": 0.6,
+      "H3_difference_data_residual_max": 0.2,
+      "H3_time_reduction_min": 0.2
+    },
+    "forbidden": [
+      "NN",
+      "flow",
+      "diffusion",
+      "new_Maxwell_solver",
+      "degree_search",
+      "new_scene_campaign",
+      "truth_runtime"
+    ],
+    "_prior_counts": {}
+  },
+  "source_snapshot": {
+    "source_commit": "6de191f30208d770568c8276a907841b44c46b65",
+    "upstream_commit": "b85a29a51f4ea7b4d93617e827d88e23933b89df",
+    "newSHA256checks": 0,
+    "source_roles": "frozen backend copies; a23 new modules; no full solver redesign"
+  },
+  "prior_cost": {
+    "cpu": 0.540382,
+    "gpu": 0.0
+  },
+  "new_SHA256_checks": 0
+}

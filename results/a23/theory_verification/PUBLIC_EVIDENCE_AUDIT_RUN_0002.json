@@ -1,0 +1,31 @@
+{
+  "CPU_scope": "inclusive Python process CPU through receipt capture",
+  "checks": {
+    "four_public_personal_path_candidates_remaining": [],
+    "parent_reported_files_at_least_95MB": 0,
+    "parent_reported_public_candidates": 363,
+    "parent_reported_public_total_MB": 54.25,
+    "parent_reported_remaining_path_key_token_signatures": 0,
+    "private_original_archive_contents_read": false,
+    "public_quadratic_sketches_present": {
+      "2001": true,
+      "2003": true,
+      "2009": true,
+      "2014": true
+    },
+    "publication_audit_present": true
+  },
+  "correction": "RUN_0001 quadratic presence used a wrong assumed directory; actual four public files checked here",
+  "credential_contents_read": false,
+  "device": "cpu",
+  "gpu_occupation_seconds": 0.0,
+  "new_SHA256_checks": 0,
+  "process_cpu_seconds": 0.036792,
+  "remote_actions": 0,
+  "scientific_gate_status": "NOT_EVALUATED",
+  "scope": "final read-only privacy closure and corrected public quadratic sketch path checks; no physics or scientific gate validation",
+  "separate_lifetime_from_RUN_0001": true,
+  "success": true,
+  "utc": "2026-10-08T09:18:42.929169+00:00",
+  "wall_seconds": 0.008496041
+}

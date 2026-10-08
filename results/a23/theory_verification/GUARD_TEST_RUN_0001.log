@@ -1,0 +1,13 @@
+test_completed_failed_job_keeps_cost_and_allows_accounting (tests.test_a23_guards.DurableHistoryTests.test_completed_failed_job_keeps_cost_and_allows_accounting) ... ok
+test_history_takes_per_job_maximum_of_receipt_and_log_then_sums_jobs (tests.test_a23_guards.DurableHistoryTests.test_history_takes_per_job_maximum_of_receipt_and_log_then_sums_jobs) ... ok
+test_orphan_manifest_blocks_new_work_before_book_or_job_creation (tests.test_a23_guards.DurableHistoryTests.test_orphan_manifest_blocks_new_work_before_book_or_job_creation) ... ok
+test_reserved_failed_call_is_recovered_when_no_receipt_was_written (tests.test_a23_guards.DurableHistoryTests.test_reserved_failed_call_is_recovered_when_no_receipt_was_written) ... ok
+test_cumulative_caps_include_prior_jobs_for_each_registered_phase (tests.test_a23_guards.PredictionCapTests.test_cumulative_caps_include_prior_jobs_for_each_registered_phase) ... ok
+test_exhausting_one_phase_does_not_consume_other_phase_caps (tests.test_a23_guards.PredictionCapTests.test_exhausting_one_phase_does_not_consume_other_phase_caps) ... ok
+test_physically_rejected_material_does_not_reserve_a_full_call (tests.test_a23_guards.PredictionCapTests.test_physically_rejected_material_does_not_reserve_a_full_call) ... ok
+test_reservation_is_on_disk_before_a_simulated_failed_full_state (tests.test_a23_guards.PredictionCapTests.test_reservation_is_on_disk_before_a_simulated_failed_full_state) ... ok
+
+----------------------------------------------------------------------
+Ran 8 tests in 0.008s
+
+OK

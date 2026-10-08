@@ -1,0 +1,8 @@
+{
+  "git_commit": "8e7d8cf209c6e54f55567b940658e1742aa4cc55",
+  "scope": "source snapshot for phase0 and full-image pilot",
+  "recorded_before_pilot_quality_outputs": true,
+  "upstream_commit": "b85a29a51f4ea7b4d93617e827d88e23933b89df",
+  "new_SHA256_checks": 0,
+  "utc": "2026-10-08T08:12:51.955261+00:00"
+}

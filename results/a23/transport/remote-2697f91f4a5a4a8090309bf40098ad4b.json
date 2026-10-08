@@ -1,0 +1,19 @@
+{
+  "action": "deploy",
+  "child_CPU_measurement_available": true,
+  "connection_values_stored": false,
+  "gpu_tail_seconds": 0.0,
+  "member_count": 25,
+  "offline_evaluator_only": false,
+  "physics_job_launched": false,
+  "private_files_transferred": false,
+  "queue_query_cpu_seconds": 0.015625,
+  "remote_controller_cpu_seconds": 0.0625,
+  "remote_process_cpu_seconds": 0.078125,
+  "remote_wall_seconds": 1.65761829999974,
+  "scope": "online",
+  "status": "COMPLETE",
+  "transport_attempt": "2697f91f4a5a4a8090309bf40098ad4b",
+  "uncompressed_bytes": 271607,
+  "utc": "2026-10-08T07:40:24.434747+00:00"
+}

@@ -1,0 +1,98 @@
+{
+  "CPU_scope": "inclusive Python process CPU through receipt capture",
+  "checks": {
+    "absolute_personal_path_files": [
+      "research/delegated/a23-tests/TEST_AUDIT.md",
+      "results/a23/theory_verification/ADAPTER_TEST_RUN_0003.json",
+      "results/a23/theory_verification/ORIGINAL_VALIDATORS_LEDGER.jsonl",
+      "results/a23/theory_verification/ADAPTER_TEST_RUN_0003.log"
+    ],
+    "backend_direct_byte_equal": {
+      "src/a20/backend.py": true,
+      "src/a20/costs.py": true,
+      "src/a20/opm.py": true,
+      "vendor/a17/a9_engine.py": true
+    },
+    "credential_assignment_candidate_files": [],
+    "credential_named_files_not_read": [],
+    "current_terminal_job_count": 11,
+    "decision_copied_without_interpretation": "STOP_NO_EXPANSION",
+    "declared_source_commit_locally_available": true,
+    "duplicate_cost_component_ids": [],
+    "files_above_50MiB": [],
+    "gates_copied_without_interpretation": {
+      "H1": "FAIL",
+      "H2": "FAIL",
+      "H3": "FAIL"
+    },
+    "new_experiments": 0,
+    "new_unit_receipts_missing_from_summary": [
+      "results/a23/theory_verification/PLOT_PRESENTATION_RUN_0001.json",
+      "results/a23/theory_verification/CACHED_DIAGNOSTICS_RECEIPT.json"
+    ],
+    "no_SHA256": true,
+    "npz_files": 72,
+    "npz_metadata_personal_paths": [],
+    "npz_object_arrays": [],
+    "npz_scalar_strings_checked": 28,
+    "orphan_jobs_now_terminal": [
+      "a23-report-local-001"
+    ],
+    "privacy_scan_scope": "public candidates outside .git/private/cache; credential-named contents not opened; candidates are filenames only",
+    "private_IP_literal_candidate_files": [],
+    "probe_file_presence": {
+      "2001": {
+        "fixed": true,
+        "quadratic": false,
+        "randomized": true
+      },
+      "2003": {
+        "fixed": true,
+        "quadratic": false,
+        "randomized": true
+      },
+      "2009": {
+        "fixed": true,
+        "quadratic": false,
+        "randomized": true
+      },
+      "2014": {
+        "fixed": true,
+        "quadratic": false,
+        "randomized": true
+      }
+    },
+    "public_text_bytes_scanned": 28077931,
+    "public_text_files_scanned": 229,
+    "publication_sanitization_audit_keys": [],
+    "publication_sanitization_audit_present": false,
+    "remote_actions": 0,
+    "saved_GPU_total_seconds": 1628.9255669999984,
+    "terminal_job_gpu_sum_seconds": 1620.1521561000263,
+    "terminal_receipts_omitted_from_cost_components": [],
+    "unique_cost_components": 62,
+    "unique_saved_gpu_tail_seconds": 8.773410899972077,
+    "validation_archive_byte_equality": [
+      {
+        "byte_equal": false,
+        "name": "THEORY_VALIDATION.json"
+      },
+      {
+        "byte_equal": false,
+        "name": "EXTRA_VALIDATION.json"
+      }
+    ]
+  },
+  "cost_capture_notes": "receipt write and earlier shell reads are outside this measured check span; publication metadata allowance may cover them",
+  "credential_contents_read": false,
+  "device": "cpu",
+  "gpu_occupation_seconds": 0.0,
+  "new_SHA256_checks": 0,
+  "prior_tool_metadata_reads_cpu_not_separately_measured": true,
+  "process_cpu_seconds": 1.395065,
+  "scientific_gate_status": "NOT_EVALUATED",
+  "scope": "read-only public evidence inventory, privacy pattern scan and accounting/provenance reconciliation; not physics or scientific gate validation",
+  "success": true,
+  "utc": "2026-10-08T09:02:09.497190+00:00",
+  "wall_seconds": 1.5182125830000002
+}

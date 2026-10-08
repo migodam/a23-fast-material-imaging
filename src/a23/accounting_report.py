@@ -48,6 +48,10 @@ def _counts(value):
 
 def _family(label):
     """Classify raw names, without merging or summing instrumentation aliases."""
+    if label.endswith('_bytes'):
+        return 'bytes_raw'
+    if label.endswith('receiver_rhs'):
+        return 'S_matvec_and_receiver_contraction_raw'
     if label in ('Maxwell_matvec_rhs',):
         return 'aggregate_instrumentation_no_alias_sum'
     if 'factorization' in label or 'LU_' in label:
@@ -67,8 +71,6 @@ def _family(label):
         return 'G_matvec_raw'
     if label.startswith('S_') or label.endswith('receiver_rhs'):
         return 'S_matvec_and_receiver_contraction_raw'
-    if label.endswith('_bytes'):
-        return 'bytes_raw'
     return 'other_raw'
 
 
@@ -444,7 +446,7 @@ def _test_inputs(report, base):
             validator_copies.add((row.get('script'), row.get('return_code'),
                                   row.get('wall_seconds'), row.get('child_cpu_seconds'), row.get('device')))
         cpu = row.get('process_cpu_seconds', row.get('child_cpu_seconds'))
-        gpu = row.get('gpu_occupation_seconds', 0.0 if row.get('device') == 'cpu' else None)
+        gpu = row.get('gpu_occupation_seconds', 0.0 if str(row.get('device', '')).lower() == 'cpu' else None)
         status = row.get('status', 'PASS' if row.get('success') is True else
                          'FAIL' if row.get('success') is False else 'RECORDED')
         report.cost(identity, report.relative(path), 'standalone_unit_parent', 'cpu_tests',

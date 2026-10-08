@@ -1,0 +1,24 @@
+{
+  "status": "PASS_TINY_IMPLEMENTATION_CHECKS",
+  "latest_receipt": "results/a23/theory_verification/ADAPTER_TEST_RUN_0005.json",
+  "tests_run": 32,
+  "device": "cpu",
+  "largest_N_cells": 8,
+  "all_test_run_cpu_seconds": 0.686366,
+  "all_test_run_wall_seconds": 0.7777830000559334,
+  "preserved_intermediate_failure_receipt": "results/a23/theory_verification/ADAPTER_TEST_RUN_0003.json",
+  "intermediate_failure_resolved": "exact failing probe retained; epsilon-squared convergence below unchanged tolerance",
+  "physics_implementation_changed_by_this_worker": false,
+  "H1": "NOT_EVALUATED_BY_THESE_TESTS",
+  "H2": "NOT_EVALUATED_BY_THESE_TESTS",
+  "H3": "NOT_EVALUATED_BY_THESE_TESTS",
+  "production_forward_calls_by_this_worker": 0,
+  "gpu_occupation_seconds": 0,
+  "no_production_1728_cell_jobs": true,
+  "uncertainties": [
+    "tests cover one finite eight-cell geometry, not independent discretizations",
+    "protocol thresholds are frozen-contract checks, not observed imaging results",
+    "production call-cap enforcement must be checked in stage driver",
+    "runtime schema barriers are Python API capabilities, not security sandbox"
+  ]
+}

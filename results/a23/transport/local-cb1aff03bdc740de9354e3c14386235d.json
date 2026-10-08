@@ -1,0 +1,17 @@
+{
+  "action": "pull",
+  "connection_values_stored": false,
+  "local_process_cpu_seconds": 0.031463000000000005,
+  "local_wall_seconds": 1.857080167013919,
+  "physics_launch_authority": "parent only; run action explicitly required",
+  "remote": {
+    "error_code": "IMMUTABLE_RESULT_CONFLICT",
+    "error_type": "TransportError",
+    "launch_outcome_uncertain": false,
+    "physics_job_launched": false,
+    "status": "FAILED"
+  },
+  "schema": "a23.local_transport.v1",
+  "status": "FAILED",
+  "transport_attempt": "cb1aff03bdc740de9354e3c14386235d"
+}

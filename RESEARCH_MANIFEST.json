@@ -1,0 +1,183 @@
+{
+  "study": "A23 Physics-Native Fast Electromagnetic Imaging",
+  "date": "2026-10-08",
+  "upstream_repository": "migodam/a20-opm-imaging",
+  "upstream_commit": "b85a29a51f4ea7b4d93617e827d88e23933b89df",
+  "A22_handoff_commit": "4dd4a9fa69d4272f35a6b93d8455f77cb139187b",
+  "required_documents": [
+    "A23_EXECUTIVE_DECISION.md",
+    "OPM_REDUNDANCY_AND_MINIMALITY.md",
+    "CHEAP_FEEDBACK_OPERATORS.md",
+    "LARGE_SCALE_COMPLEXITY.md",
+    "MEDICAL_IMAGING_APPLICABILITY.md",
+    "COMPETITOR_THEORY_AUDIT.md",
+    "FEEDBACK_NATIVE_NN_ARCHITECTURES.md",
+    "BAYESIAN_FEEDBACK_INVERSION.md",
+    "PHYSICS_NATIVE_PRIORS.md",
+    "SYMMETRY_RECIPROCITY_AND_GAUGE.md",
+    "ONE_SHOT_INVERSE_THEORY.md",
+    "NOVELTY_AND_CLOSEST_PRIOR.md",
+    "THEOREM_AND_COUNTEREXAMPLE_LEDGER.md",
+    "ROUTE_COMPARISON_AND_DECISION.md",
+    "MINIMAL_DECISIVE_EXPERIMENTS.md",
+    "CODEX_A23_EXECUTION_SPEC.md"
+  ],
+  "executed": [
+    "source/document audit",
+    "conditional derivations",
+    "CPU-only tiny vector DDA algebra tests",
+    "CPU-only extra algebra tests"
+  ],
+  "not_executed": [
+    "A23 large-scale imaging",
+    "GPU campaign",
+    "neural training",
+    "clinical validation",
+    "blind generalization",
+    "matched-quality speed benchmark"
+  ],
+  "checks": {
+    "required_documents": 16,
+    "code_compile": "passed",
+    "validation_main": "ALL PASSED",
+    "validation_extra": "ALL PASSED",
+    "markdown_fences_math_delimiters": "passed"
+  },
+  "files": [
+    {
+      "path": "A23_COMPLETE_RESEARCH.md",
+      "bytes": 155097,
+      "sha256": "6bb7239f602a5432a04acacd079d2561fed73cb24657311c5a067fc82c66d30e"
+    },
+    {
+      "path": "A23_EXECUTIVE_DECISION.md",
+      "bytes": 11168,
+      "sha256": "46ed3349a1d5c840d6569292cbb4aa897955142ed8341f770345b1e5fb7c6818"
+    },
+    {
+      "path": "BAYESIAN_FEEDBACK_INVERSION.md",
+      "bytes": 10708,
+      "sha256": "6571512ea437e21c29c119bf52a8aa8387d352602979d9d429d050ec4322f3be"
+    },
+    {
+      "path": "CHEAP_FEEDBACK_OPERATORS.md",
+      "bytes": 8047,
+      "sha256": "47f1018cb32f8ca4759a17607aa83448237669fd713bfe768c0ae846aa79fa30"
+    },
+    {
+      "path": "CODEX_A23_EXECUTION_SPEC.md",
+      "bytes": 12720,
+      "sha256": "a313a5558e4ff365eb5b4848cfbac7b68e01a623bcc56695517a13f92093fbb2"
+    },
+    {
+      "path": "COMPETITOR_THEORY_AUDIT.md",
+      "bytes": 7160,
+      "sha256": "46d4468e5acbbb73c9d9d5d3c02247878b9aedc020340cf94e99ce2faf868e0f"
+    },
+    {
+      "path": "FEEDBACK_NATIVE_NN_ARCHITECTURES.md",
+      "bytes": 6827,
+      "sha256": "cb4bbdb9b3540ed8983b8d67e6f707133c7d5824b4c93606799ab05bc0ac4286"
+    },
+    {
+      "path": "LARGE_SCALE_COMPLEXITY.md",
+      "bytes": 7858,
+      "sha256": "aaea6eecbcf2c8be2d6ac9167422e539fcd128074ab983fc318349411384af17"
+    },
+    {
+      "path": "MEDICAL_IMAGING_APPLICABILITY.md",
+      "bytes": 6261,
+      "sha256": "92663777845a5404b1ab03f220fbeb6e20cd66051cc64148d174dc2f9c38d3d1"
+    },
+    {
+      "path": "MINIMAL_DECISIVE_EXPERIMENTS.md",
+      "bytes": 9376,
+      "sha256": "68c62ef6945dc68b13ec5d6c56a8de50ca25ec5aeb6afcabd3a37bf9ac203dff"
+    },
+    {
+      "path": "NOTATION_AND_ASSUMPTIONS.md",
+      "bytes": 3920,
+      "sha256": "04a4c749bad39c8144c0bbbda2989ff4d59c675576a1ec33f01e92fe770505d4"
+    },
+    {
+      "path": "NOVELTY_AND_CLOSEST_PRIOR.md",
+      "bytes": 6680,
+      "sha256": "7062fd4ed86bf9c1b9a7daa3149ab923b18f9dece6e8d00e2d9efc0b4245c8f7"
+    },
+    {
+      "path": "ONE_SHOT_INVERSE_THEORY.md",
+      "bytes": 10685,
+      "sha256": "d70bfc6b92415202cbfa169f4d47b3785e35d7ebdf7813a226b672def92916af"
+    },
+    {
+      "path": "OPM_REDUNDANCY_AND_MINIMALITY.md",
+      "bytes": 8373,
+      "sha256": "b9e4e9a005564f2debecc8bbbe1e059577667b38b48c21af3fe0e9b094b12296"
+    },
+    {
+      "path": "PHYSICS_NATIVE_PRIORS.md",
+      "bytes": 6157,
+      "sha256": "0b8bf9cdc6fc29df47e00d964acf41894deabc8c9264a86eee4b601ef4bae956"
+    },
+    {
+      "path": "README.md",
+      "bytes": 3259,
+      "sha256": "06d17f8d4871828a10f5a98e137f5db27836cd9146aafdcd2faf94989cb2c559"
+    },
+    {
+      "path": "ROUTE_COMPARISON_AND_DECISION.md",
+      "bytes": 7246,
+      "sha256": "26ae16b958630a63da18fc12ed0d76a7952e676678627cd4de66b2ad4476273b"
+    },
+    {
+      "path": "SOURCES.md",
+      "bytes": 15464,
+      "sha256": "58fc3598c8f01c36d14b3e084eda1a9d1fdd0d62c66b8b7dfbfd0fa1408604a0"
+    },
+    {
+      "path": "SYMMETRY_RECIPROCITY_AND_GAUGE.md",
+      "bytes": 5659,
+      "sha256": "7a0b007539f13b5449046e22968bfd2b3c0b50a5603e035bca3bbfb8bed3080d"
+    },
+    {
+      "path": "THEOREM_AND_COUNTEREXAMPLE_LEDGER.md",
+      "bytes": 7423,
+      "sha256": "c27427f8954e6f8f446f49df6d99d142a1ff517d5b4a1b8aefb00c955e7e5a3d"
+    },
+    {
+      "path": "VALIDATION_AND_READING_GUIDE.md",
+      "bytes": 1597,
+      "sha256": "37bd074acf0bae621e0ac6775e72a132a054eb32b575b1d660f9cc4d74139c35"
+    },
+    {
+      "path": "validation/EXTRA_VALIDATION.json",
+      "bytes": 426,
+      "sha256": "140bcdf160736a18de37fca68f6146c6cd5fc60bed425e523e92574e713352f0"
+    },
+    {
+      "path": "validation/THEORY_VALIDATION.json",
+      "bytes": 7381,
+      "sha256": "b2bfc727aca9050d723f138238b011807553217ff84e931c433390eaa817e9e6"
+    },
+    {
+      "path": "validation/extra_run.log",
+      "bytes": 426,
+      "sha256": "140bcdf160736a18de37fca68f6146c6cd5fc60bed425e523e92574e713352f0"
+    },
+    {
+      "path": "validation/run.log",
+      "bytes": 7382,
+      "sha256": "cf2b0cb2b0167ef27ea8d55f9d7882e669d0bdc69cc4100036985622bcd9294e"
+    },
+    {
+      "path": "validation/validate_extra.py",
+      "bytes": 2021,
+      "sha256": "16ed3200516e8b6436ce2d9eda4da56d0133a6c6c4a2fbe32878de68ed32905f"
+    },
+    {
+      "path": "validation/validate_theory.py",
+      "bytes": 12380,
+      "sha256": "881a5033334964d1d98411c5007080ae093951ff646342850491374594b91787"
+    }
+  ]
+}

@@ -1,0 +1,17 @@
+{
+  "action": "pull",
+  "archive": "a23-pull-cb1aff03bdc740de9354e3c14386235d.zip",
+  "child_CPU_measurement_available": true,
+  "connection_values_stored": false,
+  "gpu_tail_seconds": 0.0,
+  "member_count": 18,
+  "physics_job_launched": false,
+  "queue_query_cpu_seconds": 0.0,
+  "remote_controller_cpu_seconds": 0.046875,
+  "remote_process_cpu_seconds": 0.046875,
+  "remote_wall_seconds": 0.13086759997531772,
+  "status": "COMPLETE",
+  "transport_attempt": "cb1aff03bdc740de9354e3c14386235d",
+  "uncompressed_bytes": 28286,
+  "utc": "2026-10-08T07:43:57.736522+00:00"
+}

@@ -10,7 +10,7 @@ from statistics import mean,median
 from .pilot import save_csv
 from a20.costs import write_json
 
-LINEAR=('homogeneous_born','dressed_linear_chi','linear_a_exact_conversion','generic_randomized_linear')
+LINEAR=('homogeneous_born','born_BP','dressed_linear_chi','linear_a_exact_conversion','generic_randomized_linear')
 FEEDBACK=('vanilla_IBS2','A23_compressed_feedback')
 PRIMARY=('dressed_linear_chi',)+FEEDBACK
 FAMILIES={2001:'gaussian',2003:'gaussian',2014:'asymmetric',2009:'shell'}

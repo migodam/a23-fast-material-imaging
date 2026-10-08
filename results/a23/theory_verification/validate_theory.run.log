@@ -1,0 +1,194 @@
+{
+  "seed": 20261008,
+  "dtype": "complex128/float64",
+  "device": "CPU",
+  "python": "3.13.13",
+  "numpy": "2.5.3",
+  "scope": "Theorem/counterexample validation only; NOT A22 replay, GPU experiment, blinded imaging study, or speed benchmark.",
+  "algebra": {
+    "cached_schur_relative_errors": {
+      "K": 1.7038596961451802e-16,
+      "T": 2.053182939080379e-16,
+      "K_adjoint": 1.7705226384921006e-16,
+      "T_adjoint": 1.7452384590417375e-16
+    },
+    "source_anchored_P_relative_norm": 3.340635409854884e-16,
+    "two_sided_residual_identity_relative_error": 9.084434548623574e-13,
+    "arbitrary_RA_counterexample": {
+      "L": 1,
+      "RA": 0.5,
+      "true_defect": 0.5,
+      "double_defect": 0.25
+    },
+    "nonnormal_counterexample": {
+      "F": [
+        [
+          0,
+          100
+        ],
+        [
+          0,
+          0
+        ]
+      ],
+      "spectral_radius": 0,
+      "zeroth_order_inverse_error": 100
+    }
+  },
+  "tiny_vector_maxwell": {
+    "scope": "Independent eight-cell, three-dimensional vector DDA; no reconstruction benchmark",
+    "n_current_complex": 24,
+    "p_material_real": 16,
+    "sources": 6,
+    "receiver_positions": 18,
+    "receiver_components": 54,
+    "data_real": 648,
+    "background_L_condition": 1.189029589318787,
+    "linear_A_condition": 45.911210835190886,
+    "adjoint_transfer_relative_error": 3.375405067783727e-16,
+    "PM_degree_shift_relative_error": 1.150092897961274e-16,
+    "reciprocal_transition_transpose_error": 1.7434658916805868e-17,
+    "raw_L_transpose_error": 0.004614823895506729,
+    "linear_statistic_rank": 16,
+    "full_jet_statistic_rank": 88,
+    "gaussian_quadratic_innovation_energy_ranks": {
+      "0.9": 12,
+      "0.99": 26,
+      "0.999": 37
+    },
+    "constitutive_normal_curvature_identity_relative_error": 3.3586900481318387e-15,
+    "one_direction_chart_local_constitutive_artifact_fraction": 0.9439171331516604,
+    "amplitude_table": [
+      {
+        "t": 0.2,
+        "eta": 0.013408464911511138,
+        "linear_forward_error": 4.780945871009875e-05,
+        "quadratic_forward_error": 1.587378072842032e-07,
+        "first_inverse_absolute_error": 0.0019004994684975222,
+        "second_inverse_absolute_error": 2.9413098226954258e-05,
+        "linear_statistic_discarded_mean": 4.0492635479964235e-05,
+        "jet_statistic_discarded_mean": 1.882707337716526e-08,
+        "exact_finite_amplitude_identity_relative_error": 7.0230987567006795e-15,
+        "quadratic_remainder_norm_bound": 2.237255902075066e-06
+      },
+      {
+        "t": 0.1,
+        "eta": 0.006704232455755569,
+        "linear_forward_error": 1.1947998693101156e-05,
+        "quadratic_forward_error": 1.9794988288700684e-08,
+        "first_inverse_absolute_error": 0.00047518674918474284,
+        "second_inverse_absolute_error": 3.677480355297192e-06,
+        "linear_statistic_discarded_mean": 1.0118338481691269e-05,
+        "jet_statistic_discarded_mean": 2.353652307766322e-09,
+        "exact_finite_amplitude_identity_relative_error": 1.3705770921544583e-14,
+        "quadratic_remainder_norm_bound": 2.7776944779890335e-07
+      },
+      {
+        "t": 0.05,
+        "eta": 0.0033521162278777844,
+        "linear_forward_error": 2.9864511095830684e-06,
+        "quadratic_forward_error": 2.471439286460923e-09,
+        "first_inverse_absolute_error": 0.00011880469677213295,
+        "second_inverse_absolute_error": 4.597361900778926e-07,
+        "linear_statistic_discarded_mean": 2.528978853421128e-06,
+        "jet_statistic_discarded_mean": 2.9422289713579587e-10,
+        "exact_finite_amplitude_identity_relative_error": 2.506941852568764e-14,
+        "quadratic_remainder_norm_bound": 3.460440007752493e-08
+      },
+      {
+        "t": 0.025,
+        "eta": 0.0016760581139388922,
+        "linear_forward_error": 7.46544030278616e-07,
+        "quadratic_forward_error": 3.087470927814901e-10,
+        "first_inverse_absolute_error": 2.9702192475424685e-05,
+        "second_inverse_absolute_error": 5.7470172040532796e-08,
+        "linear_statistic_discarded_mean": 6.321687916475251e-07,
+        "jet_statistic_discarded_mean": 3.67788718295062e-11,
+        "exact_finite_amplitude_identity_relative_error": 5.6203204310057715e-14,
+        "quadratic_remainder_norm_bound": 4.318287964890514e-09
+      },
+      {
+        "t": 0.0125,
+        "eta": 0.0008380290569694461,
+        "linear_forward_error": 1.866274031156842e-07,
+        "quadratic_forward_error": 3.85819741497047e-11,
+        "first_inverse_absolute_error": 7.425676471017238e-06,
+        "second_inverse_absolute_error": 7.183967369085015e-09,
+        "linear_statistic_discarded_mean": 1.5803269515302333e-07,
+        "jet_statistic_discarded_mean": 4.5974198723244576e-12,
+        "exact_finite_amplitude_identity_relative_error": 9.986168531011004e-14,
+        "quadratic_remainder_norm_bound": 5.393332598567294e-10
+      }
+    ],
+    "log_log_absolute_error_slopes": {
+      "linear_forward_error": 2.0002380671867654,
+      "quadratic_forward_error": 3.0015428245670126,
+      "first_inverse_absolute_error": 1.9999134166541779,
+      "second_inverse_absolute_error": 2.999854113831759,
+      "linear_statistic_discarded_mean": 2.0003104116808483,
+      "jet_statistic_discarded_mean": 2.9999273584071147
+    }
+  },
+  "probability_and_fiber": {
+    "Gaussian_quadratic_covariance_relative_error": 3.627541880263037e-16,
+    "Rademacher_counterexample": "Q(g,g)=(g1^2,g2^2) is always (1,1) for Rademacher; rank 1, true quadratic range rank 2",
+    "fiber_amplitude_table": [
+      {
+        "t": 0.2,
+        "hard_split_data_error": 0.019545599999999996,
+        "curved_fiber_data_error": 0.001267199999999996,
+        "omitted_quadratic_channel_KL": 0.00010367999999999998
+      },
+      {
+        "t": 0.1,
+        "hard_split_data_error": 0.004843199999999992,
+        "curved_fiber_data_error": 0.00015840000000000298,
+        "omitted_quadratic_channel_KL": 6.479999999999999e-06
+      },
+      {
+        "t": 0.05,
+        "hard_split_data_error": 0.0012054000000000023,
+        "curved_fiber_data_error": 1.9800000000000373e-05,
+        "omitted_quadratic_channel_KL": 4.0499999999999993e-07
+      },
+      {
+        "t": 0.025,
+        "hard_split_data_error": 0.0003006749999999968,
+        "curved_fiber_data_error": 2.4750000000017813e-06,
+        "omitted_quadratic_channel_KL": 2.5312499999999996e-08
+      },
+      {
+        "t": 0.0125,
+        "hard_split_data_error": 7.50843750000011e-05,
+        "curved_fiber_data_error": 3.0937500000022267e-07,
+        "omitted_quadratic_channel_KL": 1.5820312499999997e-09
+      }
+    ],
+    "log_log_absolute_error_slopes": {
+      "hard_split_data_error": 2.0057914640483405,
+      "curved_fiber_data_error": 2.9999999999996914,
+      "omitted_quadratic_channel_KL": 4.0
+    },
+    "correlated_prior_example": {
+      "rho": 0.8,
+      "noise_variance": 0.25,
+      "posterior_mean_for_y_1": [
+        0.8,
+        0.64
+      ],
+      "posterior_covariance": [
+        [
+          0.19999999999999996,
+          0.16000000000000003
+        ],
+        [
+          0.16000000000000003,
+          0.4879999999999999
+        ]
+      ]
+    },
+    "unnormalized_factor_warning": "Integrating delta(L(x)j-b(x)) dj contributes 1/abs(det L(x)); multiply abs(det L) to normalize."
+  },
+  "wall_seconds": 0.02412366701173596,
+  "assertions": "ALL PASSED"
+}

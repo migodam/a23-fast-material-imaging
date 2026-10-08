@@ -1,0 +1,8 @@
+{"event": "readonly_progress", "cpu_seconds": 0.0027739999999999987, "wall_seconds": 1.5554957080166787, "gpu_seconds": 0}
+{"event": "readonly_progress", "cpu_seconds": 0.0022709999999999952, "wall_seconds": 1.5065277079993393, "gpu_seconds": 0}
+{"event": "readonly_progress", "cpu_seconds": 0.002368999999999996, "wall_seconds": 1.5208534999983385, "gpu_seconds": 0}
+{"event": "publication_metadata_allowance", "scope": "CPU overhead for shell, summaries, reporting audits, synthetic accounting checks and publication not covered by terminal experiment jobs", "cpu_allowance_seconds": 30.0, "measured": false, "status": "CONSERVATIVE_ALLOWANCE", "new_physics": false}
+{"event": "pilot_readonly_progress", "cpu_seconds": 0.0035169999999999993, "status": "RECORDED", "new_physics": false}
+{"event": "pilot_readonly_progress_remote_cpu_correction", "cpu_seconds": 0.03125, "status": "RECORDED", "measurement": "remote monitor GetProcessTimes result; prior entry measured local CPU only because helper returned dict", "new_physics": false}
+{"event": "pilot_readonly_metrics", "cpu_seconds": 0.038940999999999996, "status": "RECORDED", "new_physics": false}
+{"event": "existing_quadratic_sketch_public_export", "cpu_seconds": 0.033623, "status": "RECORDED", "new_physics": false, "cache_bytes_copied": 3016552}

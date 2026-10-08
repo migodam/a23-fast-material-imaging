@@ -9,3 +9,8 @@
 
 7. 首版H1缓存没有序列化完整key。H2不直接复用该背景map/decoder：重新付费构建已知背景的全transfer、receiver伴随及decoder，逐元素检查与H1一致，然后登记geometry/source/receiver/frequency/reference/whitening/metric/probe/dtype key；旧H1缓存不覆盖。该准备成本计入真实账本。
 8. full-state额度按阶段在调用前reservation落盘，跨jobs取receipt/日志的保守最大计数；未结算orphan job阻止新物理运行。已有pilot结果不允许自动覆盖/重跑；部分结果保留并报告。clean label缓存须同时验证材料和完整key。单方法算法错误保留失败行，不抹去其他方法。
+
+9. 最终汇总审计发现BornBP被漏出linearbaseline集合。已把这个预注册普通线性decoder纳入：8个条件恢复合法baseline，1个低幅度rawbest更强；所有nominal主条件rawbest、H1/H2/H3结论不变。仅修正derivedreport，不改rawdata或gates。
+10. 曲率audit的nuisance空间使用6sourcegains+128独立observedcomponentgains（rank133），比stress里的64receivergains（每receiver两分量共享）更大。原值不重算，明确label为per-componentgain nuisance diagnostic，不能称为该64receiverstress的精确tangent。
+11. 部分早期phase0/micro/H1 jobmanifest未保存A23 source_snapshot。backend来源有freeze与直接字节相等证据；缺失的A23阶段commit不事后伪造。后期phase0/pilot有RUN_SOURCE_SNAPSHOT。理论验证历史输出与本次重跑输出分别保存。
+12. 传输meta采用显式platformvariants；local/remote独立FAILURE_LEDGER在保留两份原始导出后语义union并deduplicate。其他科学ledger冲突仍严格拒绝；没有为pull失败重跑物理。

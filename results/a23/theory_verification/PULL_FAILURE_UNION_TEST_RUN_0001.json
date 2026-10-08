@@ -1,0 +1,19 @@
+{
+  "CPU_scope": "inclusive Python process CPU through receipt capture",
+  "device": "cpu",
+  "gpu_occupation_seconds": 0.0,
+  "new_SHA256_checks": 0,
+  "process_cpu_seconds": 0.068821,
+  "remote_actions": 0,
+  "scientific_gate_status": "NOT_EVALUATED",
+  "scope": "synthetic local transport failure-union tests; no physics or imaging evidence",
+  "subchecks": [
+    "independent merge preserves originals",
+    "repeated and subset pull deduplicate",
+    "other ledger conflict stays strict",
+    "changed original rejected before append"
+  ],
+  "success": true,
+  "tests_run": 3,
+  "wall_seconds": 0.05807529100000001
+}

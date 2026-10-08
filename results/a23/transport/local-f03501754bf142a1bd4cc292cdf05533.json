@@ -1,0 +1,31 @@
+{
+  "action": "deploy",
+  "connection_values_stored": false,
+  "local_process_cpu_seconds": 0.021444000000000005,
+  "local_wall_seconds": 3.716506583004957,
+  "physics_launch_authority": "parent only; run action explicitly required",
+  "remote": {
+    "action": "deploy",
+    "child_CPU_measurement_available": true,
+    "connection_values_stored": false,
+    "gpu_tail_seconds": 0.0,
+    "local_archive_compressed_bytes": 53414,
+    "member_count": 4,
+    "offline_evaluator_only": true,
+    "physics_job_launched": false,
+    "private_files_transferred": false,
+    "queue_query_cpu_seconds": 0.0625,
+    "remote_controller_cpu_seconds": 0.03125,
+    "remote_process_cpu_seconds": 0.09375,
+    "remote_wall_seconds": 1.6357473999960348,
+    "scope": "offline-evaluation",
+    "source_snapshot_policy": "RUN_SOURCE_SNAPSHOT.json may change with explicitly deployed source versions",
+    "status": "COMPLETE",
+    "transport_attempt": "f03501754bf142a1bd4cc292cdf05533",
+    "uncompressed_bytes": 111648,
+    "utc": "2026-10-08T08:16:07.308023+00:00"
+  },
+  "schema": "a23.local_transport.v1",
+  "status": "COMPLETE",
+  "transport_attempt": "f03501754bf142a1bd4cc292cdf05533"
+}

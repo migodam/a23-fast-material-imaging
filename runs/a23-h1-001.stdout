@@ -1,0 +1,5 @@
+{"stage": "h1", "scene": 2001, "complete_arms": 8}
+{"stage": "h1", "scene": 2003, "complete_arms": 8}
+{"stage": "h1", "scene": 2014, "complete_arms": 8}
+{"stage": "h1", "scene": 2009, "complete_arms": 8}
+{"job": "a23-h1-001", "status": "COMPLETE", "gpu_seconds": 1081.0471873999923, "cpu_seconds": 1029.984375, "error": null}

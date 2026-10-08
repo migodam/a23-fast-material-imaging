@@ -1,0 +1,21 @@
+{
+  "action": "pull",
+  "archive": "a23-pull-7a72cdcd01aa429daa4f14e7fb4a9281.zip",
+  "cache_policy": "exclude cache/ and h1/<scene>/*.npz except H1_FIXED_PROBES.npz and H1_RANDOMIZED_TRAINING.npz; regenerate from declared frozen inputs when needed",
+  "child_CPU_measurement_available": true,
+  "connection_values_stored": false,
+  "gpu_tail_seconds": 0.0,
+  "member_count": 121,
+  "physics_job_launched": false,
+  "queue_query_cpu_seconds": 0.0,
+  "regenerable_cache_bytes_skipped": 3145937545,
+  "regenerable_cache_members_skipped": 44,
+  "remote_caches_retained": true,
+  "remote_controller_cpu_seconds": 0.421875,
+  "remote_process_cpu_seconds": 0.421875,
+  "remote_wall_seconds": 0.4527495999936946,
+  "status": "COMPLETE",
+  "transport_attempt": "7a72cdcd01aa429daa4f14e7fb4a9281",
+  "uncompressed_bytes": 22565236,
+  "utc": "2026-10-08T08:34:50.344163+00:00"
+}

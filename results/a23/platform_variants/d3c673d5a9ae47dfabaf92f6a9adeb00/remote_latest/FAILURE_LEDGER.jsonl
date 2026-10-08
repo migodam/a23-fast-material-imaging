@@ -1,0 +1,144 @@
+{"event": "CANDIDATE_REJECTED", "scene": 2001, "t": 0.15, "noise": "20dB_nominal_difference", "method": "homogeneous_born", "reason": "PHYSICAL_MATERIAL_VIOLATION", "charged": true}
+{"event": "CANDIDATE_REJECTED", "scene": 2001, "t": 0.15, "noise": "20dB_nominal_difference", "method": "dressed_linear_chi", "reason": "PHYSICAL_MATERIAL_VIOLATION", "charged": true}
+{"event": "CANDIDATE_REJECTED", "scene": 2001, "t": 0.15, "noise": "20dB_nominal_difference", "method": "linear_a_exact_conversion", "reason": "PHYSICAL_MATERIAL_VIOLATION", "charged": true}
+{"event": "CANDIDATE_REJECTED", "scene": 2001, "t": 0.15, "noise": "20dB_nominal_difference", "method": "vanilla_IBS2", "reason": "PHYSICAL_MATERIAL_VIOLATION", "charged": true}
+{"event": "CANDIDATE_REJECTED", "scene": 2001, "t": 0.15, "noise": "20dB_nominal_difference", "method": "A23_compressed_feedback", "reason": "PHYSICAL_MATERIAL_VIOLATION", "charged": true}
+{"event": "CANDIDATE_REJECTED", "scene": 2001, "t": 0.5, "noise": "zero", "method": "homogeneous_born", "reason": "PHYSICAL_MATERIAL_VIOLATION", "charged": true}
+{"event": "CANDIDATE_REJECTED", "scene": 2001, "t": 0.5, "noise": "zero", "method": "dressed_linear_chi", "reason": "PHYSICAL_MATERIAL_VIOLATION", "charged": true}
+{"event": "CANDIDATE_REJECTED", "scene": 2001, "t": 0.5, "noise": "zero", "method": "linear_a_exact_conversion", "reason": "PHYSICAL_MATERIAL_VIOLATION", "charged": true}
+{"event": "CANDIDATE_REJECTED", "scene": 2001, "t": 0.5, "noise": "zero", "method": "vanilla_IBS2", "reason": "PHYSICAL_MATERIAL_VIOLATION", "charged": true}
+{"event": "CANDIDATE_REJECTED", "scene": 2001, "t": 0.5, "noise": "zero", "method": "A23_compressed_feedback", "reason": "PHYSICAL_MATERIAL_VIOLATION", "charged": true}
+{"event": "CANDIDATE_REJECTED", "scene": 2001, "t": 0.5, "noise": "zero", "method": "generic_randomized_linear", "reason": "PHYSICAL_MATERIAL_VIOLATION", "charged": true}
+{"event": "CANDIDATE_REJECTED", "scene": 2001, "t": 0.5, "noise": "20dB_nominal_difference", "method": "homogeneous_born", "reason": "PHYSICAL_MATERIAL_VIOLATION", "charged": true}
+{"event": "CANDIDATE_REJECTED", "scene": 2001, "t": 0.5, "noise": "20dB_nominal_difference", "method": "dressed_linear_chi", "reason": "PHYSICAL_MATERIAL_VIOLATION", "charged": true}
+{"event": "CANDIDATE_REJECTED", "scene": 2001, "t": 0.5, "noise": "20dB_nominal_difference", "method": "linear_a_exact_conversion", "reason": "PHYSICAL_MATERIAL_VIOLATION", "charged": true}
+{"event": "CANDIDATE_REJECTED", "scene": 2001, "t": 0.5, "noise": "20dB_nominal_difference", "method": "vanilla_IBS2", "reason": "PHYSICAL_MATERIAL_VIOLATION", "charged": true}
+{"event": "CANDIDATE_REJECTED", "scene": 2001, "t": 0.5, "noise": "20dB_nominal_difference", "method": "A23_compressed_feedback", "reason": "PHYSICAL_MATERIAL_VIOLATION", "charged": true}
+{"event": "CANDIDATE_REJECTED", "scene": 2001, "t": 0.5, "noise": "20dB_nominal_difference", "method": "generic_randomized_linear", "reason": "PHYSICAL_MATERIAL_VIOLATION", "charged": true}
+{"event": "CANDIDATE_REJECTED", "scene": 2001, "t": 1.0, "noise": "zero", "method": "homogeneous_born", "reason": "PHYSICAL_MATERIAL_VIOLATION", "charged": true}
+{"event": "CANDIDATE_REJECTED", "scene": 2001, "t": 1.0, "noise": "zero", "method": "dressed_linear_chi", "reason": "PHYSICAL_MATERIAL_VIOLATION", "charged": true}
+{"event": "CANDIDATE_REJECTED", "scene": 2001, "t": 1.0, "noise": "zero", "method": "linear_a_exact_conversion", "reason": "PHYSICAL_MATERIAL_VIOLATION", "charged": true}
+{"event": "CANDIDATE_REJECTED", "scene": 2001, "t": 1.0, "noise": "zero", "method": "vanilla_IBS2", "reason": "PHYSICAL_MATERIAL_VIOLATION", "charged": true}
+{"event": "CANDIDATE_REJECTED", "scene": 2001, "t": 1.0, "noise": "zero", "method": "A23_compressed_feedback", "reason": "PHYSICAL_MATERIAL_VIOLATION", "charged": true}
+{"event": "CANDIDATE_REJECTED", "scene": 2001, "t": 1.0, "noise": "zero", "method": "generic_randomized_linear", "reason": "PHYSICAL_MATERIAL_VIOLATION", "charged": true}
+{"event": "CANDIDATE_REJECTED", "scene": 2001, "t": 1.0, "noise": "20dB_nominal_difference", "method": "homogeneous_born", "reason": "PHYSICAL_MATERIAL_VIOLATION", "charged": true}
+{"event": "CANDIDATE_REJECTED", "scene": 2001, "t": 1.0, "noise": "20dB_nominal_difference", "method": "dressed_linear_chi", "reason": "PHYSICAL_MATERIAL_VIOLATION", "charged": true}
+{"event": "CANDIDATE_REJECTED", "scene": 2001, "t": 1.0, "noise": "20dB_nominal_difference", "method": "linear_a_exact_conversion", "reason": "PHYSICAL_MATERIAL_VIOLATION", "charged": true}
+{"event": "CANDIDATE_REJECTED", "scene": 2001, "t": 1.0, "noise": "20dB_nominal_difference", "method": "vanilla_IBS2", "reason": "PHYSICAL_MATERIAL_VIOLATION", "charged": true}
+{"event": "CANDIDATE_REJECTED", "scene": 2001, "t": 1.0, "noise": "20dB_nominal_difference", "method": "A23_compressed_feedback", "reason": "PHYSICAL_MATERIAL_VIOLATION", "charged": true}
+{"event": "CANDIDATE_REJECTED", "scene": 2001, "t": 1.0, "noise": "20dB_nominal_difference", "method": "generic_randomized_linear", "reason": "PHYSICAL_MATERIAL_VIOLATION", "charged": true}
+{"event": "FULL_VALIDATION_REJECTED", "scene": 2001, "method": "dressed_linear_chi", "reason": "PHYSICAL_MATERIAL_VIOLATION", "charged": true}
+{"event": "FULL_VALIDATION_REJECTED", "scene": 2001, "method": "vanilla_IBS2", "reason": "PHYSICAL_MATERIAL_VIOLATION", "charged": true}
+{"event": "FULL_VALIDATION_REJECTED", "scene": 2001, "method": "A23_compressed_feedback", "reason": "PHYSICAL_MATERIAL_VIOLATION", "charged": true}
+{"event": "CALIBRATION_CANDIDATE_REJECTED", "scene": 2001, "method": "dressed_linear_chi", "reason": "PHYSICAL_MATERIAL_VIOLATION", "charged": true}
+{"event": "CALIBRATION_FULL_VALIDATION_REJECTED", "scene": 2001, "method": "dressed_linear_chi", "reason": "PHYSICAL_MATERIAL_VIOLATION", "charged": true}
+{"event": "CALIBRATION_CANDIDATE_REJECTED", "scene": 2001, "method": "vanilla_IBS2", "reason": "PHYSICAL_MATERIAL_VIOLATION", "charged": true}
+{"event": "CALIBRATION_CANDIDATE_REJECTED", "scene": 2001, "method": "A23_compressed_feedback", "reason": "PHYSICAL_MATERIAL_VIOLATION", "charged": true}
+{"event": "CALIBRATION_FULL_VALIDATION_REJECTED", "scene": 2001, "method": "A23_compressed_feedback", "reason": "PHYSICAL_MATERIAL_VIOLATION", "charged": true}
+{"event": "CANDIDATE_REJECTED", "scene": 2003, "t": 0.15, "noise": "zero", "method": "homogeneous_born", "reason": "PHYSICAL_MATERIAL_VIOLATION", "charged": true}
+{"event": "CANDIDATE_REJECTED", "scene": 2003, "t": 0.15, "noise": "zero", "method": "dressed_linear_chi", "reason": "PHYSICAL_MATERIAL_VIOLATION", "charged": true}
+{"event": "CANDIDATE_REJECTED", "scene": 2003, "t": 0.15, "noise": "zero", "method": "linear_a_exact_conversion", "reason": "PHYSICAL_MATERIAL_VIOLATION", "charged": true}
+{"event": "CANDIDATE_REJECTED", "scene": 2003, "t": 0.15, "noise": "zero", "method": "vanilla_IBS2", "reason": "PHYSICAL_MATERIAL_VIOLATION", "charged": true}
+{"event": "CANDIDATE_REJECTED", "scene": 2003, "t": 0.15, "noise": "zero", "method": "A23_compressed_feedback", "reason": "PHYSICAL_MATERIAL_VIOLATION", "charged": true}
+{"event": "CANDIDATE_REJECTED", "scene": 2003, "t": 0.15, "noise": "zero", "method": "generic_randomized_linear", "reason": "PHYSICAL_MATERIAL_VIOLATION", "charged": true}
+{"event": "CANDIDATE_REJECTED", "scene": 2003, "t": 0.15, "noise": "20dB_nominal_difference", "method": "homogeneous_born", "reason": "PHYSICAL_MATERIAL_VIOLATION", "charged": true}
+{"event": "CANDIDATE_REJECTED", "scene": 2003, "t": 0.15, "noise": "20dB_nominal_difference", "method": "dressed_linear_chi", "reason": "PHYSICAL_MATERIAL_VIOLATION", "charged": true}
+{"event": "CANDIDATE_REJECTED", "scene": 2003, "t": 0.15, "noise": "20dB_nominal_difference", "method": "linear_a_exact_conversion", "reason": "PHYSICAL_MATERIAL_VIOLATION", "charged": true}
+{"event": "CANDIDATE_REJECTED", "scene": 2003, "t": 0.15, "noise": "20dB_nominal_difference", "method": "vanilla_IBS2", "reason": "PHYSICAL_MATERIAL_VIOLATION", "charged": true}
+{"event": "CANDIDATE_REJECTED", "scene": 2003, "t": 0.15, "noise": "20dB_nominal_difference", "method": "A23_compressed_feedback", "reason": "PHYSICAL_MATERIAL_VIOLATION", "charged": true}
+{"event": "CANDIDATE_REJECTED", "scene": 2003, "t": 0.15, "noise": "20dB_nominal_difference", "method": "generic_randomized_linear", "reason": "PHYSICAL_MATERIAL_VIOLATION", "charged": true}
+{"event": "CANDIDATE_REJECTED", "scene": 2003, "t": 0.5, "noise": "zero", "method": "homogeneous_born", "reason": "PHYSICAL_MATERIAL_VIOLATION", "charged": true}
+{"event": "CANDIDATE_REJECTED", "scene": 2003, "t": 0.5, "noise": "zero", "method": "born_BP", "reason": "PHYSICAL_MATERIAL_VIOLATION", "charged": true}
+{"event": "CANDIDATE_REJECTED", "scene": 2003, "t": 0.5, "noise": "zero", "method": "dressed_linear_chi", "reason": "PHYSICAL_MATERIAL_VIOLATION", "charged": true}
+{"event": "CANDIDATE_REJECTED", "scene": 2003, "t": 0.5, "noise": "zero", "method": "linear_a_exact_conversion", "reason": "PHYSICAL_MATERIAL_VIOLATION", "charged": true}
+{"event": "CANDIDATE_REJECTED", "scene": 2003, "t": 0.5, "noise": "zero", "method": "vanilla_IBS2", "reason": "PHYSICAL_MATERIAL_VIOLATION", "charged": true}
+{"event": "CANDIDATE_REJECTED", "scene": 2003, "t": 0.5, "noise": "zero", "method": "A23_compressed_feedback", "reason": "PHYSICAL_MATERIAL_VIOLATION", "charged": true}
+{"event": "CANDIDATE_REJECTED", "scene": 2003, "t": 0.5, "noise": "zero", "method": "generic_randomized_linear", "reason": "PHYSICAL_MATERIAL_VIOLATION", "charged": true}
+{"event": "CANDIDATE_REJECTED", "scene": 2003, "t": 0.5, "noise": "zero", "method": "current_BP_ratio", "reason": "PHYSICAL_MATERIAL_VIOLATION", "charged": true}
+{"event": "CANDIDATE_REJECTED", "scene": 2003, "t": 0.5, "noise": "20dB_nominal_difference", "method": "homogeneous_born", "reason": "PHYSICAL_MATERIAL_VIOLATION", "charged": true}
+{"event": "CANDIDATE_REJECTED", "scene": 2003, "t": 0.5, "noise": "20dB_nominal_difference", "method": "born_BP", "reason": "PHYSICAL_MATERIAL_VIOLATION", "charged": true}
+{"event": "CANDIDATE_REJECTED", "scene": 2003, "t": 0.5, "noise": "20dB_nominal_difference", "method": "dressed_linear_chi", "reason": "PHYSICAL_MATERIAL_VIOLATION", "charged": true}
+{"event": "CANDIDATE_REJECTED", "scene": 2003, "t": 0.5, "noise": "20dB_nominal_difference", "method": "linear_a_exact_conversion", "reason": "PHYSICAL_MATERIAL_VIOLATION", "charged": true}
+{"event": "CANDIDATE_REJECTED", "scene": 2003, "t": 0.5, "noise": "20dB_nominal_difference", "method": "vanilla_IBS2", "reason": "PHYSICAL_MATERIAL_VIOLATION", "charged": true}
+{"event": "CANDIDATE_REJECTED", "scene": 2003, "t": 0.5, "noise": "20dB_nominal_difference", "method": "A23_compressed_feedback", "reason": "PHYSICAL_MATERIAL_VIOLATION", "charged": true}
+{"event": "CANDIDATE_REJECTED", "scene": 2003, "t": 0.5, "noise": "20dB_nominal_difference", "method": "generic_randomized_linear", "reason": "PHYSICAL_MATERIAL_VIOLATION", "charged": true}
+{"event": "CANDIDATE_REJECTED", "scene": 2003, "t": 0.5, "noise": "20dB_nominal_difference", "method": "current_BP_ratio", "reason": "PHYSICAL_MATERIAL_VIOLATION", "charged": true}
+{"event": "CANDIDATE_REJECTED", "scene": 2003, "t": 1.0, "noise": "zero", "method": "homogeneous_born", "reason": "PHYSICAL_MATERIAL_VIOLATION", "charged": true}
+{"event": "CANDIDATE_REJECTED", "scene": 2003, "t": 1.0, "noise": "zero", "method": "born_BP", "reason": "PHYSICAL_MATERIAL_VIOLATION", "charged": true}
+{"event": "CANDIDATE_REJECTED", "scene": 2003, "t": 1.0, "noise": "zero", "method": "dressed_linear_chi", "reason": "PHYSICAL_MATERIAL_VIOLATION", "charged": true}
+{"event": "CANDIDATE_REJECTED", "scene": 2003, "t": 1.0, "noise": "zero", "method": "linear_a_exact_conversion", "reason": "PHYSICAL_MATERIAL_VIOLATION", "charged": true}
+{"event": "CANDIDATE_REJECTED", "scene": 2003, "t": 1.0, "noise": "zero", "method": "vanilla_IBS2", "reason": "PHYSICAL_MATERIAL_VIOLATION", "charged": true}
+{"event": "CANDIDATE_REJECTED", "scene": 2003, "t": 1.0, "noise": "zero", "method": "A23_compressed_feedback", "reason": "PHYSICAL_MATERIAL_VIOLATION", "charged": true}
+{"event": "CANDIDATE_REJECTED", "scene": 2003, "t": 1.0, "noise": "zero", "method": "generic_randomized_linear", "reason": "PHYSICAL_MATERIAL_VIOLATION", "charged": true}
+{"event": "CANDIDATE_REJECTED", "scene": 2003, "t": 1.0, "noise": "zero", "method": "current_BP_ratio", "reason": "PHYSICAL_MATERIAL_VIOLATION", "charged": true}
+{"event": "CANDIDATE_REJECTED", "scene": 2003, "t": 1.0, "noise": "20dB_nominal_difference", "method": "homogeneous_born", "reason": "PHYSICAL_MATERIAL_VIOLATION", "charged": true}
+{"event": "CANDIDATE_REJECTED", "scene": 2003, "t": 1.0, "noise": "20dB_nominal_difference", "method": "born_BP", "reason": "PHYSICAL_MATERIAL_VIOLATION", "charged": true}
+{"event": "CANDIDATE_REJECTED", "scene": 2003, "t": 1.0, "noise": "20dB_nominal_difference", "method": "dressed_linear_chi", "reason": "PHYSICAL_MATERIAL_VIOLATION", "charged": true}
+{"event": "CANDIDATE_REJECTED", "scene": 2003, "t": 1.0, "noise": "20dB_nominal_difference", "method": "linear_a_exact_conversion", "reason": "PHYSICAL_MATERIAL_VIOLATION", "charged": true}
+{"event": "CANDIDATE_REJECTED", "scene": 2003, "t": 1.0, "noise": "20dB_nominal_difference", "method": "vanilla_IBS2", "reason": "PHYSICAL_MATERIAL_VIOLATION", "charged": true}
+{"event": "CANDIDATE_REJECTED", "scene": 2003, "t": 1.0, "noise": "20dB_nominal_difference", "method": "A23_compressed_feedback", "reason": "PHYSICAL_MATERIAL_VIOLATION", "charged": true}
+{"event": "CANDIDATE_REJECTED", "scene": 2003, "t": 1.0, "noise": "20dB_nominal_difference", "method": "generic_randomized_linear", "reason": "PHYSICAL_MATERIAL_VIOLATION", "charged": true}
+{"event": "CANDIDATE_REJECTED", "scene": 2003, "t": 1.0, "noise": "20dB_nominal_difference", "method": "current_BP_ratio", "reason": "PHYSICAL_MATERIAL_VIOLATION", "charged": true}
+{"event": "FULL_VALIDATION_REJECTED", "scene": 2003, "method": "dressed_linear_chi", "reason": "PHYSICAL_MATERIAL_VIOLATION", "charged": true}
+{"event": "FULL_VALIDATION_REJECTED", "scene": 2003, "method": "vanilla_IBS2", "reason": "PHYSICAL_MATERIAL_VIOLATION", "charged": true}
+{"event": "FULL_VALIDATION_REJECTED", "scene": 2003, "method": "A23_compressed_feedback", "reason": "PHYSICAL_MATERIAL_VIOLATION", "charged": true}
+{"event": "CALIBRATION_CANDIDATE_REJECTED", "scene": 2003, "method": "dressed_linear_chi", "reason": "PHYSICAL_MATERIAL_VIOLATION", "charged": true}
+{"event": "CALIBRATION_FULL_VALIDATION_REJECTED", "scene": 2003, "method": "dressed_linear_chi", "reason": "PHYSICAL_MATERIAL_VIOLATION", "charged": true}
+{"event": "CALIBRATION_CANDIDATE_REJECTED", "scene": 2003, "method": "vanilla_IBS2", "reason": "PHYSICAL_MATERIAL_VIOLATION", "charged": true}
+{"event": "CALIBRATION_CANDIDATE_REJECTED", "scene": 2003, "method": "A23_compressed_feedback", "reason": "PHYSICAL_MATERIAL_VIOLATION", "charged": true}
+{"event": "CALIBRATION_FULL_VALIDATION_REJECTED", "scene": 2003, "method": "A23_compressed_feedback", "reason": "PHYSICAL_MATERIAL_VIOLATION", "charged": true}
+{"event": "CANDIDATE_REJECTED", "scene": 2014, "t": 0.5, "noise": "20dB_nominal_difference", "method": "dressed_linear_chi", "reason": "PHYSICAL_MATERIAL_VIOLATION", "charged": true}
+{"event": "CANDIDATE_REJECTED", "scene": 2014, "t": 0.5, "noise": "20dB_nominal_difference", "method": "linear_a_exact_conversion", "reason": "PHYSICAL_MATERIAL_VIOLATION", "charged": true}
+{"event": "CANDIDATE_REJECTED", "scene": 2014, "t": 0.5, "noise": "20dB_nominal_difference", "method": "vanilla_IBS2", "reason": "PHYSICAL_MATERIAL_VIOLATION", "charged": true}
+{"event": "CANDIDATE_REJECTED", "scene": 2014, "t": 0.5, "noise": "20dB_nominal_difference", "method": "A23_compressed_feedback", "reason": "PHYSICAL_MATERIAL_VIOLATION", "charged": true}
+{"event": "CANDIDATE_REJECTED", "scene": 2014, "t": 1.0, "noise": "20dB_nominal_difference", "method": "dressed_linear_chi", "reason": "PHYSICAL_MATERIAL_VIOLATION", "charged": true}
+{"event": "CANDIDATE_REJECTED", "scene": 2014, "t": 1.0, "noise": "20dB_nominal_difference", "method": "vanilla_IBS2", "reason": "PHYSICAL_MATERIAL_VIOLATION", "charged": true}
+{"event": "FULL_VALIDATION_REJECTED", "scene": 2014, "method": "dressed_linear_chi", "reason": "PHYSICAL_MATERIAL_VIOLATION", "charged": true}
+{"event": "FULL_VALIDATION_REJECTED", "scene": 2014, "method": "vanilla_IBS2", "reason": "PHYSICAL_MATERIAL_VIOLATION", "charged": true}
+{"event": "CALIBRATION_CANDIDATE_REJECTED", "scene": 2014, "method": "dressed_linear_chi", "reason": "PHYSICAL_MATERIAL_VIOLATION", "charged": true}
+{"event": "CALIBRATION_FULL_VALIDATION_REJECTED", "scene": 2014, "method": "dressed_linear_chi", "reason": "PHYSICAL_MATERIAL_VIOLATION", "charged": true}
+{"event": "CALIBRATION_CANDIDATE_REJECTED", "scene": 2014, "method": "vanilla_IBS2", "reason": "PHYSICAL_MATERIAL_VIOLATION", "charged": true}
+{"event": "CALIBRATION_CANDIDATE_REJECTED", "scene": 2014, "method": "A23_compressed_feedback", "reason": "PHYSICAL_MATERIAL_VIOLATION", "charged": true}
+{"event": "CALIBRATION_FULL_VALIDATION_REJECTED", "scene": 2014, "method": "A23_compressed_feedback", "reason": "PHYSICAL_MATERIAL_VIOLATION", "charged": true}
+{"event": "CANDIDATE_REJECTED", "scene": 2009, "t": 0.15, "noise": "zero", "method": "generic_randomized_linear", "reason": "PHYSICAL_MATERIAL_VIOLATION", "charged": true}
+{"event": "CANDIDATE_REJECTED", "scene": 2009, "t": 0.15, "noise": "20dB_nominal_difference", "method": "homogeneous_born", "reason": "PHYSICAL_MATERIAL_VIOLATION", "charged": true}
+{"event": "CANDIDATE_REJECTED", "scene": 2009, "t": 0.15, "noise": "20dB_nominal_difference", "method": "dressed_linear_chi", "reason": "PHYSICAL_MATERIAL_VIOLATION", "charged": true}
+{"event": "CANDIDATE_REJECTED", "scene": 2009, "t": 0.15, "noise": "20dB_nominal_difference", "method": "linear_a_exact_conversion", "reason": "PHYSICAL_MATERIAL_VIOLATION", "charged": true}
+{"event": "CANDIDATE_REJECTED", "scene": 2009, "t": 0.15, "noise": "20dB_nominal_difference", "method": "vanilla_IBS2", "reason": "PHYSICAL_MATERIAL_VIOLATION", "charged": true}
+{"event": "CANDIDATE_REJECTED", "scene": 2009, "t": 0.15, "noise": "20dB_nominal_difference", "method": "A23_compressed_feedback", "reason": "PHYSICAL_MATERIAL_VIOLATION", "charged": true}
+{"event": "CANDIDATE_REJECTED", "scene": 2009, "t": 0.5, "noise": "zero", "method": "homogeneous_born", "reason": "PHYSICAL_MATERIAL_VIOLATION", "charged": true}
+{"event": "CANDIDATE_REJECTED", "scene": 2009, "t": 0.5, "noise": "zero", "method": "dressed_linear_chi", "reason": "PHYSICAL_MATERIAL_VIOLATION", "charged": true}
+{"event": "CANDIDATE_REJECTED", "scene": 2009, "t": 0.5, "noise": "zero", "method": "linear_a_exact_conversion", "reason": "PHYSICAL_MATERIAL_VIOLATION", "charged": true}
+{"event": "CANDIDATE_REJECTED", "scene": 2009, "t": 0.5, "noise": "zero", "method": "vanilla_IBS2", "reason": "PHYSICAL_MATERIAL_VIOLATION", "charged": true}
+{"event": "CANDIDATE_REJECTED", "scene": 2009, "t": 0.5, "noise": "zero", "method": "A23_compressed_feedback", "reason": "PHYSICAL_MATERIAL_VIOLATION", "charged": true}
+{"event": "CANDIDATE_REJECTED", "scene": 2009, "t": 0.5, "noise": "zero", "method": "generic_randomized_linear", "reason": "PHYSICAL_MATERIAL_VIOLATION", "charged": true}
+{"event": "CANDIDATE_REJECTED", "scene": 2009, "t": 0.5, "noise": "20dB_nominal_difference", "method": "homogeneous_born", "reason": "PHYSICAL_MATERIAL_VIOLATION", "charged": true}
+{"event": "CANDIDATE_REJECTED", "scene": 2009, "t": 0.5, "noise": "20dB_nominal_difference", "method": "dressed_linear_chi", "reason": "PHYSICAL_MATERIAL_VIOLATION", "charged": true}
+{"event": "CANDIDATE_REJECTED", "scene": 2009, "t": 0.5, "noise": "20dB_nominal_difference", "method": "linear_a_exact_conversion", "reason": "PHYSICAL_MATERIAL_VIOLATION", "charged": true}
+{"event": "CANDIDATE_REJECTED", "scene": 2009, "t": 0.5, "noise": "20dB_nominal_difference", "method": "vanilla_IBS2", "reason": "PHYSICAL_MATERIAL_VIOLATION", "charged": true}
+{"event": "CANDIDATE_REJECTED", "scene": 2009, "t": 0.5, "noise": "20dB_nominal_difference", "method": "A23_compressed_feedback", "reason": "PHYSICAL_MATERIAL_VIOLATION", "charged": true}
+{"event": "CANDIDATE_REJECTED", "scene": 2009, "t": 0.5, "noise": "20dB_nominal_difference", "method": "generic_randomized_linear", "reason": "PHYSICAL_MATERIAL_VIOLATION", "charged": true}
+{"event": "CANDIDATE_REJECTED", "scene": 2009, "t": 1.0, "noise": "zero", "method": "homogeneous_born", "reason": "PHYSICAL_MATERIAL_VIOLATION", "charged": true}
+{"event": "CANDIDATE_REJECTED", "scene": 2009, "t": 1.0, "noise": "zero", "method": "born_BP", "reason": "PHYSICAL_MATERIAL_VIOLATION", "charged": true}
+{"event": "CANDIDATE_REJECTED", "scene": 2009, "t": 1.0, "noise": "zero", "method": "dressed_linear_chi", "reason": "PHYSICAL_MATERIAL_VIOLATION", "charged": true}
+{"event": "CANDIDATE_REJECTED", "scene": 2009, "t": 1.0, "noise": "zero", "method": "linear_a_exact_conversion", "reason": "PHYSICAL_MATERIAL_VIOLATION", "charged": true}
+{"event": "CANDIDATE_REJECTED", "scene": 2009, "t": 1.0, "noise": "zero", "method": "vanilla_IBS2", "reason": "PHYSICAL_MATERIAL_VIOLATION", "charged": true}
+{"event": "CANDIDATE_REJECTED", "scene": 2009, "t": 1.0, "noise": "zero", "method": "A23_compressed_feedback", "reason": "PHYSICAL_MATERIAL_VIOLATION", "charged": true}
+{"event": "CANDIDATE_REJECTED", "scene": 2009, "t": 1.0, "noise": "zero", "method": "generic_randomized_linear", "reason": "PHYSICAL_MATERIAL_VIOLATION", "charged": true}
+{"event": "CANDIDATE_REJECTED", "scene": 2009, "t": 1.0, "noise": "zero", "method": "current_BP_ratio", "reason": "PHYSICAL_MATERIAL_VIOLATION", "charged": true}
+{"event": "CANDIDATE_REJECTED", "scene": 2009, "t": 1.0, "noise": "20dB_nominal_difference", "method": "homogeneous_born", "reason": "PHYSICAL_MATERIAL_VIOLATION", "charged": true}
+{"event": "CANDIDATE_REJECTED", "scene": 2009, "t": 1.0, "noise": "20dB_nominal_difference", "method": "born_BP", "reason": "PHYSICAL_MATERIAL_VIOLATION", "charged": true}
+{"event": "CANDIDATE_REJECTED", "scene": 2009, "t": 1.0, "noise": "20dB_nominal_difference", "method": "dressed_linear_chi", "reason": "PHYSICAL_MATERIAL_VIOLATION", "charged": true}
+{"event": "CANDIDATE_REJECTED", "scene": 2009, "t": 1.0, "noise": "20dB_nominal_difference", "method": "linear_a_exact_conversion", "reason": "PHYSICAL_MATERIAL_VIOLATION", "charged": true}
+{"event": "CANDIDATE_REJECTED", "scene": 2009, "t": 1.0, "noise": "20dB_nominal_difference", "method": "vanilla_IBS2", "reason": "PHYSICAL_MATERIAL_VIOLATION", "charged": true}
+{"event": "CANDIDATE_REJECTED", "scene": 2009, "t": 1.0, "noise": "20dB_nominal_difference", "method": "A23_compressed_feedback", "reason": "PHYSICAL_MATERIAL_VIOLATION", "charged": true}
+{"event": "CANDIDATE_REJECTED", "scene": 2009, "t": 1.0, "noise": "20dB_nominal_difference", "method": "generic_randomized_linear", "reason": "PHYSICAL_MATERIAL_VIOLATION", "charged": true}
+{"event": "CANDIDATE_REJECTED", "scene": 2009, "t": 1.0, "noise": "20dB_nominal_difference", "method": "current_BP_ratio", "reason": "PHYSICAL_MATERIAL_VIOLATION", "charged": true}
+{"event": "FULL_VALIDATION_REJECTED", "scene": 2009, "method": "dressed_linear_chi", "reason": "PHYSICAL_MATERIAL_VIOLATION", "charged": true}
+{"event": "FULL_VALIDATION_REJECTED", "scene": 2009, "method": "vanilla_IBS2", "reason": "PHYSICAL_MATERIAL_VIOLATION", "charged": true}
+{"event": "FULL_VALIDATION_REJECTED", "scene": 2009, "method": "A23_compressed_feedback", "reason": "PHYSICAL_MATERIAL_VIOLATION", "charged": true}
+{"event": "CALIBRATION_CANDIDATE_REJECTED", "scene": 2009, "method": "dressed_linear_chi", "reason": "PHYSICAL_MATERIAL_VIOLATION", "charged": true}
+{"event": "CALIBRATION_FULL_VALIDATION_REJECTED", "scene": 2009, "method": "dressed_linear_chi", "reason": "PHYSICAL_MATERIAL_VIOLATION", "charged": true}
+{"event": "CALIBRATION_CANDIDATE_REJECTED", "scene": 2009, "method": "vanilla_IBS2", "reason": "PHYSICAL_MATERIAL_VIOLATION", "charged": true}
+{"event": "CALIBRATION_CANDIDATE_REJECTED", "scene": 2009, "method": "A23_compressed_feedback", "reason": "PHYSICAL_MATERIAL_VIOLATION", "charged": true}
+{"event": "CALIBRATION_FULL_VALIDATION_REJECTED", "scene": 2009, "method": "A23_compressed_feedback", "reason": "PHYSICAL_MATERIAL_VIOLATION", "charged": true}

@@ -318,8 +318,6 @@ def _h1_transfer_time(builder: _Figures, rows: list[dict]):
                 missing.append(f"{scene}/{method}: {row['status']} (missing time/error)")
                 continue
             axis.scatter(time, 100*error, color=colors[method], marker='x' if _bad(row) else 'o', s=38)
-            axis.annotate(LABELS.get(method, method), (time, 100*error), xytext=(4, 4),
-                          textcoords='offset points', fontsize=6)
         axis.axhline(5., color='#555555', linestyle='--', linewidth=1.)
         axis.set_title(f'Scene {scene}')
         axis.set_xlabel('Complete cold encoder preparation (s)')
@@ -524,21 +522,28 @@ def _images(builder: _Figures, metric_rows: list[dict]):
             cmap = builder.plt.get_cmap('viridis').with_extremes(under='#b2182b', over='#ffe552', bad='#e1e1e1')
             figure, axes = builder.plt.subplots(3, len(methods), figsize=(13.8, 9.0), squeeze=False)
             image = None
+            column_headers = []
+            column_statistics = []
             for j, method in enumerate(methods):
                 status = 'OFFLINE_TRUTH' if method == 'truth_OFFLINE' else lookup.get((scene, method), {}).get('status', 'STATUS_MISSING')
                 values = truth_values if method == 'truth_OFFLINE' else getattr(estimates.get(method, np.full(truth.shape, np.nan+1j*np.nan)), component)
                 finite = values[np.isfinite(values)]
                 extremes = f'min {finite.min():.3g}, max {finite.max():.3g}' if finite.size else 'NO FINITE RESULT'
-                outside = f'below/above: {np.count_nonzero(values<low)}/{np.count_nonzero(values>high)}'
+                below, above = int(np.count_nonzero(values<low)), int(np.count_nonzero(values>high))
+                outside = f'below/above truth range: {below}/{above}'
+                header_color = '#a52c2c' if method != 'truth_OFFLINE' and status != 'OK' else '#333333'
+                column_headers.append((f'{LABELS.get(method, method)}\n{status}\n{extremes}\n{outside}', header_color))
+                column_statistics.append({'method': method, 'status': status,
+                                          'full_volume_min': float(finite.min()) if finite.size else None,
+                                          'full_volume_max': float(finite.max()) if finite.size else None,
+                                          'below_truth_color_range': below, 'above_truth_color_range': above})
                 for i, plane in enumerate(plane_sets[method]):
                     axis = axes[i, j]
                     image = axis.pcolormesh(_edges(plane['h']), _edges(plane['v']), np.ma.masked_invalid(plane['values']),
                                            shading='flat', cmap=cmap, vmin=low, vmax=high, rasterized=True)
                     axis.set_aspect('equal')
                     axis.set_xlabel(plane['horizontal']); axis.set_ylabel(plane['vertical'])
-                    axis.set_title(f"{LABELS.get(method, method)}\n{plane['name']}, {plane['fixed']}={plane['fixed_value']:.3g}", fontsize=8)
-                    axis.text(.01, -.19, f'{status}\n{extremes}\n{outside}', transform=axis.transAxes,
-                              fontsize=6.5, color='#a52c2c' if method != 'truth_OFFLINE' and status != 'OK' else '#333333')
+                    axis.set_title(f"{plane['name']}, {plane['fixed']}={plane['fixed_value']:.3g}", fontsize=8)
                     if method != 'truth_OFFLINE' and method not in estimates:
                         axis.text(.5, .5, 'MISSING / FAILED', transform=axis.transAxes, ha='center', color='#9e2424', fontsize=8)
                     truth_plane = plane_sets['truth_OFFLINE'][i]['values']
@@ -552,15 +557,20 @@ def _images(builder: _Figures, metric_rows: list[dict]):
                                 'vertical_axis': plane['vertical'], 'vertical_coordinate': float(vertical),
                                 'truth': label, 'estimate': estimate, 'signed_error': estimate-label,
                                 'truth_global_color_min': low, 'truth_global_color_max': high})
-            figure.suptitle(f'Scene {scene} · nominal noisy · χ {component}; same truth-volume color range for every method')
-            figure.subplots_adjust(wspace=.55, hspace=.75, right=.9, top=.9, bottom=.1)
+            figure.suptitle(f'Scene {scene} · nominal noisy · χ {component}; same truth-volume color range for every method', y=.995)
+            figure.subplots_adjust(wspace=.55, hspace=.6, right=.9, top=.83, bottom=.1)
+            for j, (header, color) in enumerate(column_headers):
+                bounds = axes[0, j].get_position()
+                figure.text(.5*(bounds.x0+bounds.x1), .95, header, ha='center', va='top', fontsize=7.5, color=color)
             coloraxis = figure.add_axes((.92, .17, .015, .66))
             figure.colorbar(image, cax=coloraxis, extend='both', label=f'χ {component}')
-            figure.text(.03, .015, 'Under-range red / over-range yellow; gray = nonfinite or missing. '
-                        'Labels retain full-volume extrema and rejection status. Axes are original mesh coordinates.', fontsize=8)
+            figure.text(.03, .015, 'Red/yellow = under/over the saved truth color range; gray = nonfinite or missing. '
+                        'Feasibility is given by the saved status. Headers report full-volume statistics; axes are mesh coordinates.', fontsize=8)
             builder.save(figure, f'image_{scene}_{component}', caption='Saved nominal noisy central XY/XZ/YZ slices; truth-global shared material color limits',
                          metadata={'scene': scene, 'component': component, 'color_min': low, 'color_max': high,
                                    'limits_source': 'all saved truth cells for this object/component',
+                                   'column_statistics': column_statistics,
+                                   'under_over_colors_scope': 'saved truth color range; feasibility reported separately by saved status',
                                    'array_layout': 'ascending [x,y,z], displayed horizontal/vertical coordinates explicit'})
             errors = {method: volumes[method]-volumes['truth_OFFLINE'] for method in IMAGE_METHODS}
             finite_errors = np.concatenate([values[np.isfinite(values)] for values in errors.values()])
@@ -604,31 +614,60 @@ def _pareto(builder: _Figures, rows: list[dict]):
     methods = _method_order(rows)
     colors = {method: builder.plt.get_cmap('tab10')(index % 10) for index, method in enumerate(methods)}
     missing = []
+    availability = {'complete_measured_pairs': 0, 'rejected_failed_or_unknown_entries': 0,
+                    'missing_or_unvalidated_entries': 0, 'total_entries': len(rows)}
     for row in rows:
         time, error, method = _number(row.get(time_key)), _number(row.get(quality_key)), row.get('method', 'UNKNOWN')
+        residual = _number(row.get('datafullresidual', row.get('difference_data_residual')))
+        validation = str(row.get('full_validation', 'NOT_RUN')).upper()
+        rejected = _bad(row) or validation in ('REJECTED', 'FAILED')
+        measured = all(np.isfinite(value) for value in (time, error, residual)) and validation in ('RUN', 'COMPLETE')
+        if rejected:
+            availability['rejected_failed_or_unknown_entries'] += 1
+        elif measured:
+            availability['complete_measured_pairs'] += 1
+        else:
+            availability['missing_or_unvalidated_entries'] += 1
         if not (np.isfinite(time) and np.isfinite(error)):
             missing.append(f"{row.get('scene', '?')}/{method}: {row.get('status', 'missing metric')}")
             continue
         marker = 'x' if _bad(row) else 'o'
         axes[0].scatter(time, error, marker=marker, color=colors[method], s=38)
         axes[0].annotate(str(row.get('scene', '')), (time, error), xytext=(3, 3), textcoords='offset points', fontsize=6)
-        residual = _number(row.get('datafullresidual', row.get('difference_data_residual')))
         if np.isfinite(residual):
             axes[1].scatter(time, residual, marker=marker, color=colors[method], s=38)
         else:
             missing.append(f"{row.get('scene', '?')}/{method}: full residual {row.get('full_validation', 'NOT_RUN')}")
     axes[0].set_ylabel('Full χ NRMSE'); axes[1].set_ylabel('Paid full difference-data residual')
+    config_path = builder.root/'FROZEN_CONFIG.json'
+    reference_lines = {}
+    if config_path.exists():
+        builder.source(config_path)
+        gates = json.loads(config_path.read_text(encoding='utf-8')).get('gates', {})
+        for axis, key in zip(axes, ('H3_full_material_NRMSE_max', 'H3_difference_data_residual_max')):
+            value = _number(gates.get(key))
+            if np.isfinite(value):
+                axis.axhline(value, color='#555555', linestyle='--', linewidth=1.)
+                axis.text(.98, value, f'Frozen reference {value:g}', transform=axis.get_yaxis_transform(),
+                          ha='right', va='bottom', fontsize=8, color='#555555')
+                reference_lines[key] = value
     for axis in axes:
         axis.set_xlabel(time_key.replace('_', ' ')); axis.grid(alpha=.2)
     handles = [builder.plt.Line2D([], [], marker='o', linestyle='', color=colors[method], label=LABELS.get(method, method)) for method in methods]
     figure.legend(handles=handles, loc='lower center', ncol=4, fontsize=8, bbox_to_anchor=(.5, -.02))
-    figure.suptitle('Saved quality/time rows; no recomputed Pareto or gate labels')
+    figure.suptitle('Saved quality/time rows; frozen reference lines, no winner or gate labels')
+    figure.text(.5, .895, f"Complete measured pairs: {availability['complete_measured_pairs']} · "
+                f"Rejected/failed/unknown entries: {availability['rejected_failed_or_unknown_entries']} · "
+                f"Missing/unvalidated entries: {availability['missing_or_unvalidated_entries']} "
+                f"(total {availability['total_entries']})", ha='center', fontsize=8)
     if missing:
         builder.manifest['missing'].append({'source': 'PARETO_TABLE.csv individual metrics', 'rows': missing})
         figure.text(.02, -.075, f'{len(missing)} absent/nonfinite metrics retained in manifest and raw CSV. Crosses = rejected/failed rows.', fontsize=8)
-    figure.tight_layout(rect=(0, .08, 1, .94))
+    figure.tight_layout(rect=(0, .08, 1, .855))
     builder.save(figure, 'quality_time_pareto', caption='All saved quality/time rows, including rejected estimates; missing paid residuals are not plotted as zero',
-                 metadata={'time_column': time_key, 'quality_column': quality_key})
+                 metadata={'time_column': time_key, 'quality_column': quality_key,
+                           'availability_counts': availability, 'frozen_reference_lines': reference_lines,
+                           'complete_pair_scope': 'finite time/material error/paid full residual with saved RUN/COMPLETE validation and accepted status; no eligibility or winner inference'})
 
 
 def make_plots(root) -> dict:

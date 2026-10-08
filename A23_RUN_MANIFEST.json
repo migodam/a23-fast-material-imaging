@@ -1,0 +1,402 @@
+{
+  "schema": "a23.run_manifest.v1",
+  "study": "A23_PILOT_1",
+  "date": "2026-10-08",
+  "scope": "real3DVectorMaxwell fixed four exposed scenes / first pilot / completed / no expansion",
+  "entry_report": "A23_RESEARCH_REPORT_ZH.md",
+  "upstream_commit": "b85a29a51f4ea7b4d93617e827d88e23933b89df",
+  "A22_handoff_commit": "4dd4a9fa69d4272f35a6b93d8455f77cb139187b",
+  "pilot_source_commit": "8e7d8cf209c6e54f55567b940658e1742aa4cc55",
+  "report_source": "source shipped in this publication; scientific raw outputs retained; report-only BornBP omission corrected",
+  "early_missing_source_snapshot_jobs": [
+    "a23-h1-001",
+    "a23-micro-001",
+    "a23-phase0-local-001",
+    "a23-phase0-local-002",
+    "a23-phase0-local-003",
+    "a23-phase0-remote-001"
+  ],
+  "later_report_manifests_reuse_pilot_pointer": "source_snapshot marks original pilot lineage, not an exact report-only working-tree attestation",
+  "frozen_config": "FROZEN_CONFIG.json",
+  "aggregation_freeze": "configs/SCIENTIFIC_AGGREGATION_FREEZE.json",
+  "source_manifest": "SOURCE_MANIFEST.json",
+  "master_seed": 2026102301,
+  "seed_domains": {
+    "H1_independent_material_probes": 701,
+    "H1_construction_material_and_observation": 702,
+    "randomized_transfer": 703,
+    "independent_dual_probes": 704,
+    "quadratic_Gaussian_train_and_holdout": 803,
+    "image_noise": [
+      411,
+      "seed sequence also contains scene and100*t"
+    ],
+    "calibration": 509,
+    "reference_checks": 33
+  },
+  "dimensions": {
+    "cells": 1728,
+    "material_real": 3456,
+    "current_complex_per_source": 5184,
+    "sources": 6,
+    "receiver_positions": 64,
+    "complex_data_per_source": 128,
+    "real_data_total": 1536,
+    "packing": "per-source Re128 thenIm128"
+  },
+  "background": [
+    0.1,
+    0.04
+  ],
+  "scenes": {
+    "2001": {
+      "background": [
+        0.1,
+        0.04
+      ],
+      "edge": 1.5,
+      "family": "gaussian",
+      "init": [
+        0.1,
+        0.04
+      ],
+      "n": 12,
+      "partial": false,
+      "receiver_count": 64,
+      "rotation": 3.7107292183472715,
+      "source": "scene_2001.npz",
+      "source_split": "validation",
+      "truth_n": 14,
+      "wavenumber": 2.0
+    },
+    "2003": {
+      "background": [
+        0.1,
+        0.04
+      ],
+      "edge": 1.5,
+      "family": "gaussian",
+      "init": [
+        0.1,
+        0.04
+      ],
+      "n": 12,
+      "partial": false,
+      "receiver_count": 64,
+      "rotation": 1.7496260542933944,
+      "source": "scene_2003.npz",
+      "source_split": "validation",
+      "truth_n": 14,
+      "wavenumber": 2.0
+    },
+    "2009": {
+      "background": [
+        0.1,
+        0.04
+      ],
+      "edge": 1.5,
+      "family": "shell",
+      "init": [
+        0.1,
+        0.04
+      ],
+      "n": 12,
+      "partial": false,
+      "receiver_count": 64,
+      "rotation": 2.560051713861531,
+      "source": "scene_2009.npz",
+      "source_split": "validation",
+      "truth_n": 14,
+      "wavenumber": 2.0
+    },
+    "2014": {
+      "background": [
+        0.1,
+        0.04
+      ],
+      "edge": 1.5,
+      "family": "asymmetric",
+      "init": [
+        0.1,
+        0.04
+      ],
+      "n": 12,
+      "partial": false,
+      "receiver_count": 64,
+      "rotation": 2.1650255968898984,
+      "source": "scene_2014.npz",
+      "source_split": "validation",
+      "truth_n": 14,
+      "wavenumber": 2.0
+    }
+  },
+  "historically_exposed": true,
+  "independent_scene_count": 4,
+  "actual_OPM_rank": 32,
+  "original_degree": 1,
+  "quadratic_data_rank": 32,
+  "Gaussian_training_probes": 32,
+  "independent_holdouts": 8,
+  "precision": "complex128/float64",
+  "device_environment": {
+    "pilot": "Windows XINAN existing environment",
+    "python": "3.10.9",
+    "numpy": "2.2.6",
+    "scipy": "1.15.3",
+    "torch": "2.6.0+cu124",
+    "gpu": "RTX4060Laptop /8GB",
+    "local_unit": "Python3.13 NumPy/SciPy CPU",
+    "new_large_dependencies_installed": false
+  },
+  "budget": {
+    "GPU_cap_seconds": 7200,
+    "GPU_inclusive_measured_seconds": 1628.9255669999984,
+    "CPU_soft_target_seconds": 7200,
+    "final_cost_summary": "results/a23/COST_SUMMARY.json",
+    "failure_rerun_report_and_publication_charged": true
+  },
+  "production_fullstates": {
+    "reference": 9,
+    "clean_labels": 12,
+    "primary_prediction": 1,
+    "primary_prediction_checks_attempted": 12,
+    "calibration_prediction": 0,
+    "calibration_prediction_checks_attempted": 8,
+    "total_fullstates_LU": 22,
+    "fullstate_source_RHS": 132
+  },
+  "rows": {
+    "H1": 32,
+    "primary_image": 192,
+    "calibration_image": 12,
+    "image_total": 204,
+    "physical_OK": 79,
+    "physical_REJECTED": 125,
+    "full_validation_RUN": 1,
+    "full_validation_REJECTED": 19,
+    "full_validation_NOT_RUN": 184
+  },
+  "timing": {
+    "cold_repeats": 1,
+    "warm_decode_repeats": 5,
+    "warm_full_pipeline": "NOT_RUN",
+    "prediction_fullvalidation": "once per preregistered key and only after material validity",
+    "N10_N100": "FORMULA_ONLY_NOT_MEASURED",
+    "shared_vs_deployment_attribution": "independent method attribution separate; actual shared budget charged once"
+  },
+  "jobs": [
+    {
+      "job": "a23-h1-001",
+      "stage": "h1",
+      "device": "cuda",
+      "status": "COMPLETE",
+      "source_snapshot": {
+        "status": "MISSING_RETAINED_NOT_INFERRED"
+      },
+      "manifest": "results/a23/jobs/a23-h1-001/job_manifest.json",
+      "receipt": "results/a23/jobs/a23-h1-001/job_receipt.json",
+      "native_command_normalized": "PYTHONPATH=src python -B -m a23.cli h1 --job a23-h1-001 --device cuda",
+      "private_transport_required": false
+    },
+    {
+      "job": "a23-micro-001",
+      "stage": "micro",
+      "device": "cuda",
+      "status": "COMPLETE",
+      "source_snapshot": {
+        "status": "MISSING_RETAINED_NOT_INFERRED"
+      },
+      "manifest": "results/a23/jobs/a23-micro-001/job_manifest.json",
+      "receipt": "results/a23/jobs/a23-micro-001/job_receipt.json",
+      "native_command_normalized": "PYTHONPATH=src python -B -m a23.cli micro --job a23-micro-001 --device cuda",
+      "private_transport_required": false
+    },
+    {
+      "job": "a23-phase0-local-001",
+      "stage": "phase0",
+      "device": "cpu",
+      "status": "FAILED",
+      "source_snapshot": {
+        "status": "MISSING_RETAINED_NOT_INFERRED"
+      },
+      "manifest": "results/a23/jobs/a23-phase0-local-001/job_manifest.json",
+      "receipt": "results/a23/jobs/a23-phase0-local-001/job_receipt.json",
+      "native_command_normalized": "PYTHONPATH=src python -B -m a23.cli phase0 --job a23-phase0-local-001 --device cpu",
+      "private_transport_required": false
+    },
+    {
+      "job": "a23-phase0-local-002",
+      "stage": "phase0",
+      "device": "cpu",
+      "status": "COMPLETE",
+      "source_snapshot": {
+        "status": "MISSING_RETAINED_NOT_INFERRED"
+      },
+      "manifest": "results/a23/jobs/a23-phase0-local-002/job_manifest.json",
+      "receipt": "results/a23/jobs/a23-phase0-local-002/job_receipt.json",
+      "native_command_normalized": "PYTHONPATH=src python -B -m a23.cli phase0 --job a23-phase0-local-002 --device cpu",
+      "private_transport_required": false
+    },
+    {
+      "job": "a23-phase0-local-003",
+      "stage": "phase0",
+      "device": "cpu",
+      "status": "COMPLETE",
+      "source_snapshot": {
+        "status": "MISSING_RETAINED_NOT_INFERRED"
+      },
+      "manifest": "results/a23/jobs/a23-phase0-local-003/job_manifest.json",
+      "receipt": "results/a23/jobs/a23-phase0-local-003/job_receipt.json",
+      "native_command_normalized": "PYTHONPATH=src python -B -m a23.cli phase0 --job a23-phase0-local-003 --device cpu",
+      "private_transport_required": false
+    },
+    {
+      "job": "a23-phase0-local-004",
+      "stage": "phase0",
+      "device": "cpu",
+      "status": "COMPLETE",
+      "source_snapshot": {
+        "source_commit": "6de191f30208d770568c8276a907841b44c46b65",
+        "upstream_commit": "b85a29a51f4ea7b4d93617e827d88e23933b89df",
+        "newSHA256checks": 0,
+        "source_roles": "frozen backend copies; a23 new modules; no full solver redesign"
+      },
+      "manifest": "results/a23/jobs/a23-phase0-local-004/job_manifest.json",
+      "receipt": "results/a23/jobs/a23-phase0-local-004/job_receipt.json",
+      "native_command_normalized": "PYTHONPATH=src python -B -m a23.cli phase0 --job a23-phase0-local-004 --device cpu",
+      "private_transport_required": false
+    },
+    {
+      "job": "a23-phase0-local-005",
+      "stage": "phase0",
+      "device": "cpu",
+      "status": "COMPLETE",
+      "source_snapshot": {
+        "git_commit": "8e7d8cf209c6e54f55567b940658e1742aa4cc55",
+        "scope": "source snapshot for phase0 and full-image pilot",
+        "recorded_before_pilot_quality_outputs": true,
+        "upstream_commit": "b85a29a51f4ea7b4d93617e827d88e23933b89df",
+        "new_SHA256_checks": 0,
+        "utc": "2026-10-08T08:12:51.955261+00:00"
+      },
+      "manifest": "results/a23/jobs/a23-phase0-local-005/job_manifest.json",
+      "receipt": "results/a23/jobs/a23-phase0-local-005/job_receipt.json",
+      "native_command_normalized": "PYTHONPATH=src python -B -m a23.cli phase0 --job a23-phase0-local-005 --device cpu",
+      "private_transport_required": false
+    },
+    {
+      "job": "a23-phase0-remote-001",
+      "stage": "phase0",
+      "device": "cpu",
+      "status": "COMPLETE",
+      "source_snapshot": {
+        "status": "MISSING_RETAINED_NOT_INFERRED"
+      },
+      "manifest": "results/a23/jobs/a23-phase0-remote-001/job_manifest.json",
+      "receipt": "results/a23/jobs/a23-phase0-remote-001/job_receipt.json",
+      "native_command_normalized": "PYTHONPATH=src python -B -m a23.cli phase0 --job a23-phase0-remote-001 --device cpu",
+      "private_transport_required": false
+    },
+    {
+      "job": "a23-phase0-remote-002",
+      "stage": "phase0",
+      "device": "cpu",
+      "status": "COMPLETE",
+      "source_snapshot": {
+        "git_commit": "8e7d8cf209c6e54f55567b940658e1742aa4cc55",
+        "scope": "source snapshot for phase0 and full-image pilot",
+        "recorded_before_pilot_quality_outputs": true,
+        "upstream_commit": "b85a29a51f4ea7b4d93617e827d88e23933b89df",
+        "new_SHA256_checks": 0,
+        "utc": "2026-10-08T08:12:51.955261+00:00"
+      },
+      "manifest": "results/a23/jobs/a23-phase0-remote-002/job_manifest.json",
+      "receipt": "results/a23/jobs/a23-phase0-remote-002/job_receipt.json",
+      "native_command_normalized": "PYTHONPATH=src python -B -m a23.cli phase0 --job a23-phase0-remote-002 --device cpu",
+      "private_transport_required": false
+    },
+    {
+      "job": "a23-pilot-001",
+      "stage": "pilot",
+      "device": "cuda",
+      "status": "COMPLETE",
+      "source_snapshot": {
+        "git_commit": "8e7d8cf209c6e54f55567b940658e1742aa4cc55",
+        "scope": "source snapshot for phase0 and full-image pilot",
+        "recorded_before_pilot_quality_outputs": true,
+        "upstream_commit": "b85a29a51f4ea7b4d93617e827d88e23933b89df",
+        "new_SHA256_checks": 0,
+        "utc": "2026-10-08T08:12:51.955261+00:00"
+      },
+      "manifest": "results/a23/jobs/a23-pilot-001/job_manifest.json",
+      "receipt": "results/a23/jobs/a23-pilot-001/job_receipt.json",
+      "native_command_normalized": "PYTHONPATH=src python -B -m a23.cli pilot --job a23-pilot-001 --device cuda",
+      "private_transport_required": false
+    },
+    {
+      "job": "a23-report-local-001",
+      "stage": "report",
+      "device": "cpu",
+      "status": "COMPLETE",
+      "source_snapshot": {
+        "git_commit": "8e7d8cf209c6e54f55567b940658e1742aa4cc55",
+        "scope": "source snapshot for phase0 and full-image pilot",
+        "recorded_before_pilot_quality_outputs": true,
+        "upstream_commit": "b85a29a51f4ea7b4d93617e827d88e23933b89df",
+        "new_SHA256_checks": 0,
+        "utc": "2026-10-08T08:12:51.955261+00:00"
+      },
+      "manifest": "results/a23/jobs/a23-report-local-001/job_manifest.json",
+      "receipt": "results/a23/jobs/a23-report-local-001/job_receipt.json",
+      "native_command_normalized": "PYTHONPATH=src python -B -m a23.cli report --job a23-report-local-001 --device cpu",
+      "private_transport_required": false
+    },
+    {
+      "job": "a23-report-local-002",
+      "stage": "report",
+      "device": "cpu",
+      "status": "COMPLETE",
+      "source_snapshot": {
+        "git_commit": "8e7d8cf209c6e54f55567b940658e1742aa4cc55",
+        "scope": "source snapshot for phase0 and full-image pilot",
+        "recorded_before_pilot_quality_outputs": true,
+        "upstream_commit": "b85a29a51f4ea7b4d93617e827d88e23933b89df",
+        "new_SHA256_checks": 0,
+        "utc": "2026-10-08T08:12:51.955261+00:00"
+      },
+      "manifest": "results/a23/jobs/a23-report-local-002/job_manifest.json",
+      "receipt": "results/a23/jobs/a23-report-local-002/job_receipt.json",
+      "native_command_normalized": "PYTHONPATH=src python -B -m a23.cli report --job a23-report-local-002 --device cpu",
+      "private_transport_required": false
+    }
+  ],
+  "runtime_information_boundary": "known geometry/reference/measured only; offline truth/reference-direction curvature/oldchart never builder features",
+  "gate_decision": "A23_GATE_DECISION.json",
+  "gates": {
+    "H1": "FAIL",
+    "H2": "FAIL",
+    "H3": "FAIL",
+    "decision": "STOP_NO_EXPANSION"
+  },
+  "NOT_RUN": [
+    "NN",
+    "diffusion",
+    "flow",
+    "GN/DBIM nonlinear reconstruction",
+    "CSI comparison",
+    "higher degree/rank search",
+    "new objects",
+    "multifrequency",
+    "independent discretization",
+    "clinical validation",
+    "formal blind generalization"
+  ],
+  "public_derived_cache_omission": {
+    "bytes": 3145937545,
+    "reason": "regenerable background transfer/receiver/basis workspace; retained on original run host",
+    "probes_smallmatrices_images_and_inputs_published": true
+  },
+  "new_SHA256_checks": 0,
+  "publication_status_separate": "PUBLICATION_RECEIPT.json after anonymous verification",
+  "redactions": "PUBLICATION_AUDIT.json"
+}

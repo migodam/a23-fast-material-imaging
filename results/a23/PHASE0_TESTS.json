@@ -1,0 +1,8 @@
+{
+  "tests": 50,
+  "failures": 0,
+  "errors": 0,
+  "skips": 0,
+  "status": "PASS",
+  "scope": "unit+tiny real frozen backend, not full-image evidence"
+}

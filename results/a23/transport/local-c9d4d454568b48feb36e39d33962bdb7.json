@@ -1,0 +1,39 @@
+{
+  "action": "pull",
+  "connection_values_stored": false,
+  "local_process_cpu_seconds": 0.037568,
+  "local_wall_seconds": 5.643720749998465,
+  "physics_launch_authority": "parent only; run action explicitly required",
+  "remote": {
+    "error_code": "IMMUTABLE_LEDGER_PREFIX_CONFLICT",
+    "error_relative_path": "results/a23/FAILURE_LEDGER.jsonl",
+    "error_type": "TransportError",
+    "launch_outcome_uncertain": false,
+    "physics_job_launched": false,
+    "remote_accounting": {
+      "action": "pull",
+      "archive": "a23-pull-c9d4d454568b48feb36e39d33962bdb7.zip",
+      "cache_policy": "exclude cache/ and h1/<scene>/*.npz except H1_FIXED_PROBES.npz and H1_RANDOMIZED_TRAINING.npz; regenerate from declared frozen inputs when needed",
+      "child_CPU_measurement_available": true,
+      "connection_values_stored": false,
+      "gpu_tail_seconds": 0.0,
+      "member_count": 120,
+      "physics_job_launched": false,
+      "queue_query_cpu_seconds": 0.0,
+      "regenerable_cache_bytes_skipped": 3145937545,
+      "regenerable_cache_members_skipped": 44,
+      "remote_caches_retained": true,
+      "remote_controller_cpu_seconds": 0.546875,
+      "remote_process_cpu_seconds": 0.546875,
+      "remote_wall_seconds": 1.9935087999911048,
+      "status": "COMPLETE",
+      "transport_attempt": "c9d4d454568b48feb36e39d33962bdb7",
+      "uncompressed_bytes": 22563516,
+      "utc": "2026-10-08T08:26:31.787000+00:00"
+    },
+    "status": "FAILED"
+  },
+  "schema": "a23.local_transport.v1",
+  "status": "FAILED",
+  "transport_attempt": "c9d4d454568b48feb36e39d33962bdb7"
+}

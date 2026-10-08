@@ -1,0 +1,975 @@
+{
+  "scope": "descriptive figures of saved A23 results; no gate evaluation",
+  "scientific_interpretation": "parent Codex",
+  "sources": [
+    {
+      "path": "results/a23/FULL_IMAGE_METRICS.csv",
+      "bytes": 105441
+    },
+    {
+      "path": "results/a23/CURVATURE_DECOMPOSITION.csv",
+      "bytes": 6224
+    },
+    {
+      "path": "results/a23/PARETO_TABLE.csv",
+      "bytes": 102405
+    },
+    {
+      "path": "results/a23/H1_ENCODER_METRICS.csv",
+      "bytes": 1148621
+    },
+    {
+      "path": "results/a23/h1/scene_2001/H1_METRICS.json",
+      "bytes": 436762
+    },
+    {
+      "path": "results/a23/h1/scene_2003/H1_METRICS.json",
+      "bytes": 444353
+    },
+    {
+      "path": "results/a23/h1/scene_2009/H1_METRICS.json",
+      "bytes": 444241
+    },
+    {
+      "path": "results/a23/h1/scene_2014/H1_METRICS.json",
+      "bytes": 444312
+    },
+    {
+      "path": "results/a23/images/scene_2001_t1.0_20dB_nominal_difference.npz",
+      "bytes": 260676
+    },
+    {
+      "path": "data/online/scene_2001.npz",
+      "bytes": 10624
+    },
+    {
+      "path": "results/a23/images/scene_2003_t1.0_20dB_nominal_difference.npz",
+      "bytes": 262909
+    },
+    {
+      "path": "data/online/scene_2003.npz",
+      "bytes": 10601
+    },
+    {
+      "path": "results/a23/images/scene_2014_t1.0_20dB_nominal_difference.npz",
+      "bytes": 234543
+    },
+    {
+      "path": "data/online/scene_2014.npz",
+      "bytes": 10618
+    },
+    {
+      "path": "results/a23/images/scene_2009_t1.0_20dB_nominal_difference.npz",
+      "bytes": 236213
+    },
+    {
+      "path": "data/online/scene_2009.npz",
+      "bytes": 10616
+    },
+    {
+      "path": "FROZEN_CONFIG.json",
+      "bytes": 2108
+    }
+  ],
+  "figures": [
+    {
+      "name": "h1_rank_actions_time_2001",
+      "paths": [
+        "figures/a23/h1_rank_actions_time_2001.png",
+        "figures/a23/h1_rank_actions_time_2001.svg"
+      ],
+      "caption": "H1 actual rank domains, distinct RHS categories, complete independent cold encoder preparation; excludes offline decoder/probe evaluation"
+    },
+    {
+      "name": "h1_rank_actions_time_2003",
+      "paths": [
+        "figures/a23/h1_rank_actions_time_2003.png",
+        "figures/a23/h1_rank_actions_time_2003.svg"
+      ],
+      "caption": "H1 actual rank domains, distinct RHS categories, complete independent cold encoder preparation; excludes offline decoder/probe evaluation"
+    },
+    {
+      "name": "h1_rank_actions_time_2009",
+      "paths": [
+        "figures/a23/h1_rank_actions_time_2009.png",
+        "figures/a23/h1_rank_actions_time_2009.svg"
+      ],
+      "caption": "H1 actual rank domains, distinct RHS categories, complete independent cold encoder preparation; excludes offline decoder/probe evaluation"
+    },
+    {
+      "name": "h1_rank_actions_time_2014",
+      "paths": [
+        "figures/a23/h1_rank_actions_time_2014.png",
+        "figures/a23/h1_rank_actions_time_2014.svg"
+      ],
+      "caption": "H1 actual rank domains, distinct RHS categories, complete independent cold encoder preparation; excludes offline decoder/probe evaluation"
+    },
+    {
+      "name": "h1_transfer_error_full_preparation",
+      "paths": [
+        "figures/a23/h1_transfer_error_full_preparation.png",
+        "figures/a23/h1_transfer_error_full_preparation.svg"
+      ],
+      "caption": "All H1 arms/scenes; 5% reference line without a gate decision; full cold encoder attribution excludes offline controls/evaluation",
+      "transfer_error_reference": 0.05,
+      "time_column": "cold_complete_encoder_preparation_wall_seconds"
+    },
+    {
+      "name": "finite_amplitude_full_error",
+      "paths": [
+        "figures/a23/finite_amplitude_full_error.png",
+        "figures/a23/finite_amplitude_full_error.svg"
+      ],
+      "caption": "All saved methods/conditions; red crosses denote rejected/failed candidates; no gate evaluation"
+    },
+    {
+      "name": "finite_amplitude_improvement",
+      "paths": [
+        "figures/a23/finite_amplitude_improvement.png",
+        "figures/a23/finite_amplitude_improvement.svg"
+      ],
+      "caption": "All saved methods/conditions; red crosses denote rejected/failed candidates; no gate evaluation"
+    },
+    {
+      "name": "curvature_components",
+      "paths": [
+        "figures/a23/curvature_components.png",
+        "figures/a23/curvature_components.svg"
+      ],
+      "caption": "Saved offline direction diagnostics; full, feedback, local and finite remainder norms"
+    },
+    {
+      "name": "curvature_outside_subspaces",
+      "paths": [
+        "figures/a23/curvature_outside_subspaces.png",
+        "figures/a23/curvature_outside_subspaces.svg"
+      ],
+      "caption": "Full tangent, stable tangent, old 32D chart and nuisance are displayed as distinct diagnostics"
+    },
+    {
+      "name": "image_2001_real",
+      "paths": [
+        "figures/a23/image_2001_real.png",
+        "figures/a23/image_2001_real.svg"
+      ],
+      "caption": "Saved nominal noisy central XY/XZ/YZ slices; truth-global shared material color limits",
+      "scene": 2001,
+      "component": "real",
+      "color_min": 0.10000000600915501,
+      "color_max": 0.9316945828513565,
+      "limits_source": "all saved truth cells for this object/component",
+      "column_statistics": [
+        {
+          "method": "truth_OFFLINE",
+          "status": "OFFLINE_TRUTH",
+          "full_volume_min": 0.10000000600915501,
+          "full_volume_max": 0.9316945828513565,
+          "below_truth_color_range": 0,
+          "above_truth_color_range": 0
+        },
+        {
+          "method": "dressed_linear_chi",
+          "status": "REJECTED_PHYSICAL",
+          "full_volume_min": 0.019071789065572595,
+          "full_volume_max": 0.3647875750641235,
+          "below_truth_color_range": 439,
+          "above_truth_color_range": 0
+        },
+        {
+          "method": "linear_a_exact_conversion",
+          "status": "REJECTED_PHYSICAL",
+          "full_volume_min": 0.021069217444152872,
+          "full_volume_max": 0.3888138650075416,
+          "below_truth_color_range": 442,
+          "above_truth_color_range": 0
+        },
+        {
+          "method": "vanilla_IBS2",
+          "status": "REJECTED_PHYSICAL",
+          "full_volume_min": 0.026415120380855972,
+          "full_volume_max": 0.3782891784074124,
+          "below_truth_color_range": 440,
+          "above_truth_color_range": 0
+        },
+        {
+          "method": "A23_compressed_feedback",
+          "status": "REJECTED_PHYSICAL",
+          "full_volume_min": 0.027064479301585093,
+          "full_volume_max": 0.36644090058770595,
+          "below_truth_color_range": 442,
+          "above_truth_color_range": 0
+        }
+      ],
+      "under_over_colors_scope": "saved truth color range; feasibility reported separately by saved status",
+      "array_layout": "ascending [x,y,z], displayed horizontal/vertical coordinates explicit"
+    },
+    {
+      "name": "image_error_2001_real",
+      "paths": [
+        "figures/a23/image_error_2001_real.png",
+        "figures/a23/image_error_2001_real.svg"
+      ],
+      "caption": "Signed central-slice errors; symmetric range shared across methods and three planes",
+      "scene": 2001,
+      "component": "real",
+      "error_color_min": -0.5670436385844111,
+      "error_color_max": 0.5670436385844111
+    },
+    {
+      "name": "image_2001_imag",
+      "paths": [
+        "figures/a23/image_2001_imag.png",
+        "figures/a23/image_2001_imag.svg"
+      ],
+      "caption": "Saved nominal noisy central XY/XZ/YZ slices; truth-global shared material color limits",
+      "scene": 2001,
+      "component": "imag",
+      "color_min": 0.04000000040274644,
+      "color_max": 0.09246458397011166,
+      "limits_source": "all saved truth cells for this object/component",
+      "column_statistics": [
+        {
+          "method": "truth_OFFLINE",
+          "status": "OFFLINE_TRUTH",
+          "full_volume_min": 0.04000000040274644,
+          "full_volume_max": 0.09246458397011166,
+          "below_truth_color_range": 0,
+          "above_truth_color_range": 0
+        },
+        {
+          "method": "dressed_linear_chi",
+          "status": "REJECTED_PHYSICAL",
+          "full_volume_min": -0.10968952972062176,
+          "full_volume_max": 0.13811764314993316,
+          "below_truth_color_range": 706,
+          "above_truth_color_range": 163
+        },
+        {
+          "method": "linear_a_exact_conversion",
+          "status": "REJECTED_PHYSICAL",
+          "full_volume_min": -0.10567944823639183,
+          "full_volume_max": 0.15146604080831866,
+          "below_truth_color_range": 707,
+          "above_truth_color_range": 194
+        },
+        {
+          "method": "vanilla_IBS2",
+          "status": "REJECTED_PHYSICAL",
+          "full_volume_min": -0.10488200004055354,
+          "full_volume_max": 0.13313374227709857,
+          "below_truth_color_range": 758,
+          "above_truth_color_range": 126
+        },
+        {
+          "method": "A23_compressed_feedback",
+          "status": "REJECTED_PHYSICAL",
+          "full_volume_min": -0.11822682895351891,
+          "full_volume_max": 0.1506922617181824,
+          "below_truth_color_range": 763,
+          "above_truth_color_range": 161
+        }
+      ],
+      "under_over_colors_scope": "saved truth color range; feasibility reported separately by saved status",
+      "array_layout": "ascending [x,y,z], displayed horizontal/vertical coordinates explicit"
+    },
+    {
+      "name": "image_error_2001_imag",
+      "paths": [
+        "figures/a23/image_error_2001_imag.png",
+        "figures/a23/image_error_2001_imag.svg"
+      ],
+      "caption": "Signed central-slice errors; symmetric range shared across methods and three planes",
+      "scene": 2001,
+      "component": "imag",
+      "error_color_min": -0.15822835292354362,
+      "error_color_max": 0.15822835292354362
+    },
+    {
+      "name": "image_2003_real",
+      "paths": [
+        "figures/a23/image_2003_real.png",
+        "figures/a23/image_2003_real.svg"
+      ],
+      "caption": "Saved nominal noisy central XY/XZ/YZ slices; truth-global shared material color limits",
+      "scene": 2003,
+      "component": "real",
+      "color_min": 0.10000280665515104,
+      "color_max": 2.4393089401006476,
+      "limits_source": "all saved truth cells for this object/component",
+      "column_statistics": [
+        {
+          "method": "truth_OFFLINE",
+          "status": "OFFLINE_TRUTH",
+          "full_volume_min": 0.10000280665515104,
+          "full_volume_max": 2.4393089401006476,
+          "below_truth_color_range": 0,
+          "above_truth_color_range": 0
+        },
+        {
+          "method": "dressed_linear_chi",
+          "status": "REJECTED_PHYSICAL",
+          "full_volume_min": -0.9052107702037543,
+          "full_volume_max": 0.9752256818875802,
+          "below_truth_color_range": 268,
+          "above_truth_color_range": 0
+        },
+        {
+          "method": "linear_a_exact_conversion",
+          "status": "REJECTED_PHYSICAL",
+          "full_volume_min": -0.6754174438315056,
+          "full_volume_max": 1.2509411224555893,
+          "below_truth_color_range": 277,
+          "above_truth_color_range": 0
+        },
+        {
+          "method": "vanilla_IBS2",
+          "status": "REJECTED_PHYSICAL",
+          "full_volume_min": -0.295052926266576,
+          "full_volume_max": 1.4127558730842065,
+          "below_truth_color_range": 364,
+          "above_truth_color_range": 0
+        },
+        {
+          "method": "A23_compressed_feedback",
+          "status": "REJECTED_PHYSICAL",
+          "full_volume_min": -0.9385342572833962,
+          "full_volume_max": 1.2266174281639082,
+          "below_truth_color_range": 237,
+          "above_truth_color_range": 0
+        }
+      ],
+      "under_over_colors_scope": "saved truth color range; feasibility reported separately by saved status",
+      "array_layout": "ascending [x,y,z], displayed horizontal/vertical coordinates explicit"
+    },
+    {
+      "name": "image_error_2003_real",
+      "paths": [
+        "figures/a23/image_error_2003_real.png",
+        "figures/a23/image_error_2003_real.svg"
+      ],
+      "caption": "Signed central-slice errors; symmetric range shared across methods and three planes",
+      "scene": 2003,
+      "component": "real",
+      "error_color_min": -1.5178083850603714,
+      "error_color_max": 1.5178083850603714
+    },
+    {
+      "name": "image_2003_imag",
+      "paths": [
+        "figures/a23/image_2003_imag.png",
+        "figures/a23/image_2003_imag.svg"
+      ],
+      "caption": "Saved nominal noisy central XY/XZ/YZ slices; truth-global shared material color limits",
+      "scene": 2003,
+      "component": "imag",
+      "color_min": 0.04000015580667526,
+      "color_max": 0.163674380721008,
+      "limits_source": "all saved truth cells for this object/component",
+      "column_statistics": [
+        {
+          "method": "truth_OFFLINE",
+          "status": "OFFLINE_TRUTH",
+          "full_volume_min": 0.04000015580667526,
+          "full_volume_max": 0.163674380721008,
+          "below_truth_color_range": 0,
+          "above_truth_color_range": 0
+        },
+        {
+          "method": "dressed_linear_chi",
+          "status": "REJECTED_PHYSICAL",
+          "full_volume_min": -0.412237509114593,
+          "full_volume_max": 0.5905224002789194,
+          "below_truth_color_range": 629,
+          "above_truth_color_range": 585
+        },
+        {
+          "method": "linear_a_exact_conversion",
+          "status": "REJECTED_PHYSICAL",
+          "full_volume_min": -0.34134345198980337,
+          "full_volume_max": 0.9769797537297699,
+          "below_truth_color_range": 631,
+          "above_truth_color_range": 655
+        },
+        {
+          "method": "vanilla_IBS2",
+          "status": "REJECTED_PHYSICAL",
+          "full_volume_min": -0.3577332219351716,
+          "full_volume_max": 0.7159779755192891,
+          "below_truth_color_range": 835,
+          "above_truth_color_range": 417
+        },
+        {
+          "method": "A23_compressed_feedback",
+          "status": "REJECTED_PHYSICAL",
+          "full_volume_min": -0.5611882964530192,
+          "full_volume_max": 0.4894057650209828,
+          "below_truth_color_range": 718,
+          "above_truth_color_range": 556
+        }
+      ],
+      "under_over_colors_scope": "saved truth color range; feasibility reported separately by saved status",
+      "array_layout": "ascending [x,y,z], displayed horizontal/vertical coordinates explicit"
+    },
+    {
+      "name": "image_error_2003_imag",
+      "paths": [
+        "figures/a23/image_error_2003_imag.png",
+        "figures/a23/image_error_2003_imag.svg"
+      ],
+      "caption": "Signed central-slice errors; symmetric range shared across methods and three planes",
+      "scene": 2003,
+      "component": "imag",
+      "error_color_min": -0.8219263909603993,
+      "error_color_max": 0.8219263909603993
+    },
+    {
+      "name": "image_2014_real",
+      "paths": [
+        "figures/a23/image_2014_real.png",
+        "figures/a23/image_2014_real.svg"
+      ],
+      "caption": "Saved nominal noisy central XY/XZ/YZ slices; truth-global shared material color limits",
+      "scene": 2014,
+      "component": "real",
+      "color_min": 0.1,
+      "color_max": 2.2,
+      "limits_source": "all saved truth cells for this object/component",
+      "column_statistics": [
+        {
+          "method": "truth_OFFLINE",
+          "status": "OFFLINE_TRUTH",
+          "full_volume_min": 0.1,
+          "full_volume_max": 2.2,
+          "below_truth_color_range": 0,
+          "above_truth_color_range": 0
+        },
+        {
+          "method": "dressed_linear_chi",
+          "status": "REJECTED_PHYSICAL",
+          "full_volume_min": 0.05047371275108044,
+          "full_volume_max": 0.21160599699728153,
+          "below_truth_color_range": 597,
+          "above_truth_color_range": 0
+        },
+        {
+          "method": "linear_a_exact_conversion",
+          "status": "OK",
+          "full_volume_min": 0.051027951400007654,
+          "full_volume_max": 0.21574138523219635,
+          "below_truth_color_range": 597,
+          "above_truth_color_range": 0
+        },
+        {
+          "method": "vanilla_IBS2",
+          "status": "REJECTED_PHYSICAL",
+          "full_volume_min": 0.052121118288508315,
+          "full_volume_max": 0.21383760992580647,
+          "below_truth_color_range": 600,
+          "above_truth_color_range": 0
+        },
+        {
+          "method": "A23_compressed_feedback",
+          "status": "OK",
+          "full_volume_min": 0.0495586805892223,
+          "full_volume_max": 0.21214964590499974,
+          "below_truth_color_range": 599,
+          "above_truth_color_range": 0
+        }
+      ],
+      "under_over_colors_scope": "saved truth color range; feasibility reported separately by saved status",
+      "array_layout": "ascending [x,y,z], displayed horizontal/vertical coordinates explicit"
+    },
+    {
+      "name": "image_error_2014_real",
+      "paths": [
+        "figures/a23/image_error_2014_real.png",
+        "figures/a23/image_error_2014_real.svg"
+      ],
+      "caption": "Signed central-slice errors; symmetric range shared across methods and three planes",
+      "scene": 2014,
+      "component": "real",
+      "error_color_min": -2.0271171701074495,
+      "error_color_max": 2.0271171701074495
+    },
+    {
+      "name": "image_2014_imag",
+      "paths": [
+        "figures/a23/image_2014_imag.png",
+        "figures/a23/image_2014_imag.svg"
+      ],
+      "caption": "Saved nominal noisy central XY/XZ/YZ slices; truth-global shared material color limits",
+      "scene": 2014,
+      "component": "imag",
+      "color_min": 0.04,
+      "color_max": 0.1385,
+      "limits_source": "all saved truth cells for this object/component",
+      "column_statistics": [
+        {
+          "method": "truth_OFFLINE",
+          "status": "OFFLINE_TRUTH",
+          "full_volume_min": 0.04,
+          "full_volume_max": 0.1385,
+          "below_truth_color_range": 0,
+          "above_truth_color_range": 0
+        },
+        {
+          "method": "dressed_linear_chi",
+          "status": "REJECTED_PHYSICAL",
+          "full_volume_min": -0.0004231404946696063,
+          "full_volume_max": 0.07650157388941842,
+          "below_truth_color_range": 826,
+          "above_truth_color_range": 0
+        },
+        {
+          "method": "linear_a_exact_conversion",
+          "status": "OK",
+          "full_volume_min": 0.0003505989289338823,
+          "full_volume_max": 0.07678865732527929,
+          "below_truth_color_range": 826,
+          "above_truth_color_range": 0
+        },
+        {
+          "method": "vanilla_IBS2",
+          "status": "REJECTED_PHYSICAL",
+          "full_volume_min": -0.0004655921603618565,
+          "full_volume_max": 0.07652309192154266,
+          "below_truth_color_range": 826,
+          "above_truth_color_range": 0
+        },
+        {
+          "method": "A23_compressed_feedback",
+          "status": "OK",
+          "full_volume_min": 0.0015785594256263052,
+          "full_volume_max": 0.07635454454473159,
+          "below_truth_color_range": 827,
+          "above_truth_color_range": 0
+        }
+      ],
+      "under_over_colors_scope": "saved truth color range; feasibility reported separately by saved status",
+      "array_layout": "ascending [x,y,z], displayed horizontal/vertical coordinates explicit"
+    },
+    {
+      "name": "image_error_2014_imag",
+      "paths": [
+        "figures/a23/image_error_2014_imag.png",
+        "figures/a23/image_error_2014_imag.svg"
+      ],
+      "caption": "Signed central-slice errors; symmetric range shared across methods and three planes",
+      "scene": 2014,
+      "component": "imag",
+      "error_color_min": -0.09521366650139018,
+      "error_color_max": 0.09521366650139018
+    },
+    {
+      "name": "image_2009_real",
+      "paths": [
+        "figures/a23/image_2009_real.png",
+        "figures/a23/image_2009_real.svg"
+      ],
+      "caption": "Saved nominal noisy central XY/XZ/YZ slices; truth-global shared material color limits",
+      "scene": 2009,
+      "component": "real",
+      "color_min": 0.1,
+      "color_max": 2.3000000000000003,
+      "limits_source": "all saved truth cells for this object/component",
+      "column_statistics": [
+        {
+          "method": "truth_OFFLINE",
+          "status": "OFFLINE_TRUTH",
+          "full_volume_min": 0.1,
+          "full_volume_max": 2.3000000000000003,
+          "below_truth_color_range": 0,
+          "above_truth_color_range": 0
+        },
+        {
+          "method": "dressed_linear_chi",
+          "status": "REJECTED_PHYSICAL",
+          "full_volume_min": -0.05061407570614265,
+          "full_volume_max": 0.5544026234604378,
+          "below_truth_color_range": 692,
+          "above_truth_color_range": 0
+        },
+        {
+          "method": "linear_a_exact_conversion",
+          "status": "REJECTED_PHYSICAL",
+          "full_volume_min": -0.04364597065029483,
+          "full_volume_max": 0.6306963825476152,
+          "below_truth_color_range": 695,
+          "above_truth_color_range": 0
+        },
+        {
+          "method": "vanilla_IBS2",
+          "status": "REJECTED_PHYSICAL",
+          "full_volume_min": -0.04739286649814792,
+          "full_volume_max": 0.5868802092332481,
+          "below_truth_color_range": 724,
+          "above_truth_color_range": 0
+        },
+        {
+          "method": "A23_compressed_feedback",
+          "status": "REJECTED_PHYSICAL",
+          "full_volume_min": -0.07880297028846003,
+          "full_volume_max": 0.5667373199361299,
+          "below_truth_color_range": 682,
+          "above_truth_color_range": 0
+        }
+      ],
+      "under_over_colors_scope": "saved truth color range; feasibility reported separately by saved status",
+      "array_layout": "ascending [x,y,z], displayed horizontal/vertical coordinates explicit"
+    },
+    {
+      "name": "image_error_2009_real",
+      "paths": [
+        "figures/a23/image_error_2009_real.png",
+        "figures/a23/image_error_2009_real.svg"
+      ],
+      "caption": "Signed central-slice errors; symmetric range shared across methods and three planes",
+      "scene": 2009,
+      "component": "real",
+      "error_color_min": -1.8237865918062472,
+      "error_color_max": 1.8237865918062472
+    },
+    {
+      "name": "image_2009_imag",
+      "paths": [
+        "figures/a23/image_2009_imag.png",
+        "figures/a23/image_2009_imag.svg"
+      ],
+      "caption": "Saved nominal noisy central XY/XZ/YZ slices; truth-global shared material color limits",
+      "scene": 2009,
+      "component": "imag",
+      "color_min": 0.04,
+      "color_max": 0.14200000000000002,
+      "limits_source": "all saved truth cells for this object/component",
+      "column_statistics": [
+        {
+          "method": "truth_OFFLINE",
+          "status": "OFFLINE_TRUTH",
+          "full_volume_min": 0.04,
+          "full_volume_max": 0.14200000000000002,
+          "below_truth_color_range": 0,
+          "above_truth_color_range": 0
+        },
+        {
+          "method": "dressed_linear_chi",
+          "status": "REJECTED_PHYSICAL",
+          "full_volume_min": -0.08571292663062188,
+          "full_volume_max": 0.20689977819931363,
+          "below_truth_color_range": 788,
+          "above_truth_color_range": 103
+        },
+        {
+          "method": "linear_a_exact_conversion",
+          "status": "REJECTED_PHYSICAL",
+          "full_volume_min": -0.07965543725059544,
+          "full_volume_max": 0.24947526957151162,
+          "below_truth_color_range": 789,
+          "above_truth_color_range": 130
+        },
+        {
+          "method": "vanilla_IBS2",
+          "status": "REJECTED_PHYSICAL",
+          "full_volume_min": -0.09963805734255404,
+          "full_volume_max": 0.1956481217997431,
+          "below_truth_color_range": 806,
+          "above_truth_color_range": 84
+        },
+        {
+          "method": "A23_compressed_feedback",
+          "status": "REJECTED_PHYSICAL",
+          "full_volume_min": -0.08926289790588865,
+          "full_volume_max": 0.1971076111015607,
+          "below_truth_color_range": 840,
+          "above_truth_color_range": 80
+        }
+      ],
+      "under_over_colors_scope": "saved truth color range; feasibility reported separately by saved status",
+      "array_layout": "ascending [x,y,z], displayed horizontal/vertical coordinates explicit"
+    },
+    {
+      "name": "image_error_2009_imag",
+      "paths": [
+        "figures/a23/image_error_2009_imag.png",
+        "figures/a23/image_error_2009_imag.svg"
+      ],
+      "caption": "Signed central-slice errors; symmetric range shared across methods and three planes",
+      "scene": 2009,
+      "component": "imag",
+      "error_color_min": -0.1965066180755908,
+      "error_color_max": 0.1965066180755908
+    },
+    {
+      "name": "quality_time_pareto",
+      "paths": [
+        "figures/a23/quality_time_pareto.png",
+        "figures/a23/quality_time_pareto.svg"
+      ],
+      "caption": "All saved quality/time rows, including rejected estimates; missing paid residuals are not plotted as zero",
+      "time_column": "total_time_to_image_seconds",
+      "quality_column": "full_chi_NRMSE",
+      "availability_counts": {
+        "complete_measured_pairs": 1,
+        "rejected_failed_or_unknown_entries": 125,
+        "missing_or_unvalidated_entries": 78,
+        "total_entries": 204
+      },
+      "frozen_reference_lines": {
+        "H3_full_material_NRMSE_max": 0.6,
+        "H3_difference_data_residual_max": 0.2
+      },
+      "complete_pair_scope": "finite time/material error/paid full residual with saved RUN/COMPLETE validation and accepted status; no eligibility or winner inference"
+    }
+  ],
+  "raw_tables": [
+    {
+      "path": "figures/a23/raw/FULL_IMAGE_METRICS.csv",
+      "rows": 204
+    },
+    {
+      "path": "figures/a23/raw/CURVATURE_DECOMPOSITION.csv",
+      "rows": 12
+    },
+    {
+      "path": "figures/a23/raw/PARETO_TABLE.csv",
+      "rows": 204
+    },
+    {
+      "path": "figures/a23/raw/H1_ENCODER_METRICS.csv",
+      "rows": 32
+    },
+    {
+      "path": "figures/a23/raw/H1_PLOTTED.csv",
+      "rows": 32
+    },
+    {
+      "path": "figures/a23/raw/IMAGE_SLICES_2001.csv",
+      "rows": 4320
+    },
+    {
+      "path": "figures/a23/raw/IMAGE_SLICES_2003.csv",
+      "rows": 4320
+    },
+    {
+      "path": "figures/a23/raw/IMAGE_SLICES_2014.csv",
+      "rows": 4320
+    },
+    {
+      "path": "figures/a23/raw/IMAGE_SLICES_2009.csv",
+      "rows": 4320
+    }
+  ],
+  "missing": [
+    {
+      "source": "PARETO_TABLE.csv individual metrics",
+      "rows": [
+        "2001/homogeneous_born: OK",
+        "2001/born_BP: OK",
+        "2001/dressed_linear_chi: OK",
+        "2001/linear_a_exact_conversion: OK",
+        "2001/vanilla_IBS2: OK",
+        "2001/A23_compressed_feedback: OK",
+        "2001/generic_randomized_linear: OK",
+        "2001/current_BP_ratio: OK",
+        "2001/homogeneous_born: REJECTED_PHYSICAL",
+        "2001/born_BP: OK",
+        "2001/dressed_linear_chi: REJECTED_PHYSICAL",
+        "2001/linear_a_exact_conversion: REJECTED_PHYSICAL",
+        "2001/vanilla_IBS2: REJECTED_PHYSICAL",
+        "2001/A23_compressed_feedback: REJECTED_PHYSICAL",
+        "2001/generic_randomized_linear: OK",
+        "2001/current_BP_ratio: OK",
+        "2001/homogeneous_born: REJECTED_PHYSICAL",
+        "2001/born_BP: OK",
+        "2001/dressed_linear_chi: REJECTED_PHYSICAL",
+        "2001/linear_a_exact_conversion: REJECTED_PHYSICAL",
+        "2001/vanilla_IBS2: REJECTED_PHYSICAL",
+        "2001/A23_compressed_feedback: REJECTED_PHYSICAL",
+        "2001/generic_randomized_linear: REJECTED_PHYSICAL",
+        "2001/current_BP_ratio: OK",
+        "2001/homogeneous_born: REJECTED_PHYSICAL",
+        "2001/born_BP: OK",
+        "2001/dressed_linear_chi: REJECTED_PHYSICAL",
+        "2001/linear_a_exact_conversion: REJECTED_PHYSICAL",
+        "2001/vanilla_IBS2: REJECTED_PHYSICAL",
+        "2001/A23_compressed_feedback: REJECTED_PHYSICAL",
+        "2001/generic_randomized_linear: REJECTED_PHYSICAL",
+        "2001/current_BP_ratio: OK",
+        "2001/homogeneous_born: REJECTED_PHYSICAL",
+        "2001/born_BP: OK",
+        "2001/dressed_linear_chi: REJECTED_PHYSICAL",
+        "2001/linear_a_exact_conversion: REJECTED_PHYSICAL",
+        "2001/vanilla_IBS2: REJECTED_PHYSICAL",
+        "2001/A23_compressed_feedback: REJECTED_PHYSICAL",
+        "2001/generic_randomized_linear: REJECTED_PHYSICAL",
+        "2001/current_BP_ratio: OK",
+        "2001/homogeneous_born: REJECTED_PHYSICAL",
+        "2001/born_BP: OK",
+        "2001/dressed_linear_chi: REJECTED_PHYSICAL",
+        "2001/linear_a_exact_conversion: REJECTED_PHYSICAL",
+        "2001/vanilla_IBS2: REJECTED_PHYSICAL",
+        "2001/A23_compressed_feedback: REJECTED_PHYSICAL",
+        "2001/generic_randomized_linear: REJECTED_PHYSICAL",
+        "2001/current_BP_ratio: OK",
+        "2001/dressed_linear_chi: REJECTED_PHYSICAL",
+        "2001/vanilla_IBS2: REJECTED_PHYSICAL",
+        "2001/A23_compressed_feedback: REJECTED_PHYSICAL",
+        "2003/homogeneous_born: REJECTED_PHYSICAL",
+        "2003/born_BP: OK",
+        "2003/dressed_linear_chi: REJECTED_PHYSICAL",
+        "2003/linear_a_exact_conversion: REJECTED_PHYSICAL",
+        "2003/vanilla_IBS2: REJECTED_PHYSICAL",
+        "2003/A23_compressed_feedback: REJECTED_PHYSICAL",
+        "2003/generic_randomized_linear: REJECTED_PHYSICAL",
+        "2003/current_BP_ratio: OK",
+        "2003/homogeneous_born: REJECTED_PHYSICAL",
+        "2003/born_BP: OK",
+        "2003/dressed_linear_chi: REJECTED_PHYSICAL",
+        "2003/linear_a_exact_conversion: REJECTED_PHYSICAL",
+        "2003/vanilla_IBS2: REJECTED_PHYSICAL",
+        "2003/A23_compressed_feedback: REJECTED_PHYSICAL",
+        "2003/generic_randomized_linear: REJECTED_PHYSICAL",
+        "2003/current_BP_ratio: OK",
+        "2003/homogeneous_born: REJECTED_PHYSICAL",
+        "2003/born_BP: REJECTED_PHYSICAL",
+        "2003/dressed_linear_chi: REJECTED_PHYSICAL",
+        "2003/linear_a_exact_conversion: REJECTED_PHYSICAL",
+        "2003/vanilla_IBS2: REJECTED_PHYSICAL",
+        "2003/A23_compressed_feedback: REJECTED_PHYSICAL",
+        "2003/generic_randomized_linear: REJECTED_PHYSICAL",
+        "2003/current_BP_ratio: REJECTED_PHYSICAL",
+        "2003/homogeneous_born: REJECTED_PHYSICAL",
+        "2003/born_BP: REJECTED_PHYSICAL",
+        "2003/dressed_linear_chi: REJECTED_PHYSICAL",
+        "2003/linear_a_exact_conversion: REJECTED_PHYSICAL",
+        "2003/vanilla_IBS2: REJECTED_PHYSICAL",
+        "2003/A23_compressed_feedback: REJECTED_PHYSICAL",
+        "2003/generic_randomized_linear: REJECTED_PHYSICAL",
+        "2003/current_BP_ratio: REJECTED_PHYSICAL",
+        "2003/homogeneous_born: REJECTED_PHYSICAL",
+        "2003/born_BP: REJECTED_PHYSICAL",
+        "2003/dressed_linear_chi: REJECTED_PHYSICAL",
+        "2003/linear_a_exact_conversion: REJECTED_PHYSICAL",
+        "2003/vanilla_IBS2: REJECTED_PHYSICAL",
+        "2003/A23_compressed_feedback: REJECTED_PHYSICAL",
+        "2003/generic_randomized_linear: REJECTED_PHYSICAL",
+        "2003/current_BP_ratio: REJECTED_PHYSICAL",
+        "2003/homogeneous_born: REJECTED_PHYSICAL",
+        "2003/born_BP: REJECTED_PHYSICAL",
+        "2003/dressed_linear_chi: REJECTED_PHYSICAL",
+        "2003/linear_a_exact_conversion: REJECTED_PHYSICAL",
+        "2003/vanilla_IBS2: REJECTED_PHYSICAL",
+        "2003/A23_compressed_feedback: REJECTED_PHYSICAL",
+        "2003/generic_randomized_linear: REJECTED_PHYSICAL",
+        "2003/current_BP_ratio: REJECTED_PHYSICAL",
+        "2003/dressed_linear_chi: REJECTED_PHYSICAL",
+        "2003/vanilla_IBS2: REJECTED_PHYSICAL",
+        "2003/A23_compressed_feedback: REJECTED_PHYSICAL",
+        "2014/homogeneous_born: OK",
+        "2014/born_BP: OK",
+        "2014/dressed_linear_chi: OK",
+        "2014/linear_a_exact_conversion: OK",
+        "2014/vanilla_IBS2: OK",
+        "2014/A23_compressed_feedback: OK",
+        "2014/generic_randomized_linear: OK",
+        "2014/current_BP_ratio: OK",
+        "2014/homogeneous_born: OK",
+        "2014/born_BP: OK",
+        "2014/dressed_linear_chi: OK",
+        "2014/linear_a_exact_conversion: OK",
+        "2014/vanilla_IBS2: OK",
+        "2014/A23_compressed_feedback: OK",
+        "2014/generic_randomized_linear: OK",
+        "2014/current_BP_ratio: OK",
+        "2014/homogeneous_born: OK",
+        "2014/born_BP: OK",
+        "2014/dressed_linear_chi: OK",
+        "2014/linear_a_exact_conversion: OK",
+        "2014/vanilla_IBS2: OK",
+        "2014/A23_compressed_feedback: OK",
+        "2014/generic_randomized_linear: OK",
+        "2014/current_BP_ratio: OK",
+        "2014/homogeneous_born: OK",
+        "2014/born_BP: OK",
+        "2014/dressed_linear_chi: REJECTED_PHYSICAL",
+        "2014/linear_a_exact_conversion: REJECTED_PHYSICAL",
+        "2014/vanilla_IBS2: REJECTED_PHYSICAL",
+        "2014/A23_compressed_feedback: REJECTED_PHYSICAL",
+        "2014/generic_randomized_linear: OK",
+        "2014/current_BP_ratio: OK",
+        "2014/homogeneous_born: OK",
+        "2014/born_BP: OK",
+        "2014/dressed_linear_chi: OK",
+        "2014/linear_a_exact_conversion: OK",
+        "2014/vanilla_IBS2: OK",
+        "2014/A23_compressed_feedback: OK",
+        "2014/generic_randomized_linear: OK",
+        "2014/current_BP_ratio: OK",
+        "2014/homogeneous_born: OK",
+        "2014/born_BP: OK",
+        "2014/dressed_linear_chi: REJECTED_PHYSICAL",
+        "2014/linear_a_exact_conversion: OK",
+        "2014/vanilla_IBS2: REJECTED_PHYSICAL",
+        "2014/generic_randomized_linear: OK",
+        "2014/current_BP_ratio: OK",
+        "2014/dressed_linear_chi: REJECTED_PHYSICAL",
+        "2014/vanilla_IBS2: REJECTED_PHYSICAL",
+        "2014/A23_compressed_feedback: REJECTED_PHYSICAL",
+        "2009/homogeneous_born: OK",
+        "2009/born_BP: OK",
+        "2009/dressed_linear_chi: OK",
+        "2009/linear_a_exact_conversion: OK",
+        "2009/vanilla_IBS2: OK",
+        "2009/A23_compressed_feedback: OK",
+        "2009/generic_randomized_linear: REJECTED_PHYSICAL",
+        "2009/current_BP_ratio: OK",
+        "2009/homogeneous_born: REJECTED_PHYSICAL",
+        "2009/born_BP: OK",
+        "2009/dressed_linear_chi: REJECTED_PHYSICAL",
+        "2009/linear_a_exact_conversion: REJECTED_PHYSICAL",
+        "2009/vanilla_IBS2: REJECTED_PHYSICAL",
+        "2009/A23_compressed_feedback: REJECTED_PHYSICAL",
+        "2009/generic_randomized_linear: OK",
+        "2009/current_BP_ratio: OK",
+        "2009/homogeneous_born: REJECTED_PHYSICAL",
+        "2009/born_BP: OK",
+        "2009/dressed_linear_chi: REJECTED_PHYSICAL",
+        "2009/linear_a_exact_conversion: REJECTED_PHYSICAL",
+        "2009/vanilla_IBS2: REJECTED_PHYSICAL",
+        "2009/A23_compressed_feedback: REJECTED_PHYSICAL",
+        "2009/generic_randomized_linear: REJECTED_PHYSICAL",
+        "2009/current_BP_ratio: OK",
+        "2009/homogeneous_born: REJECTED_PHYSICAL",
+        "2009/born_BP: OK",
+        "2009/dressed_linear_chi: REJECTED_PHYSICAL",
+        "2009/linear_a_exact_conversion: REJECTED_PHYSICAL",
+        "2009/vanilla_IBS2: REJECTED_PHYSICAL",
+        "2009/A23_compressed_feedback: REJECTED_PHYSICAL",
+        "2009/generic_randomized_linear: REJECTED_PHYSICAL",
+        "2009/current_BP_ratio: OK",
+        "2009/homogeneous_born: REJECTED_PHYSICAL",
+        "2009/born_BP: REJECTED_PHYSICAL",
+        "2009/dressed_linear_chi: REJECTED_PHYSICAL",
+        "2009/linear_a_exact_conversion: REJECTED_PHYSICAL",
+        "2009/vanilla_IBS2: REJECTED_PHYSICAL",
+        "2009/A23_compressed_feedback: REJECTED_PHYSICAL",
+        "2009/generic_randomized_linear: REJECTED_PHYSICAL",
+        "2009/current_BP_ratio: REJECTED_PHYSICAL",
+        "2009/homogeneous_born: REJECTED_PHYSICAL",
+        "2009/born_BP: REJECTED_PHYSICAL",
+        "2009/dressed_linear_chi: REJECTED_PHYSICAL",
+        "2009/linear_a_exact_conversion: REJECTED_PHYSICAL",
+        "2009/vanilla_IBS2: REJECTED_PHYSICAL",
+        "2009/A23_compressed_feedback: REJECTED_PHYSICAL",
+        "2009/generic_randomized_linear: REJECTED_PHYSICAL",
+        "2009/current_BP_ratio: REJECTED_PHYSICAL",
+        "2009/dressed_linear_chi: REJECTED_PHYSICAL",
+        "2009/vanilla_IBS2: REJECTED_PHYSICAL",
+        "2009/A23_compressed_feedback: REJECTED_PHYSICAL"
+      ]
+    }
+  ],
+  "errors": [],
+  "retained_rejected_and_failed_rows": true,
+  "sha256_checks": "NOT_RUN_user_instruction",
+  "status": "FIGURES_GENERATED"
+}

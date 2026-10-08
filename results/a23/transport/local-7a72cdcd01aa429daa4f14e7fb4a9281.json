@@ -1,0 +1,69 @@
+{
+  "action": "pull",
+  "connection_values_stored": false,
+  "local_process_cpu_seconds": 0.199507,
+  "local_wall_seconds": 3.713250542001333,
+  "physics_launch_authority": "parent only; run action explicitly required",
+  "remote": {
+    "action": "pull",
+    "archive": "a23-pull-7a72cdcd01aa429daa4f14e7fb4a9281.zip",
+    "cache_policy": "exclude cache/ and h1/<scene>/*.npz except H1_FIXED_PROBES.npz and H1_RANDOMIZED_TRAINING.npz; regenerate from declared frozen inputs when needed",
+    "child_CPU_measurement_available": true,
+    "connection_values_stored": false,
+    "gpu_tail_seconds": 0.0,
+    "independent_failure_union": {
+      "appended_rows": 144,
+      "existing_prefix_preserved": true,
+      "incoming_rows": 144,
+      "local_original_bytes": 148,
+      "local_previous": "results/a23/platform_variants/7a72cdcd01aa429daa4f14e7fb4a9281/local_previous/FAILURE_LEDGER.jsonl",
+      "local_rows": 1,
+      "originals_preserved_byte_for_byte": true,
+      "path": "results/a23/FAILURE_LEDGER.jsonl",
+      "planned_append_rows": 144,
+      "policy": "append semantic-nonduplicate incoming JSONL objects; preserve local byte prefix",
+      "remote_latest": "results/a23/platform_variants/7a72cdcd01aa429daa4f14e7fb4a9281/remote_latest/FAILURE_LEDGER.jsonl",
+      "remote_original_bytes": 24614,
+      "semantic_comparison": "object key order and whitespace ignored; JSON value types retained",
+      "semantic_duplicate_rows_skipped": 0,
+      "status": "APPENDED"
+    },
+    "local_files_written": 84,
+    "local_regenerable_bytes_omitted": 0,
+    "local_regenerable_members_omitted": 0,
+    "member_count": 121,
+    "metadata_policy": "update-monitoring",
+    "monitoring_primary_updated": true,
+    "phase0_summary_requires_review": false,
+    "physics_job_launched": false,
+    "platform_variants": [
+      {
+        "local_previous": "results/a23/platform_variants/7a72cdcd01aa429daa4f14e7fb4a9281/local_previous/FAILURE_LEDGER.jsonl",
+        "primary": "results/a23/FAILURE_LEDGER.jsonl",
+        "remote_latest": "results/a23/platform_variants/7a72cdcd01aa429daa4f14e7fb4a9281/remote_latest/FAILURE_LEDGER.jsonl"
+      },
+      {
+        "local_previous": "results/a23/platform_variants/7a72cdcd01aa429daa4f14e7fb4a9281/local_previous/LATEST_JOB.json",
+        "primary": "results/a23/LATEST_JOB.json",
+        "remote_latest": "results/a23/platform_variants/7a72cdcd01aa429daa4f14e7fb4a9281/remote_latest/LATEST_JOB.json"
+      }
+    ],
+    "queue_query_cpu_seconds": 0.0,
+    "regenerable_cache_bytes_skipped": 3145937545,
+    "regenerable_cache_members_skipped": 44,
+    "remote_caches_retained": true,
+    "remote_controller_cpu_seconds": 0.421875,
+    "remote_process_cpu_seconds": 0.421875,
+    "remote_wall_seconds": 0.4527495999936946,
+    "semantic_json_matches": [
+      "results/a23/PHASE0_TESTS.json"
+    ],
+    "status": "COMPLETE",
+    "transport_attempt": "7a72cdcd01aa429daa4f14e7fb4a9281",
+    "uncompressed_bytes": 22565236,
+    "utc": "2026-10-08T08:34:50.344163+00:00"
+  },
+  "schema": "a23.local_transport.v1",
+  "status": "COMPLETE",
+  "transport_attempt": "7a72cdcd01aa429daa4f14e7fb4a9281"
+}

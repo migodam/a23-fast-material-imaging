@@ -1,0 +1,26 @@
+{
+  "GPU_query_success": true,
+  "GPU_summary": "NVIDIA GeForce RTX 4060 Laptop GPU, 8188 MiB, 0 MiB, 0 %",
+  "action": "preflight",
+  "child_CPU_measurement_available": true,
+  "connection_values_stored": false,
+  "gpu_tail_seconds": 0.0,
+  "physics_job_launched": false,
+  "python": "3.10.9",
+  "queue_busy": false,
+  "queue_query_cpu_seconds": 0.015625,
+  "queue_query_success": true,
+  "remote_controller_cpu_seconds": 0.0625,
+  "remote_process_cpu_seconds": 0.078125,
+  "remote_root_exists": true,
+  "remote_wall_seconds": 1.630058899987489,
+  "runtime_versions": {
+    "numpy": "2.2.6",
+    "scipy": "1.15.3",
+    "torch": "2.6.0+cu124"
+  },
+  "shared_lock_exists": false,
+  "status": "COMPLETE",
+  "transport_attempt": "932799d104dc4f57a40fffe968c3f468",
+  "utc": "2026-10-08T07:39:49.713594+00:00"
+}

@@ -1,0 +1,9 @@
+{
+  "source_residual": 5.193627811927711e-15,
+  "streamed_vs_paid_tangent": 6.276700779527805e-15,
+  "real_adjoint_dot_error": 7.867138540761153e-14,
+  "quadratic_symmetry_error": 7.88104196959758e-16,
+  "source_count": 6,
+  "material_dimension": 3456,
+  "real_data_dimension": 1536
+}

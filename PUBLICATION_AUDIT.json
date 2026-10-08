@@ -1,0 +1,57 @@
+{
+  "status": "READY_TO_PUBLISH",
+  "repository": "migodam/a23-fast-material-imaging",
+  "redactions": [
+    {
+      "path": "research/delegated/a23-tests/TEST_AUDIT.md",
+      "original_bytes": 8001,
+      "public_bytes": 7965,
+      "scope": "local absolute workspace/research/user-home paths only",
+      "scientific_numbers_changed": false,
+      "original_preserved_ignored": true
+    },
+    {
+      "path": "results/a23/theory_verification/ADAPTER_TEST_RUN_0003.json",
+      "original_bytes": 17324,
+      "public_bytes": 17258,
+      "scope": "local absolute workspace/research/user-home paths only",
+      "scientific_numbers_changed": false,
+      "original_preserved_ignored": true
+    },
+    {
+      "path": "results/a23/theory_verification/ADAPTER_TEST_RUN_0003.log",
+      "original_bytes": 6145,
+      "public_bytes": 6079,
+      "scope": "local absolute workspace/research/user-home paths only",
+      "scientific_numbers_changed": false,
+      "original_preserved_ignored": true
+    },
+    {
+      "path": "results/a23/theory_verification/ORIGINAL_VALIDATORS_LEDGER.jsonl",
+      "original_bytes": 902,
+      "public_bytes": 830,
+      "scope": "local absolute workspace/research/user-home paths only",
+      "scientific_numbers_changed": false,
+      "original_preserved_ignored": true
+    }
+  ],
+  "no_credentials_or_third_party_fulltext": true,
+  "new_SHA256_checks": 0,
+  "source_frozen_backend_direct_byte_equality": true,
+  "cache_omitted_derived_bytes": 3145937545,
+  "privacy_scan": "filename-only candidate scan; original scientific raw arrays unchanged",
+  "publication_not_a_scientific_GO": true,
+  "early_source_snapshot_missingness_retained": true,
+  "license": "MIT",
+  "public_files": 368,
+  "public_uncompressed_bytes": 54284617,
+  "individual_file_threshold_bytes": 95000000,
+  "oversized_files": [],
+  "final_text_path_or_credential_candidates": [],
+  "cost_receipts_terminal": 12,
+  "orphan_jobs": 0,
+  "cpu_exact_total": "UNKNOWN_ALLOWANCES_EXPLICIT",
+  "GPU_measured_seconds": 1628.9255669999984,
+  "report_BornBP_set_corrected_without_changing_primary_decisions": true,
+  "nuisance_larger_per_component_scope_disclosed": true
+}
