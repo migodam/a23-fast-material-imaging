@@ -158,9 +158,11 @@ def _h1_rows(builder: _Figures) -> list[dict]:
     merged = {}
     for row in csvrows:
         scene = int(_number(row.get('scene', row.get('parent_id'))))
-        for key in ('repeats', 'metadata', 'shared_actual_cost', 'warm_wall_seconds'):
+        for key in ('repeats', 'metadata', 'shared_actual_cost', 'warm_wall_seconds',
+                    'shared_receiver_geometry_attribution'):
             if key in row:
-                row[key] = _structured(row[key], {} if key != 'repeats' else [])
+                default = None if key == 'shared_receiver_geometry_attribution' else [] if key == 'repeats' else {}
+                row[key] = _structured(row[key], default)
         merged[(scene, row['method'])] = row
     for path in sorted((builder.result/'h1').glob('*/H1_METRICS.json')):
         builder.source(path)
@@ -171,6 +173,40 @@ def _h1_rows(builder: _Figures) -> list[dict]:
             key = (scene, row['method'])
             merged[key] = {**merged.get(key, {}), **row, 'scene': scene}
     return list(merged.values())
+
+
+def _h1_cold_preparation(row: dict, metadata: dict, cold: dict) -> dict:
+    """Independent cold encoder attribution, excluding offline controls/evaluation.
+
+    Shared reference and receiver preparation are attributed once to each
+    standalone deployment. These per-arm attributions are not summed to form
+    actual experimental expenditure.
+    """
+    candidate = _number(row.get('cold_encoder_preparation_wall_seconds'))
+    if not np.isfinite(candidate):
+        candidate = _number(cold.get('encoder_preparation_wall_seconds'))
+    if not np.isfinite(candidate) and cold.get('stages'):
+        stages = [record for name, record in cold['stages'].items() if name != 'evaluation']
+        if all(_finite(record.get('wall_seconds')) for record in stages):
+            candidate = sum(float(record['wall_seconds']) for record in stages)
+    reference = _number(row.get('common_reference_geometry_seconds'))
+    receiver_attribution = _structured(row.get('shared_receiver_geometry_attribution'), None)
+    receiver = (_number(receiver_attribution.get('wall_seconds')) if receiver_attribution is not None else
+                0. if row['method'] in ('direct_adjoint', 'randomized_transfer') else float('nan'))
+    independent = metadata.get('independent_preparation') or {}
+    direct = _number(independent.get('cold_seconds')) if row['method'] == 'direct_adjoint' else 0.
+    complete = candidate+reference+receiver+direct
+    return {
+        'cold_encoder_preparation_wall_seconds': candidate,
+        'shared_receiver_geometry_preparation_seconds': receiver,
+        'direct_independent_preparation_cold_seconds': direct,
+        'cold_complete_encoder_preparation_wall_seconds': complete,
+        'cold_probe_evaluation_seconds': _number(cold.get('evaluation_wall_seconds',
+                                                         cold.get('stages', {}).get('evaluation', {}).get('wall_seconds'))),
+        'encoder_time_scope': 'common declared-reference geometry/state + required shared receiver geometry + '
+                              'cold encoder preparation/export/redundancy audit + direct caller preparation; '
+                              'excludes offline decoder preparation and probe evaluation',
+    }
 
 
 def _h1(builder: _Figures):
@@ -188,6 +224,7 @@ def _h1(builder: _Figures):
         counts = cold.get('counts', {})
         independent = metadata.get('independent_preparation') or {}
         method = row['method']
+        preparation = _h1_cold_preparation(row, metadata, cold)
         time = _number(row.get('cold_wall_seconds'))
         if not np.isfinite(time):
             time = _number(cold.get('wall_seconds'))
@@ -196,12 +233,13 @@ def _h1(builder: _Figures):
             independent_counts = independent.get('cold_counts', {})
             counts = {key: int(counts.get(key, 0))+int(independent_counts.get(key, 0))
                       for key in set(counts)|set(independent_counts)}
-        rank = _number(metadata.get('rank', row.get('rank')))
+        rank = float('nan') if method == 'direct_adjoint' else _number(metadata.get('rank', row.get('rank')))
         raw.append({'scene': int(_number(row.get('scene', row.get('parent_id')))), 'method': method,
                     'status': row.get('status', 'UNKNOWN'), 'actual_rank': rank,
                     'rank_domain': 'data' if method == 'randomized_transfer' else
                                    'exact transfer' if method == 'direct_adjoint' else 'current',
                     'cold_candidate_wall_seconds': time,
+                    **preparation,
                     'common_reference_geometry_seconds': _number(row.get('common_reference_geometry_seconds')),
                     'common_decoder_prepare_seconds': _number(row.get('decoder_prepare_seconds')),
                     'transfer_error': _number(row.get('transfer_error')),
@@ -240,21 +278,69 @@ def _h1(builder: _Figures):
         axes[1].barh(y, forward, label='Forward solve RHS', color='#4287ab')
         axes[1].barh(y, adjoint, left=forward, label='Adjoint solve RHS', color='#c38939')
         axes[1].barh(y, other, left=forward+adjoint, label='Other operator RHS', color='#a0b0a2')
-        axes[1].set_xlabel('Counted RHS (operator calls and solves kept distinct)')
+        axes[1].set_xlabel('RHS categories (different operations, no common cost unit)')
         axes[1].legend(fontsize=7, loc='lower right')
-        times = [row['cold_candidate_wall_seconds'] if _finite(row['cold_candidate_wall_seconds']) else 0.
+        times = [row['cold_complete_encoder_preparation_wall_seconds']
+                 if _finite(row['cold_complete_encoder_preparation_wall_seconds']) else 0.
                  for row in selected]
         axes[2].barh(y, times, color=['#b64c45' if _bad(row) else '#4a877b' for row in selected])
         for index, row in enumerate(selected):
-            if not _finite(row['cold_candidate_wall_seconds']):
+            if not _finite(row['cold_complete_encoder_preparation_wall_seconds']):
                 axes[2].text(0., index, 'MISSING/FAILED', color='#a03030', va='center', fontsize=8)
-        axes[2].set_xlabel('Cold candidate wall seconds')
+        axes[2].set_xlabel('Complete cold encoder preparation (seconds)')
         axes[0].invert_yaxis()
         figure.suptitle(f'Scene {scene} · H1 rank, actions, and measured preparation')
-        figure.text(.02, -.025, 'Candidate wall includes evaluation/export. Direct includes caller-measured preparation. '
-                    'Common reference/decoder costs remain in raw tables. Failed attempts are retained.', fontsize=8)
+        figure.text(.02, -.025, 'Time includes reference + required receiver geometry + encoder/export/audit '
+                    '+ direct caller preparation; excludes offline decoder/probe evaluation.\n'
+                    'RHS tallies are heterogeneous action categories, not equivalent wall costs. '
+                    'Original inclusive raw times and failed attempts remain in the raw tables.', fontsize=7.5)
         figure.tight_layout()
-        builder.save(figure, f'h1_rank_actions_time_{scene}', caption='H1 actual rank domains, distinct RHS costs, cold wall; no gate decision')
+        builder.save(figure, f'h1_rank_actions_time_{scene}', caption='H1 actual rank domains, distinct RHS categories, complete independent cold encoder preparation; excludes offline decoder/probe evaluation')
+    _h1_transfer_time(builder, raw)
+
+
+def _h1_transfer_time(builder: _Figures, rows: list[dict]):
+    scenes = sorted(set(row['scene'] for row in rows))
+    methods = list(dict.fromkeys(row['method'] for row in rows))
+    colors = {method: builder.plt.get_cmap('tab10')(index % 10) for index, method in enumerate(methods)}
+    columns = min(2, len(scenes))
+    height = int(np.ceil(len(scenes)/columns))
+    figure, axes = builder.plt.subplots(height, columns, squeeze=False,
+                                        figsize=(6.1*columns, 4.1*height), sharex=True, sharey=True)
+    missing = []
+    for axis, scene in zip(axes.ravel(), scenes):
+        selected = [row for row in rows if row['scene'] == scene]
+        for row in selected:
+            time = row['cold_complete_encoder_preparation_wall_seconds']
+            error = row['transfer_error']
+            method = row['method']
+            if not (np.isfinite(time) and np.isfinite(error)):
+                missing.append(f"{scene}/{method}: {row['status']} (missing time/error)")
+                continue
+            axis.scatter(time, 100*error, color=colors[method], marker='x' if _bad(row) else 'o', s=38)
+            axis.annotate(LABELS.get(method, method), (time, 100*error), xytext=(4, 4),
+                          textcoords='offset points', fontsize=6)
+        axis.axhline(5., color='#555555', linestyle='--', linewidth=1.)
+        axis.set_title(f'Scene {scene}')
+        axis.set_xlabel('Complete cold encoder preparation (s)')
+        axis.set_ylabel('Frozen-probe transfer error (%)')
+        axis.grid(alpha=.2)
+    for axis in axes.ravel()[len(scenes):]:
+        axis.set_visible(False)
+    handles = [builder.plt.Line2D([], [], marker='o', linestyle='', color=colors[method],
+                                 label=LABELS.get(method, method)) for method in methods]
+    figure.legend(handles=handles, loc='lower center', ncol=4, fontsize=8, bbox_to_anchor=(.5, -.01))
+    figure.suptitle('H1 transfer error versus full cold encoder preparation · all saved arms/scenes')
+    figure.text(.02, -.055, 'Dashed 5% line is a frozen reference; parent owns gate interpretation. '
+                'Preparation includes reference/required receiver geometry and excludes offline decoder/probe evaluation.', fontsize=8)
+    if missing:
+        builder.manifest['missing'].append({'source': 'H1 transfer/time plot individual metrics', 'rows': missing})
+        figure.text(.02, -.08, f'{len(missing)} missing/failed points retained in raw CSV and manifest.', fontsize=8)
+    figure.tight_layout(rect=(0, .08, 1, .96))
+    builder.save(figure, 'h1_transfer_error_full_preparation',
+                 caption='All H1 arms/scenes; 5% reference line without a gate decision; full cold encoder attribution excludes offline controls/evaluation',
+                 metadata={'transfer_error_reference': .05,
+                           'time_column': 'cold_complete_encoder_preparation_wall_seconds'})
 
 
 def _finite_amplitudes(builder: _Figures, rows: list[dict]):

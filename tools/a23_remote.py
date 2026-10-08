@@ -628,10 +628,11 @@ def _install_results(root, archive, *, metadata_policy='preserve-variants', atte
     details.update(metadata_policy=metadata_policy, monitoring_primary_updated=False,
                    semantic_json_matches=[], platform_variants=[],
                    phase0_summary_requires_review=False, local_regenerable_members_omitted=0,
-                   local_regenerable_bytes_omitted=0)
+                   local_regenerable_bytes_omitted=0, independent_failure_union=None)
     with tempfile.TemporaryDirectory() as directory:
         staged_root = Path(directory)
         plan, seen, planned_names, total = [], set(), set(), 0
+        failure_originals = {}
         def queue_new(name, staged):
             destination = _safe_destination(root, name)
             if name.casefold() in planned_names:
@@ -654,6 +655,68 @@ def _install_results(root, archive, *, metadata_policy='preserve-variants', atte
             details['platform_variants'].append(dict(primary=name, local_previous=local_name,
                                                      remote_latest=remote_name))
             return previous
+        def failure_rows(path, name):
+            # Strict JSON values, preserving each source's complete raw bytes in its variant.
+            def unique_object(pairs):
+                value = {}
+                for key, item in pairs:
+                    if key in value:
+                        raise ValueError('duplicate JSON key')
+                    value[key] = item
+                return value
+            def reject_constant(value):
+                raise ValueError('nonfinite JSON value')
+            def finite_float(value):
+                result = float(value)
+                if not math.isfinite(result):
+                    raise ValueError('nonfinite JSON value')
+                return result
+            rows = []
+            try:
+                for raw in path.read_bytes().splitlines(keepends=True):
+                    if not raw.strip():
+                        continue
+                    value = json.loads(raw.decode('utf-8'), object_pairs_hook=unique_object,
+                                       parse_constant=reject_constant, parse_float=finite_float)
+                    if not isinstance(value, dict):
+                        raise ValueError('failure row must be an object')
+                    semantic = json.dumps(value, sort_keys=True, separators=(',', ':'),
+                                          ensure_ascii=True, allow_nan=False)
+                    rows.append((semantic, raw))
+            except (OSError, UnicodeError, ValueError):
+                raise TransportError('INVALID_FAILURE_LEDGER_JSONL', name) from None
+            return rows
+        def queue_failure_union(name, destination, incoming):
+            previous = preserve_variants(name, destination, incoming)
+            local_rows, remote_rows = failure_rows(previous, name), failure_rows(incoming, name)
+            known = {semantic for semantic, raw in local_rows}
+            additions = []
+            for semantic, raw in remote_rows:
+                if semantic in known:
+                    continue
+                known.add(semantic)
+                additions.append(raw if raw.endswith(b'\n') else raw + b'\n')
+            payload = b''.join(additions)
+            local_bytes = previous.read_bytes()
+            if payload and local_bytes and not local_bytes.endswith(b'\n'):
+                payload = b'\n' + payload  # Append a separator; never edit an existing byte.
+            append_file = _safe_destination(staged_root, '_failure_append/' + name)
+            append_file.parent.mkdir(parents=True, exist_ok=True)
+            append_file.write_bytes(payload)
+            variant = details['platform_variants'][-1]
+            failure_originals[name] = (previous, incoming, variant)
+            details['independent_failure_union'] = dict(
+                path=name, policy='append semantic-nonduplicate incoming JSONL objects; preserve local byte prefix',
+                local_previous=variant['local_previous'], remote_latest=variant['remote_latest'],
+                local_original_bytes=len(local_bytes), remote_original_bytes=incoming.stat().st_size,
+                local_rows=len(local_rows), incoming_rows=len(remote_rows),
+                semantic_duplicate_rows_skipped=len(remote_rows)-len(additions),
+                planned_append_rows=len(additions), appended_rows=0,
+                existing_prefix_preserved=True, originals_preserved_byte_for_byte=True,
+                semantic_comparison='object key order and whitespace ignored; JSON value types retained',
+                status='PLANNED')
+            planned_names.add(name.casefold())
+            plan.append((name, destination, append_file, 'failure_union', previous))
         with zipfile.ZipFile(archive) as z:
             for member in z.infolist():
                 name = member.filename
@@ -683,6 +746,8 @@ def _install_results(root, archive, *, metadata_policy='preserve-variants', atte
                         output.write(chunk)
                 if not destination.exists():
                     queue_new(name, staged)
+                elif name == 'results/a23/FAILURE_LEDGER.jsonl':
+                    queue_failure_union(name, destination, staged)
                 elif _same_file(destination, staged):
                     continue
                 elif destination.suffix == '.json' and _json_values_equal(destination, staged):
@@ -712,7 +777,47 @@ def _install_results(root, archive, *, metadata_policy='preserve-variants', atte
         changed = 0
         for name, destination, staged, mode, previous in plan:
             destination.parent.mkdir(parents=True, exist_ok=True)
-            if mode == 'append':
+            if mode == 'failure_union':
+                local_source, remote_source, variants = failure_originals[name]
+                if (not _same_file(local_source, root / variants['local_previous'])
+                        or not _same_file(remote_source, root / variants['remote_latest'])):
+                    raise TransportError('FAILURE_SOURCE_VARIANT_CHANGED_DURING_PULL', name)
+                payload = staged.read_bytes()
+                expected = previous.read_bytes()
+                # Validate the open original while exclusively locked, then one O_APPEND write.
+                # This serializes transport unions; cooperating writers must respect this lock.
+                try:
+                    descriptor = os.open(destination, os.O_RDWR | os.O_APPEND)
+                    with os.fdopen(descriptor, 'r+b', buffering=0) as target:
+                        if os.name == 'nt':
+                            import msvcrt
+                            length = max(1, len(expected) + len(payload))
+                            msvcrt.locking(target.fileno(), msvcrt.LK_NBLCK, length)
+                            unlock = lambda: (target.seek(0), msvcrt.locking(target.fileno(), msvcrt.LK_UNLCK, length))
+                        else:
+                            import fcntl
+                            fcntl.flock(target.fileno(), fcntl.LOCK_EX | fcntl.LOCK_NB)
+                            unlock = lambda: fcntl.flock(target.fileno(), fcntl.LOCK_UN)
+                        try:
+                            current_stat, open_stat = destination.stat(), os.fstat(target.fileno())
+                            target.seek(0)
+                            if ((current_stat.st_dev, current_stat.st_ino) != (open_stat.st_dev, open_stat.st_ino)
+                                    or target.read() != expected):
+                                raise TransportError('FAILURE_LEDGER_CHANGED_DURING_PULL', name)
+                            if payload:
+                                if os.write(target.fileno(), payload) != len(payload):
+                                    raise TransportError('FAILURE_LEDGER_APPEND_INCOMPLETE', name)
+                                os.fsync(target.fileno())
+                            union = details['independent_failure_union']
+                            union['appended_rows'] = union['planned_append_rows']
+                            union['status'] = 'APPENDED' if payload else 'NO_NEW_FAILURE_RECORDS'
+                        finally:
+                            unlock()
+                except OSError:
+                    raise TransportError('FAILURE_LEDGER_LOCK_OR_IO_FAILED', name) from None
+                if not payload:
+                    continue
+            elif mode == 'append':
                 if not _ledger_prefix(destination, staged):
                     raise TransportError("LEDGER_CHANGED_DURING_PULL", name)
                 with staged.open('rb') as source, destination.open('ab') as output:
