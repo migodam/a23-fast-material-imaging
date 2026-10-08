@@ -1,0 +1,25 @@
+{
+  "status": "COMPLETE",
+  "device": "cpu",
+  "process_cpu_seconds": 0.286597,
+  "wall_seconds": 4.0200847500000005,
+  "gpu_occupation_seconds": 0.0,
+  "scope": "anonymous Release+fullasset GET, ZIP evidence/row checks, no hashes",
+  "new_physics": false,
+  "results": [
+    {
+      "url": "https://github.com/migodam/a23-fast-material-imaging/releases/tag/v0.1.0-pilot",
+      "http_status": 200,
+      "bytes": 193545,
+      "anonymous": true
+    },
+    {
+      "url": "https://github.com/migodam/a23-fast-material-imaging/releases/download/v0.1.0-pilot/a23-pilot-public-evidence.zip",
+      "http_status": 200,
+      "bytes": 25232608,
+      "anonymous": true
+    }
+  ],
+  "zip_files": 371,
+  "raw_image_rows": 204
+}

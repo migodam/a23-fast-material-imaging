@@ -398,5 +398,14 @@
   },
   "new_SHA256_checks": 0,
   "publication_status_separate": "PUBLICATION_RECEIPT.json after anonymous verification",
-  "redactions": "PUBLICATION_AUDIT.json"
+  "redactions": "PUBLICATION_AUDIT.json",
+  "publication": {
+    "status": "VERIFIED",
+    "repository": "https://github.com/migodam/a23-fast-material-imaging",
+    "release_url": "https://github.com/migodam/a23-fast-material-imaging/releases/tag/v0.1.0-pilot",
+    "release_content_commit": "84107506baa602e368b61dbb3ef53366513d7b66",
+    "raw_report": "https://raw.githubusercontent.com/migodam/a23-fast-material-imaging/main/A23_RESEARCH_REPORT_ZH.md",
+    "receipt": "PUBLICATION_RECEIPT.json",
+    "post_release_main_changes": "publication verification and accounting metadata only"
+  }
 }

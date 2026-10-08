@@ -1,5 +1,5 @@
 {
-  "status": "COMPLETE",
+  "status": "PUBLIC_REPOSITORY_REPORT_RELEASE_ASSET_VERIFIED",
   "evidence_commit": "8ccdd12f064c2216b52b77e4e8a8edd125a83740",
   "remote_branch_sha_matches_local": true,
   "repository": "https://github.com/migodam/a23-fast-material-imaging",
@@ -29,12 +29,37 @@
       "anonymous": true
     }
   ],
-  "release_status": "PENDING_ASSET_CREATION",
+  "release_status": "PUBLISHED_AND_ANONYMOUSLY_VERIFIED",
   "scientific_decision": "STOP_NO_EXPANSION",
   "scientific_gates": {
     "H1": "FAIL",
     "H2": "FAIL",
     "H3": "FAIL"
   },
-  "new_SHA256_checks": 0
+  "new_SHA256_checks": 0,
+  "release_url": "https://github.com/migodam/a23-fast-material-imaging/releases/tag/v0.1.0-pilot",
+  "release_content_commit": "84107506baa602e368b61dbb3ef53366513d7b66",
+  "asset": {
+    "url": "https://github.com/migodam/a23-fast-material-imaging/releases/download/v0.1.0-pilot/a23-pilot-public-evidence.zip",
+    "name": "a23-pilot-public-evidence.zip",
+    "bytes": 25232608,
+    "zip_file_members": 371,
+    "private_files": 0,
+    "image_metric_rows": 204,
+    "scientific_gates": "FAIL/FAIL/FAIL"
+  },
+  "release_anonymous_links": [
+    {
+      "url": "https://github.com/migodam/a23-fast-material-imaging/releases/tag/v0.1.0-pilot",
+      "http_status": 200,
+      "bytes": 193545,
+      "anonymous": true
+    },
+    {
+      "url": "https://github.com/migodam/a23-fast-material-imaging/releases/download/v0.1.0-pilot/a23-pilot-public-evidence.zip",
+      "http_status": 200,
+      "bytes": 25232608,
+      "anonymous": true
+    }
+  ]
 }

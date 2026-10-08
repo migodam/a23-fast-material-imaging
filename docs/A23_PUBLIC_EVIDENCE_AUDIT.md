@@ -52,6 +52,6 @@ CPU 单位测试、报告/展示处理与生产物理支出必须通过原始 sc
 本审计有两个独立 process lifetime 的检查 receipt，均在 `results/a23/theory_verification/`：
 
 - `PUBLIC_EVIDENCE_AUDIT_RUN_0001.json`：Python process CPU **1.395065 s**，检查 wall **1.518212583 s**，GPU **0**；记录首次扫描和来源/计费核对。
-- `PUBLIC_EVIDENCE_AUDIT_RUN_0002.json`：Python process CPU **0.036792 s**，检查 wall **0.008496041 s**，GPU **0**；记录四份公开副本的脱敏闭环、真实 sketch 路径与脱敏清单存在性。其 scope 与第一次不重叠。
+- `PUBLIC_EVIDENCE_AUDIT_RUN_0002.json`：Python process CPU **0.036792 s**，检查 wall **0.008496041 s**，GPU **0**；记录四份公开副本的脱敏闭环、真实 sketch 路径与脱敏清单存在性。该 process lifetime 独立测量，未计入第一次 lifetime。
 
 测得 CPU 合计 **1.431857 s**。早先 shell 元数据读取、最终文档写出和 receipt 写出不在这些测量 span 内，receipt 明确标记；主线程可将其归入剩余发布 allowance。当前汇总已包含 RUN_0001，最后刷新应加入 RUN_0002。receipt 的检查成功只表示审计执行完成，不是科学 gate PASS。没有远端动作、物理求解、新 scene/label/gate 或新的 SHA256 检查。
