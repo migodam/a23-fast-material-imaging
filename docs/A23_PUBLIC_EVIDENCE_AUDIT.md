@@ -2,21 +2,21 @@
 
 日期：2026-10-08。范围是公开候选文件的隐私、来源、计费与复现边界；不重新运行物理实验，不修改配置、账本、报告或 gate，不承担科学结论裁决。主线程继续拥有 H1/H2/H3、novelty 与 matched-method 成本归因的解释权。
 
-本审计是发布前的工作区快照，不能替代发布后对实际仓库与下载包的核对。首次扫描后的修复、最终费用刷新和公开脱敏由主线程完成；下表明确区分观察到的问题与随后收到的修复状态。
+本审计是发布前的工作区快照，不能替代发布后对实际仓库与下载包的核对。首次扫描后的修复、费用刷新和公开脱敏由主线程完成；下表明确区分首次观察与最终只读复核。没有新增必须依靠物理重跑解决的阻断问题。
 
-主线程闭环补记：四份公开副本已脱敏，原字节保存在ignored private存档；PUBLICATION_AUDIT已生成，最终文本候选扫描没有本机路径/凭证标记。全部12个job已有终止receipt，成本已刷新，无orphan；GPU精确累计1628.925567秒，CPU精确总量仍因小项allowance保持unknown，保守收费完整。bytes/receiver分类和大小写CPUdevice解析已修正，raw动作/资源收费不变。下表的“待处理”描述首次快照，不覆盖这一闭环状态；发布后验证另外记录。
+闭环复核：四份公开副本已脱敏，原字节保存在 ignored 私人存档；审计再次读取这四份公开副本，没有发现剩余个人路径。`PUBLICATION_AUDIT.json` 已生成。主线程报告最终 363 个公开候选文件的路径/密钥/token 模式扫描为 0 个命中，合计约 54.25 MB，没有文件达到 95 MB；本审计没有读取私人原件。全部 12 个 job 已有终止 receipt，当前费用汇总无 orphan，GPU 精确累计 1628.925567 s。CPU 精确总量因小项 allowance 保持 unknown，保守收费完整。bytes/receiver 分类已修正，raw 动作和资源收费不变。审计的第二份检查 receipt 刚生成，仍应纳入最后一次费用刷新；发布后验证另外记录。
 
 ## 需要关闭或明确披露的事项
 
 | 事项 | 具体证据 | 状态与处理边界 |
 |---|---|---|
-| 个人绝对路径仍出现在四个公开候选文件 | `research/delegated/a23-tests/TEST_AUDIT.md`；`results/a23/theory_verification/ADAPTER_TEST_RUN_0003.json`、同名 `.log`；`results/a23/theory_verification/ORIGINAL_VALIDATORS_LEDGER.jsonl` | 首次扫描确认，公开脱敏仍待主线程完成。审计只记录文件名，没有在本文复述路径值。可保留数值、失败、费用与顺序，同时公开相对/占位路径；原字节应保存在 ignored 私人存档。 |
-| 最终成本汇总的输入快照已过期 | 保存的 `COST_SUMMARY.json` 把 `a23-report-local-001` 视为无终止 receipt；该 receipt 后来已经存在。`PLOT_PRESENTATION_RUN_0001.json`、`CACHED_DIAGNOSTICS_RECEIPT.json` 和本审计 receipt 尚未进入首次扫描时的汇总输入 | 主线程将最终刷新。另据主线程确认，`a23-report-local-002` 已终止，CPU 12.187729 s、GPU 0；应使用该 job receipt 纳入实际累计费用，不能删除先前失败/报告支出。 |
+| 四份公开候选文件曾包含个人绝对路径 | `research/delegated/a23-tests/TEST_AUDIT.md`；`results/a23/theory_verification/ADAPTER_TEST_RUN_0003.json`、同名 `.log`；`results/a23/theory_verification/ORIGINAL_VALIDATORS_LEDGER.jsonl` | 已关闭：主线程脱敏，第二次只读检查无剩余个人路径。原字节由主线程保存在 ignored 私人存档。审计只记录安全文件名，没有复述删除的路径值。 |
+| 首次成本汇总的输入快照已过期 | 首次 `COST_SUMMARY.json` 尚未包含后来终止的报告 job、绘图、cached diagnostics 和审计费用 | 已刷新：当前汇总包含 12 个终止 job、绘图、cached diagnostics 和审计 RUN_0001，无 orphan；`a23-report-local-002` CPU 12.187729 s、GPU 0。刚写出的审计 RUN_0002 仍需纳入最后刷新。先前失败与报告支出保留。 |
 | 早期阶段缺少 A23 源码 snapshot | `micro-001`、`h1-001`、`phase0-remote-001` 与 `phase0-local-001/002/003` 的 manifest 没有 `source_snapshot` | 后端 upstream pin 可核对，但不能据此补写未记录的 A23 执行 commit。主线程已在复现说明和主报告明确保留此缺口；完整图像 pilot 的 `8e7d8cf209c6e54f55567b940658e1742aa4cc55` snapshot 已记录且在本地 Git 中可解析。 |
 | 历史理论验证与后来的重跑不是逐字节副本 | `validation/{THEORY,EXTRA}_VALIDATION.json` 与 `results/a23/theory_verification/` 下同名文件有数值/环境差异 | 主线程已补充两个时期的区别。应分别引用正确路径，不能把这种差异称为仅删除机器路径，或把两组既存结果当作一次运行的重复计费。 |
-| 费用类别曾混合单位 | 首次 `canonical_action_families_by_scope` 把 `L_upload_bytes` 放进 L matvec 类，且把 `full_*_receiver_rhs` 放进 full-solve RHS 类 | 主线程已修正 `_family`，bytes 与 receiver contractions 优先分类；raw counters 和资源总计没有改动。最终汇总需重新生成。不得对不同单位或 instrumentation aliases 求和。 |
+| 费用类别曾混合单位 | 首次 `canonical_action_families_by_scope` 把 `L_upload_bytes` 放进 L matvec 类，且把 `full_*_receiver_rhs` 放进 full-solve RHS 类 | 已关闭：主线程修正 `_family` 后刷新汇总，bytes 与 receiver contractions 优先分类；raw counters 和资源总计没有改动。不得对不同单位或 instrumentation aliases 求和。 |
 | 30 s 发布费用是 allowance，不是精确新增 CPU 消耗 | `EXTERNAL_CPU_LEDGER.jsonl` 的发布 allowance 范围包含 shell、审阅、报告与发布；后来的绘图/审计另有测量 receipt | 它可以覆盖剩余未测量开销，但必须继续标为 conservative allowance，并说明与已测量部分的归属。不能把它当作已证明不重叠的精确 30 s 实际消耗。CPU exact total 保持未知是诚实状态。 |
-| 脱敏清单尚未生成 | 首次扫描未发现 `PUBLICATION_AUDIT.json`，而 `docs/NOTICE.md` 已引用它 | 主线程仍需生成公开脱敏清单并核对最终包。该清单本身应只保留安全相对路径和转换说明，不重新公开删除的个人路径或凭证值。 |
+| 首次扫描时脱敏清单尚未生成 | 首次未发现 `PUBLICATION_AUDIT.json`，而 `docs/NOTICE.md` 已引用它 | 已关闭：第二次只读检查确认清单已存在。发布后对实际仓库/包的检查由主线程另行记录；不得把工作区候选扫描称为对全部 Git 历史的证明。 |
 
 上述事项不授权重新做物理实验，也不改变已保存的负 gate。
 
@@ -43,10 +43,15 @@ CPU 单位测试、报告/展示处理与生产物理支出必须通过原始 sc
 
 初始 H1 cache key 序列化缺口没有被抹去。pilot 对参考 transfer/decoder 做了付费 fresh preparation 与核对；`docs/BACKEND_MAP.md` 已描述此边界。被排除的 `cache/` 下 provenance 文件如果仍仅在原机器，公开读者只能依据合法输入、源代码和公开 probe/结果重建自己的缓存，不能声称已验证未发布缓存的全部字节。
 
-审计 receipt 的第一次 `probe_file_presence.quadratic` 查询使用了错误的假定目录 `quadratic_sketch/scene_<id>.npz`。该布尔值只说明假定路径不存在，**不是缺失 sketch 的证据**；随后已查到以上四个实际公开文件。保留原 receipt，并在本文明确纠正这个检查范围错误。
+审计 receipt 的第一次 `probe_file_presence.quadratic` 查询使用了错误的假定目录 `quadratic_sketch/scene_<id>.npz`。该布尔值只说明假定路径不存在，**不是缺失 sketch 的证据**；第二份 receipt 已检查以上四个实际公开路径，全部存在。保留原 receipt，并在本文明确纠正这个检查范围错误。
 
 ## 保存的结论边界与审计成本
 
 这里只读取并复制既存决定：`A23_GATE_DECISION.json` 中 H1/H2/H3 均为 **FAIL**，最终为 **STOP_NO_EXPANSION**。公开失败、raw rejected 输出、单位测试成功、图表生成与仓库发布均不能把这些状态改成 GO。历史 exposed 对象不成为新的 blind holdout；没有建立 NN、clinical 或跨模型泛化结论。
 
-本审计检查 receipt 位于 `results/a23/theory_verification/PUBLIC_EVIDENCE_AUDIT_RUN_0001.json`：测得 Python process CPU **1.395065 s**，检查 wall **1.518212583 s**，GPU **0**。早先 shell 元数据读取与 receipt 写出不在该测量 span 内，receipt 已明确标记；主线程可将其归入剩余发布 allowance。最终费用刷新应包含此 receipt。没有远端动作、物理求解、新 scene/label/gate 或新的 SHA256 检查。
+本审计有两个独立 process lifetime 的检查 receipt，均在 `results/a23/theory_verification/`：
+
+- `PUBLIC_EVIDENCE_AUDIT_RUN_0001.json`：Python process CPU **1.395065 s**，检查 wall **1.518212583 s**，GPU **0**；记录首次扫描和来源/计费核对。
+- `PUBLIC_EVIDENCE_AUDIT_RUN_0002.json`：Python process CPU **0.036792 s**，检查 wall **0.008496041 s**，GPU **0**；记录四份公开副本的脱敏闭环、真实 sketch 路径与脱敏清单存在性。其 scope 与第一次不重叠。
+
+测得 CPU 合计 **1.431857 s**。早先 shell 元数据读取、最终文档写出和 receipt 写出不在这些测量 span 内，receipt 明确标记；主线程可将其归入剩余发布 allowance。当前汇总已包含 RUN_0001，最后刷新应加入 RUN_0002。receipt 的检查成功只表示审计执行完成，不是科学 gate PASS。没有远端动作、物理求解、新 scene/label/gate 或新的 SHA256 检查。

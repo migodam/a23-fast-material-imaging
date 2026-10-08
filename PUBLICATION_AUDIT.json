@@ -1,5 +1,5 @@
 {
-  "status": "READY_TO_PUBLISH",
+  "status": "PUBLIC_REPO_VERIFIED_RELEASE_PENDING",
   "repository": "migodam/a23-fast-material-imaging",
   "redactions": [
     {
@@ -53,5 +53,7 @@
   "cpu_exact_total": "UNKNOWN_ALLOWANCES_EXPLICIT",
   "GPU_measured_seconds": 1628.9255669999984,
   "report_BornBP_set_corrected_without_changing_primary_decisions": true,
-  "nuisance_larger_per_component_scope_disclosed": true
+  "nuisance_larger_per_component_scope_disclosed": true,
+  "repo_anonymous_verified": true,
+  "CPU_conservative_budget_charge_seconds": 1630.900725
 }

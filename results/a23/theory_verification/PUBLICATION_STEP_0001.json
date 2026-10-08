@@ -1,0 +1,55 @@
+{
+  "status": "COMPLETE",
+  "scope": "public repository create and first evidence push, no physics",
+  "events": [
+    {
+      "command": [
+        "git",
+        "commit",
+        "-m",
+        "Publish fixed-budget A23 Maxwell pilot with negative gates and complete evidence"
+      ],
+      "return_code": 0,
+      "wall_seconds": 0.062657792
+    },
+    {
+      "command": [
+        "gh",
+        "repo",
+        "create",
+        "migodam/a23-fast-material-imaging",
+        "--public",
+        "--source",
+        ".",
+        "--remote",
+        "origin",
+        "--description",
+        "Fixed-budget 3D Vector-Maxwell one-shot material imaging pilot: code, evidence, costs and negative H1/H2/H3 gates"
+      ],
+      "return_code": 0,
+      "wall_seconds": 5.519727
+    },
+    {
+      "command": [
+        "git",
+        "push",
+        "--quiet",
+        "-u",
+        "origin",
+        "main"
+      ],
+      "return_code": 0,
+      "wall_seconds": 5.902414375
+    }
+  ],
+  "evidence_commit": "8ccdd12f064c2216b52b77e4e8a8edd125a83740",
+  "repository": "https://github.com/migodam/a23-fast-material-imaging",
+  "device": "cpu",
+  "process_cpu_seconds": 2.34789,
+  "wall_seconds": 11.492214917,
+  "gpu_occupation_seconds": 0.0,
+  "new_experiments": 0,
+  "measurement_scope": "subprocess user+system CPU; Python metadata overhead covered by existing allowance",
+  "publication_does_not_change_scientific_gates": true,
+  "new_SHA256_checks": 0
+}

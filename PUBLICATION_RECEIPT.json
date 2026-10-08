@@ -1,0 +1,40 @@
+{
+  "status": "COMPLETE",
+  "evidence_commit": "8ccdd12f064c2216b52b77e4e8a8edd125a83740",
+  "remote_branch_sha_matches_local": true,
+  "repository": "https://github.com/migodam/a23-fast-material-imaging",
+  "anonymous_links": [
+    {
+      "url": "https://github.com/migodam/a23-fast-material-imaging",
+      "http_status": 200,
+      "bytes": 375217,
+      "anonymous": true
+    },
+    {
+      "url": "https://github.com/migodam/a23-fast-material-imaging/blob/main/A23_RESEARCH_REPORT_ZH.md",
+      "http_status": 200,
+      "bytes": 364837,
+      "anonymous": true
+    },
+    {
+      "url": "https://raw.githubusercontent.com/migodam/a23-fast-material-imaging/main/A23_RESEARCH_REPORT_ZH.md",
+      "http_status": 200,
+      "bytes": 21293,
+      "anonymous": true
+    },
+    {
+      "url": "https://raw.githubusercontent.com/migodam/a23-fast-material-imaging/main/README.md",
+      "http_status": 200,
+      "bytes": 4380,
+      "anonymous": true
+    }
+  ],
+  "release_status": "PENDING_ASSET_CREATION",
+  "scientific_decision": "STOP_NO_EXPANSION",
+  "scientific_gates": {
+    "H1": "FAIL",
+    "H2": "FAIL",
+    "H3": "FAIL"
+  },
+  "new_SHA256_checks": 0
+}

@@ -1,0 +1,35 @@
+{
+  "status": "COMPLETE",
+  "device": "cpu",
+  "process_cpu_seconds": 0.069215,
+  "wall_seconds": 2.4912827920000002,
+  "gpu_occupation_seconds": 0.0,
+  "scope": "anonymous repository/raw GET and remote main SHA check",
+  "no_new_physics": true,
+  "results": [
+    {
+      "url": "https://github.com/migodam/a23-fast-material-imaging",
+      "http_status": 200,
+      "bytes": 375217,
+      "anonymous": true
+    },
+    {
+      "url": "https://github.com/migodam/a23-fast-material-imaging/blob/main/A23_RESEARCH_REPORT_ZH.md",
+      "http_status": 200,
+      "bytes": 364837,
+      "anonymous": true
+    },
+    {
+      "url": "https://raw.githubusercontent.com/migodam/a23-fast-material-imaging/main/A23_RESEARCH_REPORT_ZH.md",
+      "http_status": 200,
+      "bytes": 21293,
+      "anonymous": true
+    },
+    {
+      "url": "https://raw.githubusercontent.com/migodam/a23-fast-material-imaging/main/README.md",
+      "http_status": 200,
+      "bytes": 4380,
+      "anonymous": true
+    }
+  ]
+}
