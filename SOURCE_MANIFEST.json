@@ -1,0 +1,91 @@
+{
+  "upstream_commit": "b85a29a51f4ea7b4d93617e827d88e23933b89df",
+  "mesh": "n12 full3D vector cell grid",
+  "scene_sources": {
+    "2001": {
+      "background": [
+        0.1,
+        0.04
+      ],
+      "edge": 1.5,
+      "family": "gaussian",
+      "init": [
+        0.1,
+        0.04
+      ],
+      "n": 12,
+      "partial": false,
+      "receiver_count": 64,
+      "rotation": 3.7107292183472715,
+      "source": "scene_2001.npz",
+      "source_split": "validation",
+      "truth_n": 14,
+      "wavenumber": 2.0
+    },
+    "2003": {
+      "background": [
+        0.1,
+        0.04
+      ],
+      "edge": 1.5,
+      "family": "gaussian",
+      "init": [
+        0.1,
+        0.04
+      ],
+      "n": 12,
+      "partial": false,
+      "receiver_count": 64,
+      "rotation": 1.7496260542933944,
+      "source": "scene_2003.npz",
+      "source_split": "validation",
+      "truth_n": 14,
+      "wavenumber": 2.0
+    },
+    "2009": {
+      "background": [
+        0.1,
+        0.04
+      ],
+      "edge": 1.5,
+      "family": "shell",
+      "init": [
+        0.1,
+        0.04
+      ],
+      "n": 12,
+      "partial": false,
+      "receiver_count": 64,
+      "rotation": 2.560051713861531,
+      "source": "scene_2009.npz",
+      "source_split": "validation",
+      "truth_n": 14,
+      "wavenumber": 2.0
+    },
+    "2014": {
+      "background": [
+        0.1,
+        0.04
+      ],
+      "edge": 1.5,
+      "family": "asymmetric",
+      "init": [
+        0.1,
+        0.04
+      ],
+      "n": 12,
+      "partial": false,
+      "receiver_count": 64,
+      "rotation": 2.1650255968898984,
+      "source": "scene_2014.npz",
+      "source_split": "validation",
+      "truth_n": 14,
+      "wavenumber": 2.0
+    }
+  },
+  "old_measurements_discarded": "truth-generation grid14 mismatch to solver12; all12 clean labels regenerated within budget",
+  "runtime_truth_loaded": false,
+  "new_SHA256_checks": 0,
+  "coordinate_dimension": 3456,
+  "packing": "sixsource each Re128 then Im128"
+}

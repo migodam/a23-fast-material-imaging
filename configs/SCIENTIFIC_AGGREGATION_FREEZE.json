@@ -1,0 +1,9 @@
+{
+  "registered_before_quality_outputs": true,
+  "H2_primary": "t=1 both zero and20dB each must improve >=10%; at least two distinct families gaussian/asymmetric/shell; feasibility required; compare strongest fullp matchedprior linear among Born,dressedchi,lineara,randomized",
+  "H3_primary": "four t1/noisy rows of dressed_linear_chi,vanilla_IBS2,A23_compressed_feedback; physical eligibility, fullNRMSE<=.60 and relative-difference-full-dataresidual<=.20; actualsinglevalidation inclusive timing; no warmfullvalidation repetitions beyond12 cap",
+  "H3_warm_scope": "decode+feasibility measured5; fullvalidation single perprimaryrow, reuse only declared singlemeasurement for fullpipelineaccounting; warmendtoend repeatedvalidation NOT_RUN",
+  "noise_scaling": "original CM/RR physical units; deterministic known-reference RMS whitening then common supplied physical sigma per source-packed Re/Im; inverse lambda scales with matrix so equivalent scalar covariance whitening",
+  "rank_curve": "fixed32 selected; no optional16/64 sweep; fulltensor notformed",
+  "H1_objectwise_gate": "atleastqualifying <=5% eightheldoutprobe transfererror; full reference+preparationcost included; cacheengineering separated from newmechanism"
+}
