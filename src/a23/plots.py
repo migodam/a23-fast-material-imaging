@@ -229,8 +229,10 @@ def _h1(builder: _Figures):
         ranks = [row['actual_rank'] if _finite(row['actual_rank']) else 0. for row in selected]
         axes[0].barh(y, ranks, color='#7c91ae')
         for index, row in enumerate(selected):
+            missing_rank = ('n/a — exact transfer' if row['method'] == 'direct_adjoint'
+                            else 'n/a — failed/missing')
             axes[0].text(ranks[index], index, ' '+(f"{int(ranks[index])} {row['rank_domain']}" if _finite(row['actual_rank'])
-                                              else 'n/a — exact transfer'), va='center', fontsize=8)
+                                              else missing_rank), va='center', fontsize=8)
         axes[0].set_xlabel('Actual rank (domains shown explicitly)')
         forward = np.array([row['solve_forward_rhs'] for row in selected], float)
         adjoint = np.array([row['solve_adjoint_rhs'] for row in selected], float)

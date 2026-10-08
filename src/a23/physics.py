@@ -189,7 +189,10 @@ class ReferencePhysics:
             if past+self.book.counts[counter]>=self.config.get(key,0):
                 from a20.costs import BudgetExceeded
                 raise BudgetExceeded('PHYSICAL_CALL_CAP:'+key)
-        with self.book.span('registered_full_prediction',**({counter:1} if counter else {})):
+        if counter:
+            self.book.counts[counter]+=1
+            self.book.append({'event':'PHYSICAL_CALL_RESERVED','phase':self.book.phase,'counters':{counter:1},'status':'RESERVED',**self.book.metadata})
+        with self.book.span('registered_full_prediction'):
             state=self.adapter.full_state(np.asarray(chi,complex))
         return self.adapter.whiten(pack(state.field)),state
 

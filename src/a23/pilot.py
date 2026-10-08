@@ -172,28 +172,67 @@ def curvature_row(ref,x,clean,decoder,config,scene,t):
 
 def pilot_stage(root,book,device,config):
     from .offline import load_truth
-    dest=Path(root)/'results/a23';metric=[];curvature=[];timing=[];sketch=[]
+    dest=Path(root)/'results/a23';metric=[];curvature=[];timing=[];sketch=[];preparation=[]
     (dest/'images').mkdir(parents=True,exist_ok=True)
     for sid in config['scenes']:
-        ref=make_ref(root,sid,book,device,config);before=book.snapshot()
+        reference_snap=book.snapshot();reference_start=time.perf_counter()
+        ref=make_ref(root,sid,book,device,config);book.synchronize()
+        reference_wall=time.perf_counter()-reference_start
+        prep={'scene':sid,'common_reference_geometry_seconds':reference_wall,
+              'common_reference_counts':book.delta(reference_snap)['counts'],
+              'scope':'independent deployment attribution; shared actual job billed once',
+              'includes_truth_labels_or_curvature_diagnostics':False}
         data_path=dest/f'cache/scene_{sid}/transfer.npz'
+        # H1 cache provenance was not serialized by its first source snapshot.
+        # Pay a complete fresh reference transfer/decoder and compare all entries;
+        # do not silently borrow a background matrix from an unknown key.
+        start=time.perf_counter();transfer_snap=book.snapshot()
+        with book.span('pilot_fresh_reference_transfer_and_decoder'):
+            decoder=TikhonovDecoder(ref.matrix(),relative=config['tikhonov_relative'],device=device,book=book)
+        book.synchronize();prep['direct_transfer_and_decoder_seconds']=time.perf_counter()-start
+        prep['direct_decoder_seconds']=decoder.prepare_seconds
+        prep['direct_transfer_and_decoder_counts']=book.delta(transfer_snap)['counts']
+        cache_start=time.perf_counter()
         with np.load(data_path,allow_pickle=False) as f:
-            ref._matrix=f['A'].copy();ref._Z=f['Z'].copy()
-            decoder=TikhonovDecoder.__new__(TikhonovDecoder)
-            decoder.A=ref._matrix;decoder.D=f['D'].copy();decoder.lam=float(f['lam'])
-            decoder.data_U=f['U'].copy();decoder.singular_values=f['s'].copy()
-            cached_opm=f['cached_opm_A'].copy();randomized=f['randomized_transfer_A'].copy()
+            priorA=f['A'].copy();randomized=f['randomized_transfer_A'].copy()
+        mismatch=la.norm(priorA-ref.matrix())/la.norm(ref.matrix())
+        if mismatch>1e-9:raise ValueError('H1_BACKGROUND_CACHE_FULL_TRANSFER_CONFLICT')
+        key={'reference_key':plain(ref.cache_key),'probe_config':config['OPM'],
+             'random_rank':config['randomized_transfer_rank'],'material':'full-cell real mass',
+             'dtype':'complex128/float64','whitening':'declared reference RMS','newSHA256checks':0}
+        meta_path=dest/f'cache/scene_{sid}/PROVENANCE.json'
+        if meta_path.exists() and json.loads(meta_path.read_text())!=key:raise ValueError('CACHE_KEY_MISMATCH')
+        write_json(meta_path,key)
+        write_json(dest/f'CACHE_PROVENANCE_AUDIT_{sid}.json',{'full_transfer_relative_difference':float(mismatch),
+            'status':'FRESH_PAID_REFERENCE_VERIFIED','key':key,'fresh_setup_seconds':time.perf_counter()-start,
+            'first_H1_cache_key_gap':'RETAINED_AND_REPLACED_ONLY_IN_PILOT_BY_PAID_FRESH_PREPARATION',
+            'old_H1_cache_overwritten':False})
         book.counts['cache_read_bytes']+=data_path.stat().st_size
+        prep['historical_transfer_cache_audit_seconds']=time.perf_counter()-cache_start
+        born_snap=book.snapshot();born_start=time.perf_counter()
         with book.span('born_decoder_prepare'):
             bornA=local_born_matrix(ref)
             bornD=TikhonovDecoder(bornA,device=device,book=book,lam=decoder.lam)
+        book.synchronize();prep['born_transfer_and_decoder_seconds']=time.perf_counter()-born_start
+        prep['born_counts']=book.delta(born_snap)['counts']
+        random_snap=book.snapshot();random_start=time.perf_counter()
         with book.span('generic_randomized_decoder_prepare'):
             randomD=TikhonovDecoder(randomized,device=device,book=book,lam=decoder.lam)
+        book.synchronize();prep['random_decoder_seconds']=time.perf_counter()-random_start
+        prep['random_decoder_counts']=book.delta(random_snap)['counts']
+        quadratic_snap=book.snapshot();quadratic_start=time.perf_counter()
         with book.span('quadratic_compression_prepare'):
             Uy,sketchrow,rawprobe=quadratic_sketch(ref,config)
+        book.synchronize();prep['quadratic_compression_including_holdout_audit_seconds']=time.perf_counter()-quadratic_start
+        prep['quadratic_compression_counts']=book.delta(quadratic_snap)['counts']
+        # The full fixed preparation/audit cost is attributed to the candidate;
+        # do not remove heldout probes from its deployment cost after seeing data.
+        quadratic_io_start=time.perf_counter()
         sketchrow['scene']=sid;sketch.append(sketchrow)
         write_json(dest/'QUADRATIC_SKETCH_AUDIT.json',sketch)
         np.savez_compressed(dest/f'cache/scene_{sid}/quadratic.npz',Uy=Uy,probe_response=rawprobe)
+        prep['quadratic_cache_export_seconds']=time.perf_counter()-quadratic_io_start
+        preparation.append(prep);write_json(dest/'PIPELINE_PREPARATION_RAW.json',preparation)
         # Only offline generator reads nominal unknown material.
         nominal=load_truth(root,sid)
         ref.validate_material(nominal)
@@ -203,7 +242,7 @@ def pilot_stage(root,book,device,config):
             labelpath=dest/f'OFFLINE_CLEAN_LABEL_{sid}_t{t}.npz'
             if labelpath.exists():
                 with np.load(labelpath,allow_pickle=False) as f:
-                    if not np.array_equal(f['truth_OFFLINE'],truth):raise ValueError('CACHED_LABEL_MATERIAL_CONFLICT')
+                    if not np.array_equal(f['truth_OFFLINE'],truth) or str(f['cache_key'])!=json.dumps(key,sort_keys=True):raise ValueError('CACHED_LABEL_MATERIAL_OR_KEY_CONFLICT')
                     clean=f['clean'].copy();rawfield=f['raw_field'].copy()
                 book.counts['cache_read_bytes']+=labelpath.stat().st_size
             else:
@@ -211,7 +250,7 @@ def pilot_stage(root,book,device,config):
                     clean,state=ref.predict(truth)
                 rawfield=state.field.copy()
                 np.savez_compressed(labelpath,truth_OFFLINE=truth,clean=clean,raw_field=rawfield,
-                    parent_id=sid,t=t,upstream_commit=config['upstream_commit'])
+                    parent_id=sid,t=t,upstream_commit=config['upstream_commit'],cache_key=json.dumps(key,sort_keys=True))
                 book.counts['cache_write_bytes']+=labelpath.stat().st_size
             labels[t]=(truth,clean,rawfield)
         sigma=.1*float(np.sqrt(np.mean(abs(labels[1.][2]-ref.state.field)**2)))
@@ -225,7 +264,9 @@ def pilot_stage(root,book,device,config):
             for noise in config['noise']:
                 rng=np.random.default_rng(np.random.SeedSequence([config['master_seed'],sid,int(100*t),411]))
                 epsilon=np.zeros_like(raw) if noise=='zero' else gaussian_noise(rng,raw.shape,sigma)
+                encode_start=time.perf_counter()
                 measured=ref.adapter.whiten(pack(raw+epsilon));z=measured-ref.data0
+                encode_wall=time.perf_counter()-encode_start
                 x1=decoder.decode(z)
                 reconstructed={};method_costs={}
                 methods=['homogeneous_born','born_BP','dressed_linear_chi','linear_a_exact_conversion',
@@ -265,6 +306,7 @@ def pilot_stage(root,book,device,config):
                          cold_decode_seconds=attempts[0],warm_decode_seconds=float(np.median(attempts[1:])),
                          sigma_physical=sigma if noise!='zero' else 0.,sigma_whitened=sigma/ref.scale if noise!='zero' else 0.,
                          common_lambda=decoder.lam,full_dimension=ref.p)
+                    row['online_pack_encode_seconds']=encode_wall
                     metric.append(row);reconstructed[method]=chi;method_costs[method]=counts[0]
                     timing.append({'scene':sid,'t':t,'noise':noise,'method':method,'cold':attempts[0],
                         'warm_repeats':attempts[1:],'cold_actions':counts[0],'warm_actions':counts[1:]})
@@ -274,8 +316,14 @@ def pilot_stage(root,book,device,config):
                 save_csv(dest/'CURVATURE_DECOMPOSITION.csv',curvature)
                 write_json(dest/'DECODE_TIMING_RAW.json',timing)
                 arrays={k:v for k,v in reconstructed.items()}
+                image_io_start=time.perf_counter()
                 np.savez_compressed(dest/f'images/scene_{sid}_t{t}_{noise}.npz',truth_OFFLINE=truth,
                     measured=measured,noise=epsilon,**arrays)
+                image_io_wall=time.perf_counter()-image_io_start
+                for saved_row in metric:
+                    if saved_row.get('scene')==sid and saved_row.get('t')==t and saved_row.get('noise')==noise:
+                        saved_row['shared_observation_image_export_seconds']=image_io_wall
+                        saved_row['image_IO_attribution']='full shared export charged to each independent deployment, not summed in actual ledger'
         for row,chi,measured,z in prediction:
             start=time.perf_counter();snap=book.snapshot()
             try:

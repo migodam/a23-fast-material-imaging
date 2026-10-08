@@ -6,3 +6,6 @@
 4. Source-anchor P按全forcing尺度判断结构零，不让数值roundoff生成虚假P4。原与cache使用同一合法、与本次噪声无关的known-reference observationprobe；不能声称跨测量摊销一个data-dependent Oseed。
 5. 满维χ和a的线性先验在背景点按a'映射匹配；强幅度a→χ仅局部prior匹配，不是全局概率pushforward。所有输出的可行性显式检验；无jitter、pinv、QP容差放宽或隐藏projection。
 6. H2/H3汇总规则在任何full-image质量输出前登记于configs/SCIENTIFIC_AGGREGATION_FREEZE.json。旧项目gates和negative记录未改。
+
+7. 首版H1缓存没有序列化完整key。H2不直接复用该背景map/decoder：重新付费构建已知背景的全transfer、receiver伴随及decoder，逐元素检查与H1一致，然后登记geometry/source/receiver/frequency/reference/whitening/metric/probe/dtype key；旧H1缓存不覆盖。该准备成本计入真实账本。
+8. full-state额度按阶段在调用前reservation落盘，跨jobs取receipt/日志的保守最大计数；未结算orphan job阻止新物理运行。已有pilot结果不允许自动覆盖/重跑；部分结果保留并报告。clean label缓存须同时验证材料和完整key。单方法算法错误保留失败行，不抹去其他方法。

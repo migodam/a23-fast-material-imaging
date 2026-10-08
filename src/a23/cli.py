@@ -8,17 +8,21 @@ def prior_cost(root):
     rows=[]
     for p in (root/'results/a23/jobs').glob('*/job_receipt.json'):
         rows.append(json.loads(p.read_text()))
+    for folder in (root/'results/a23/jobs').glob('*'):
+        if (folder/'job_manifest.json').exists() and not (folder/'job_receipt.json').exists():
+            raise BudgetExceeded('ORPHAN_JOB_COST_UNRESOLVED_STOP_BEFORE_NEW_PHYSICS')
     return sum(r.get('process_cpu_seconds',0.) for r in rows),sum(r.get('gpu_occupation_seconds',0.) for r in rows)
 
 def prior_counts(root):
     from collections import Counter
     total=Counter()
     for folder in (root/'results/a23/jobs').glob('*'):
-        receipt=folder/'job_receipt.json'
-        if receipt.exists(): total.update(json.loads(receipt.read_text()).get('counts',{}))
-        elif (folder/'ACTION_LEDGER.jsonl').exists():
+        receipt=folder/'job_receipt.json';paid=Counter();logged=Counter()
+        if receipt.exists(): paid.update(json.loads(receipt.read_text()).get('counts',{}))
+        if (folder/'ACTION_LEDGER.jsonl').exists():
             for line in (folder/'ACTION_LEDGER.jsonl').read_text().splitlines():
-                if line.strip():total.update(json.loads(line).get('counters',{}))
+                if line.strip():logged.update(json.loads(line).get('counters',{}))
+        total.update({key:max(paid[key],logged[key]) for key in paid.keys()|logged.keys()})
     return dict(total)
 
 def run_unit(root,book):
@@ -43,16 +47,16 @@ def main(argv=None):
     if not a.job.replace('-','').replace('_','').isalnum():raise ValueError('INVALID_JOB_ID')
     jobdir=dest/'jobs'/a.job
     if jobdir.exists():raise ValueError('JOB_ALREADY_EXISTS_NEVER_REPLACE')
-    jobdir.mkdir(parents=True)
     config=json.loads((root/'FROZEN_CONFIG.json').read_text())
     cpu,gpu=prior_cost(root)
     config['_prior_counts']=prior_counts(root)
+    jobdir.mkdir(parents=True)
     book=CostBook(jobdir/'ACTION_LEDGER.jsonl',device=a.device,prior_cpu=cpu,prior_gpu=gpu,
        cpu_limit=config['cpu_wall_soft_target_seconds'],gpu_limit=config['gpu_occupation_cap_seconds'],
        cpu_reserve=60.,gpu_reserve=60.,metadata={'job':a.job,'stage':a.stage},enforce=True)
     write_json(jobdir/'job_manifest.json',{'stage':a.stage,'job':a.job,'device':a.device,
        'precision':'complex128/float64','platform':platform.platform(),'python':platform.python_version(),
-       'frozen_config':config,'prior_cost':{'cpu':cpu,'gpu':gpu},'new_SHA256_checks':0})
+       'frozen_config':config,'source_snapshot':json.loads((root/'RUN_SOURCE_SNAPSHOT.json').read_text()) if (root/'RUN_SOURCE_SNAPSHOT.json').exists() else {'status':'EARLY_SOURCE_SNAPSHOT_RECORDED_IN_LOCAL_DEPLOY_AUDIT'},'prior_cost':{'cpu':cpu,'gpu':gpu},'new_SHA256_checks':0})
     outcome='FAILED';error=None
     try:
         # Actual queue is checked by controller; lock protects race between jobs.
@@ -86,6 +90,7 @@ def main(argv=None):
                 if not (dest/'H1_ENCODER_METRICS.csv').exists():raise ValueError('H1_NOT_COMPLETED')
                 rows=list(csv.DictReader((dest/'H1_ENCODER_METRICS.csv').open()))
                 if set(int(r['scene']) for r in rows)!=set(config['scenes']):raise ValueError('H1_INCOMPLETE_NO_EXPANSION')
+                if (dest/'FULL_IMAGE_METRICS.csv').exists():raise ValueError('EXISTING_PILOT_RESULTS_RETAINED_NO_AUTOMATIC_OVERWRITE_OR_EXPANSION')
                 from .pilot import pilot_stage
                 pilot_stage(root,book,a.device,config)
             else:

@@ -31,13 +31,17 @@ GPU_CAP = 7200.0
 STOP_RESERVE = 30.0
 MAX_ZIP_BYTES = 2 * 1024**3
 JOB_PATTERN = r"a23-[A-Za-z0-9_-]{1,112}"
+METADATA_POLICIES = ("preserve-variants", "update-monitoring")
 
 
 class TransportError(RuntimeError):
-    """Fixed diagnostic code only; never private connection values."""
+    """Fixed diagnostic code and safe relative member; no connection values."""
 
-    def __init__(self, code):
+    def __init__(self, code, relative_path=None):
         self.code = code
+        self.relative_path = (relative_path if _safe_name(relative_path)
+                              and not any(p in ("private", ".git")
+                                          for p in relative_path.split('/')) else None)
         super().__init__(code)
 
 
@@ -54,6 +58,16 @@ def _safe_name(name):
         return False
     parts = name.split('/')
     return bool(parts) and all(p not in (".", "..", "") for p in parts)
+
+
+def _regenerable_result(name):
+    """Only declared transfer caches are omitted; probe evidence is retained."""
+    parts = PurePosixPath(name).parts
+    lower = tuple(p.casefold() for p in parts)
+    return (lower[:3] == ('results', 'a23', 'cache')
+            or (len(parts) == 5 and lower[:3] == ('results', 'a23', 'h1')
+                and lower[-1].endswith('.npz')
+                and lower[-1] not in ('h1_fixed_probes.npz', 'h1_randomized_training.npz')))
 
 
 def _safe_destination(root, name):
@@ -125,6 +139,11 @@ def deployment_members(root, scope):
             directory = root / folder
             paths.update(p for p in directory.rglob("*.py") if "__pycache__" not in p.parts)
         paths.add(root / "FROZEN_CONFIG.json")
+        for name in ("SOURCE_MANIFEST.json", "RUN_SOURCE_SNAPSHOT.json",
+                     "configs/SCIENTIFIC_AGGREGATION_FREEZE.json"):
+            path = root / name
+            if path.is_file():
+                paths.add(path)
         provenance = root / "vendor/a17/UPSTREAM_PROVENANCE.json"
         if provenance.is_file():
             paths.add(provenance)
@@ -170,8 +189,9 @@ def _prelude(helper, options):
             root=pathlib.Path(REMOTE)
             query_cpu=0.0
             class Refusal(RuntimeError):
-                def __init__(self,code): self.code=code;super().__init__(code)
-            def refuse(code): raise Refusal(code)
+                def __init__(self,code,relative_path=None):
+                    self.code=code;self.relative_path=relative_path;super().__init__(code)
+            def refuse(code,relative_path=None): raise Refusal(code,relative_path)
             def number(value):
                 if isinstance(value,bool) or not isinstance(value,(int,float)) or not math.isfinite(value) or value<0:
                     refuse('INVALID_BUDGET_VALUE')
@@ -209,7 +229,11 @@ def _prelude(helper, options):
                 if code or out.strip(): refuse('GPU_QUEUE_NOT_CLEAR')
             def error_fields(error):
                 row={'error_type':type(error).__name__}
-                if isinstance(error,Refusal): row['error_code']=error.code
+                if isinstance(error,Refusal):
+                    row['error_code']=error.code
+                    name=error.relative_path
+                    if safe_name(name) and not any(p in ('private','.git') for p in name.split('/')):
+                        row['error_relative_path']=name
                 return row
             def record(row):
                 if row.get('physics_job_launched') and row.get('device')=='cuda':
@@ -276,23 +300,28 @@ try:
             total+=member.file_size
             if total>128*1024**2: refuse('DEPLOY_ARCHIVE_TOO_LARGE')
             target=destination(name);payload=z.read(member)
-            immutable=name=='FROZEN_CONFIG.json' or name.startswith('data/')
+            immutable=(name in ('FROZEN_CONFIG.json','SOURCE_MANIFEST.json')
+                or name.startswith('configs/') or name.startswith('data/'))
             if target.exists() and immutable and target.read_bytes()!=payload:
-                refuse('IMMUTABLE_CONFIG_OR_DATA_CONFLICT')
-            plan.append((target,payload))
+                refuse('IMMUTABLE_CONFIG_OR_DATA_CONFLICT',name)
+            plan.append((name,target,payload,immutable))
         if len(seen)!=len(expected): refuse('DEPLOY_MEMBER_SET_MISMATCH')
     if pathlib.Path(LOCK).exists(): refuse('SHARED_LOCK_EXISTS')
     queue_clear()
-    for target,payload in plan:
+    for name,target,payload,immutable in plan:
         if target.exists() and target.read_bytes()==payload: continue
+        if immutable and target.exists(): refuse('IMMUTABLE_CONFIG_OR_DATA_CONFLICT',name)
         target.parent.mkdir(parents=True,exist_ok=True)
         with tempfile.NamedTemporaryFile('wb',dir=target.parent,delete=False) as f:
             temporary=pathlib.Path(f.name);f.write(payload)
-        try: os.replace(temporary,target)
+        try:
+            if immutable: os.link(temporary,target)
+            else: os.replace(temporary,target)
         finally: temporary.unlink(missing_ok=True)
     archive.unlink()
     row.update(status='COMPLETE',member_count=len(plan),uncompressed_bytes=total,
-        offline_evaluator_only=OPTS['scope']=='offline-evaluation',private_files_transferred=False)
+        offline_evaluator_only=OPTS['scope']=='offline-evaluation',private_files_transferred=False,
+        source_snapshot_policy='RUN_SOURCE_SNAPSHOT.json may change with explicitly deployed source versions')
 except BaseException as error:
     row.update(**error_fields(error))
 record(row)
@@ -433,9 +462,15 @@ finally:
 
 PULL_BODY = r'''
 row={'status':'FAILED','gpu_tail_seconds':0.0,'physics_job_launched':False}
+def regenerable_result(name):
+    parts=pathlib.PurePosixPath(name).parts;lower=tuple(p.casefold() for p in parts)
+    return (lower[:3]==('results','a23','cache')
+        or (len(parts)==5 and lower[:3]==('results','a23','h1')
+            and lower[-1].endswith('.npz')
+            and lower[-1] not in ('h1_fixed_probes.npz','h1_randomized_training.npz')))
 try:
     if pathlib.Path(LOCK).exists(): refuse('PULL_REFUSED_WHILE_SHARED_LOCK_EXISTS')
-    archive=destination(OPTS['archive']);total=0;count=0
+    archive=destination(OPTS['archive']);total=0;count=0;skipped_count=0;skipped_bytes=0
     with zipfile.ZipFile(archive,'w',zipfile.ZIP_DEFLATED) as z:
         paths=list((root/'results/a23').rglob('*'))
         paths+=list((root/'runs').glob('a23-*'))
@@ -447,10 +482,15 @@ try:
             if name.startswith('runs/') and not (p.suffix in ('.stdout','.stderr') and re.fullmatch(JOB_PATTERN,p.stem)):
                 continue
             if not (name.startswith('results/a23/') or name.startswith('runs/')): refuse('PULL_NAMESPACE_REFUSED')
+            if regenerable_result(name):
+                skipped_count+=1;skipped_bytes+=p.stat().st_size;continue
             total+=p.stat().st_size
-            if total>MAX_ZIP_BYTES: refuse('RESULT_ARCHIVE_TOO_LARGE')
+            if total>MAX_ZIP_BYTES: refuse('RESULT_ARCHIVE_TOO_LARGE',name)
             z.write(p,name);count+=1
-    row.update(status='COMPLETE',archive=OPTS['archive'],member_count=count,uncompressed_bytes=total)
+    row.update(status='COMPLETE',archive=OPTS['archive'],member_count=count,uncompressed_bytes=total,
+        regenerable_cache_members_skipped=skipped_count,regenerable_cache_bytes_skipped=skipped_bytes,
+        remote_caches_retained=True,
+        cache_policy='exclude cache/ and h1/<scene>/*.npz except H1_FIXED_PROBES.npz and H1_RANDOMIZED_TRAINING.npz; regenerate from declared frozen inputs when needed')
 except BaseException as error:
     row.update(**error_fields(error))
 record(row)
@@ -516,11 +556,104 @@ def _ledger_prefix(existing, incoming):
                 return False
 
 
-def _install_results(root, archive):
-    """Stage and validate everything before writing; old arrays are immutable."""
+def _read_json(path):
+    def unique_object(pairs):
+        result = {}
+        for key, value in pairs:
+            if key in result:
+                raise ValueError('duplicate JSON key')
+            result[key] = value
+        return result
+    def reject_constant(value):
+        raise ValueError('nonfinite JSON value')
+    def finite_float(value):
+        result = float(value)
+        if not math.isfinite(result):
+            raise ValueError('nonfinite JSON value')
+        return result
+    return json.loads(path.read_text(encoding='utf-8'), object_pairs_hook=unique_object,
+                      parse_constant=reject_constant, parse_float=finite_float)
+
+
+def _json_values_equal(left, right):
+    """Exact JSON values/types; formatting and object key order are immaterial."""
+    def equal(a, b):
+        if type(a) is not type(b):
+            return False
+        if isinstance(a, dict):
+            return a.keys() == b.keys() and all(equal(a[k], b[k]) for k in a)
+        if isinstance(a, list):
+            return len(a) == len(b) and all(equal(x, y) for x, y in zip(a, b))
+        return a == b
+    try:
+        return equal(_read_json(left), _read_json(right))
+    except (OSError, ValueError, UnicodeError):
+        return False
+
+
+def _phase0_counts_match(left, right):
+    """The actual phase-0 schema has four counts, status and frozen scope."""
+    try:
+        a, b = _read_json(left), _read_json(right)
+        if not isinstance(a, dict) or not isinstance(b, dict):
+            return False
+        counts = ('tests', 'failures', 'errors', 'skips')
+        if any(type(row.get(k)) is not int or row[k] < 0
+               for row in (a, b) for k in counts):
+            return False
+        return (all(a[k] == b[k] for k in counts)
+                and a.get('status') in ('PASS', 'FAIL') and a['status'] == b.get('status')
+                and isinstance(a.get('scope'), str) and a['scope'] == b.get('scope'))
+    except (OSError, ValueError, UnicodeError):
+        return False
+
+
+def _copy_file(source, target):
+    with source.open('rb') as incoming, target.open('wb') as output:
+        while True:
+            chunk = incoming.read(1024**2)
+            if not chunk:
+                break
+            output.write(chunk)
+
+
+def _install_results(root, archive, *, metadata_policy='preserve-variants', attempt=None, details=None):
+    """Validate before writes; only explicitly requested monitoring can change."""
+    if metadata_policy not in METADATA_POLICIES:
+        raise TransportError('INVALID_METADATA_POLICY')
+    attempt = attempt or uuid.uuid4().hex
+    if not re.fullmatch(r'[a-f0-9]{32}', attempt):
+        raise TransportError('INVALID_TRANSPORT_ATTEMPT')
+    details = {} if details is None else details
+    details.update(metadata_policy=metadata_policy, monitoring_primary_updated=False,
+                   semantic_json_matches=[], platform_variants=[],
+                   phase0_summary_requires_review=False, local_regenerable_members_omitted=0,
+                   local_regenerable_bytes_omitted=0)
     with tempfile.TemporaryDirectory() as directory:
         staged_root = Path(directory)
-        plan, seen, total = [], set(), 0
+        plan, seen, planned_names, total = [], set(), set(), 0
+        def queue_new(name, staged):
+            destination = _safe_destination(root, name)
+            if name.casefold() in planned_names:
+                raise TransportError('DUPLICATE_PLANNED_RESULT', name)
+            if destination.exists():
+                if _same_file(destination, staged):
+                    return
+                raise TransportError('IMMUTABLE_RESULT_CONFLICT', name)
+            planned_names.add(name.casefold())
+            plan.append((name, destination, staged, 'new', None))
+        def preserve_variants(name, destination, incoming):
+            previous = _safe_destination(staged_root, '_metadata_previous/' + name)
+            previous.parent.mkdir(parents=True, exist_ok=True)
+            _copy_file(destination, previous)
+            base = 'results/a23/platform_variants/' + attempt + '/'
+            local_name = base + 'local_previous/' + destination.name
+            remote_name = base + 'remote_latest/' + destination.name
+            queue_new(local_name, previous)
+            queue_new(remote_name, incoming)
+            details['platform_variants'].append(dict(primary=name, local_previous=local_name,
+                                                     remote_latest=remote_name))
+            return previous
         with zipfile.ZipFile(archive) as z:
             for member in z.infolist():
                 name = member.filename
@@ -530,11 +663,15 @@ def _install_results(root, archive):
                 if (not _safe_name(name) or name.casefold() in seen
                         or not (name.startswith('results/a23/') or valid_log)
                         or stat.S_ISLNK(member.external_attr >> 16)):
-                    raise TransportError("INVALID_RESULT_ARCHIVE_MEMBER")
+                    raise TransportError("INVALID_RESULT_ARCHIVE_MEMBER", name)
                 seen.add(name.casefold())
+                if _regenerable_result(name):
+                    details['local_regenerable_members_omitted'] += 1
+                    details['local_regenerable_bytes_omitted'] += member.file_size
+                    continue
                 total += member.file_size
                 if total > MAX_ZIP_BYTES:
-                    raise TransportError("RESULT_ARCHIVE_TOO_LARGE")
+                    raise TransportError("RESULT_ARCHIVE_TOO_LARGE", name)
                 destination = _safe_destination(root, name)
                 staged = _safe_destination(staged_root, name)
                 staged.parent.mkdir(parents=True, exist_ok=True)
@@ -545,24 +682,39 @@ def _install_results(root, archive):
                             break
                         output.write(chunk)
                 if not destination.exists():
-                    plan.append((destination, staged, 'new'))
+                    queue_new(name, staged)
                 elif _same_file(destination, staged):
                     continue
+                elif destination.suffix == '.json' and _json_values_equal(destination, staged):
+                    details['semantic_json_matches'].append(name)
+                    continue  # Keep the existing bytes, including their newline convention.
+                elif name == 'results/a23/LATEST_JOB.json':
+                    previous = preserve_variants(name, destination, staged)
+                    if metadata_policy == 'update-monitoring':
+                        planned_names.add(name.casefold())
+                        plan.append((name, destination, staged, 'monitor', previous))
+                elif name == 'results/a23/PHASE0_TESTS.json':
+                    counts_match = _phase0_counts_match(destination, staged)
+                    preserve_variants(name, destination, staged)
+                    details['phase0_scientific_counts_match'] = counts_match
+                    details['phase0_summary_requires_review'] = not counts_match
+                    # Preserve both platform summaries; never replace the local gate file.
                 elif destination.suffix == '.jsonl' and 'LEDGER' in destination.name.upper():
                     if _ledger_prefix(destination, staged):
-                        plan.append((destination, staged, 'append'))
+                        planned_names.add(name.casefold())
+                        plan.append((name, destination, staged, 'append', None))
                     elif _ledger_prefix(staged, destination):
                         continue  # Incoming is an older immutable ledger prefix.
                     else:
-                        raise TransportError("IMMUTABLE_LEDGER_PREFIX_CONFLICT")
+                        raise TransportError("IMMUTABLE_LEDGER_PREFIX_CONFLICT", name)
                 else:
-                    raise TransportError("IMMUTABLE_RESULT_CONFLICT")
+                    raise TransportError("IMMUTABLE_RESULT_CONFLICT", name)
         changed = 0
-        for destination, staged, mode in plan:
+        for name, destination, staged, mode, previous in plan:
             destination.parent.mkdir(parents=True, exist_ok=True)
             if mode == 'append':
                 if not _ledger_prefix(destination, staged):
-                    raise TransportError("LEDGER_CHANGED_DURING_PULL")
+                    raise TransportError("LEDGER_CHANGED_DURING_PULL", name)
                 with staged.open('rb') as source, destination.open('ab') as output:
                     source.seek(destination.stat().st_size)
                     while True:
@@ -571,10 +723,13 @@ def _install_results(root, archive):
                             break
                         output.write(chunk)
             else:
-                if destination.exists():
+                if mode == 'monitor':
+                    if not destination.exists() or not _same_file(destination, previous):
+                        raise TransportError('MONITORING_CHANGED_DURING_PULL', name)
+                elif destination.exists():
                     if _same_file(destination, staged):
                         continue
-                    raise TransportError("RESULT_CHANGED_DURING_PULL")
+                    raise TransportError("RESULT_CHANGED_DURING_PULL", name)
                 temporary = None
                 try:
                     with tempfile.NamedTemporaryFile('wb', dir=destination.parent, delete=False) as output:
@@ -585,7 +740,11 @@ def _install_results(root, archive):
                                 if not chunk:
                                     break
                                 output.write(chunk)
-                    os.link(temporary, destination)  # Atomic new file; refuses replacement.
+                    if mode == 'monitor':
+                        os.replace(temporary, destination)  # Explicit monitoring policy only.
+                        details['monitoring_primary_updated'] = True
+                    else:
+                        os.link(temporary, destination)  # Atomic new file; refuses replacement.
                 finally:
                     if temporary is not None:
                         temporary.unlink(missing_ok=True)
@@ -593,7 +752,7 @@ def _install_results(root, archive):
     return changed
 
 
-def pull(helper, connection, root, attempt):
+def pull(helper, connection, root, attempt, metadata_policy='preserve-variants'):
     name = 'a23-pull-' + attempt + '.zip'
     row = _call(helper, connection, _remote_code(helper, 'pull', attempt,
                 archive=name), timeout=120)
@@ -601,8 +760,17 @@ def pull(helper, connection, root, attempt):
         return row
     with tempfile.TemporaryDirectory() as directory:
         archive = Path(directory) / name
-        connection.copy_from(name, archive)
-        row['local_files_written'] = _install_results(root, archive)
+        try:
+            connection.copy_from(name, archive)
+            details = {}
+            row['local_files_written'] = _install_results(root, archive,
+                metadata_policy=metadata_policy, attempt=attempt, details=details)
+            row.update(details)
+        except BaseException as error:
+            # Keep remote controller costs in the new failed local receipt.
+            failed = error if isinstance(error, TransportError) else TransportError('LOCAL_PULL_INSTALL_FAILED')
+            failed.accounting = row
+            raise failed from None
     # This exact transport-owned archive is the only removed remote file.
     connection.shell("Remove-Item -LiteralPath '" + REMOTE + '/' + name + "'", timeout=15)
     return row
@@ -635,6 +803,8 @@ def main(argv=None):
     parser.add_argument('--job', default=None)
     parser.add_argument('--device', choices=('cpu', 'cuda'), default='cuda')
     parser.add_argument('--timeout-seconds', type=float, default=GPU_CAP)
+    parser.add_argument('--metadata-policy', choices=METADATA_POLICIES, default='preserve-variants',
+                        help='Pull: preserve both monitoring variants; update-monitoring also updates LATEST_JOB only')
     args = parser.parse_args(argv)
     root = args.root.expanduser().resolve()
     if not root.is_dir():
@@ -661,12 +831,14 @@ def main(argv=None):
                         stage=args.stage, job=_job(args.job), device=args.device,
                         timeout_seconds=args.timeout_seconds), timeout=min(GPU_CAP, args.timeout_seconds) + 30)
         else:
-            row = pull(helper, connection, root, attempt)
+            row = pull(helper, connection, root, attempt, args.metadata_policy)
     except BaseException as error:
         row = dict(status='FAILED', error_type=type(error).__name__,
                    error_code=error.code if isinstance(error, TransportError) else 'PRIVATE_DIAGNOSTICS_SUPPRESSED',
                    physics_job_launched=None if launch_outcome_uncertain else False,
                    launch_outcome_uncertain=launch_outcome_uncertain)
+        if isinstance(error, TransportError) and error.relative_path is not None:
+            row['error_relative_path'] = error.relative_path
         accounting = getattr(error, 'accounting', None)
         if isinstance(accounting, dict):
             row['remote_accounting'] = accounting
