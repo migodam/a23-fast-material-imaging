@@ -492,6 +492,8 @@ def build_h1(reference, config, output_dir, *, direct_preparation=None):
     """
     opm = _frozen_config(config)
     a, book = reference.adapter, reference.book
+    if a.book is not book:
+        raise ValueError('H1_REQUIRES_SHARED_REFERENCE_AND_ADAPTER_COST_BOOK')
     if a.P != 6:
         raise ValueError('H1_FROZEN_SOURCE_COUNT_REQUIRES_ALL_SIX_REFERENCE_CURRENTS')
     if a.chart.Q is not None:
@@ -500,6 +502,8 @@ def build_h1(reference, config, output_dir, *, direct_preparation=None):
     output_dir.mkdir(parents=True, exist_ok=True)
     shared_before = book.snapshot()
     shared_started = time.perf_counter()
+    _, operator_cost = _stage(book, 'shared_reference_operator',
+                               lambda: a._activate(reference.chi0, reference.state))
     exact, exact_cost = _stage(book, 'shared_exact_evaluation_matrix', reference.matrix)
     exact = np.asarray(exact, float)
     if exact.shape != (2 * a.P * a.m, a.chart.d) or not np.all(np.isfinite(exact)):
@@ -528,6 +532,7 @@ def build_h1(reference, config, output_dir, *, direct_preparation=None):
     shared_actual = {'wall_seconds': time.perf_counter() - shared_started,
                      **_cost_delta(book, shared_before),
                      'exact_matrix': exact_cost, 'evaluation_decoder': decoder_cost,
+                     'reference_operator': operator_cost,
                      'receiver_geometry': geometry_cost,
                      'fixed_probe_export': probe_export_cost,
                      'accounting': 'charged once, not the sum of per-arm attributions'}

@@ -285,6 +285,48 @@ def pilot_stage(root,book,device,config):
                 row['full_validation']='REJECTED';append_failure(root,'FULL_VALIDATION_REJECTED',scene=sid,method=row['method'],reason=str(e),charged=True)
             row['full_validation_seconds']=time.perf_counter()-start
             row['validation_actions']=book.delta(snap)['counts']
+        # Prespecified calibration stress: same clean nominal label and noise,
+        # correlated source/receiver physical gains; no new clean solve.
+        truth,clean,raw=labels[1.]
+        rng=np.random.default_rng(np.random.SeedSequence([config['master_seed'],sid,509]))
+        sg=1+config['calibration_source_amplitude']*rng.normal(size=ref.P)
+        rg=1+config['calibration_receiver_gain']*np.repeat(rng.normal(size=ref.adapter.m//2),2)
+        noise_rng=np.random.default_rng(np.random.SeedSequence([config['master_seed'],sid,100,411]))
+        epsilon=gaussian_noise(noise_rng,raw.shape,sigma)
+        caldata=ref.adapter.whiten(pack(raw*sg[:,None]*rg[None,:]+epsilon));cz=caldata-ref.data0
+        calarrays={}
+        for method in ['dressed_linear_chi','vanilla_IBS2','A23_compressed_feedback']:
+            snap=book.snapshot();start=time.perf_counter()
+            try:
+                chi=candidate_from_measurement(ref,decoder,bornA,bornD,randomD,Uy,cz,method,config)
+            except Exception as error:
+                from a20.costs import BudgetExceeded
+                if isinstance(error,BudgetExceeded):raise
+                append_failure(root,'CALIBRATION_ALGORITHM_FAILURE',scene=sid,method=method,reason=str(error),charged=True)
+                metric.append({'scene':sid,'t':1.,'noise':'20dB_calibration','method':method,'status':'FAILED_ALGORITHM',
+                               'full_chi_NRMSE':None,'datafullresidual':None,'full_validation':'NOT_RUN'})
+                continue
+            elapsed=time.perf_counter()-start;calarrays[method]=chi
+            status='OK'
+            try:ref.validate_material(chi)
+            except ValueError as error:
+                status='REJECTED_PHYSICAL';append_failure(root,'CALIBRATION_CANDIDATE_REJECTED',scene=sid,method=method,reason=str(error),charged=True)
+            row=image_metrics(ref,chi,truth,nominal,method=method,scene=sid,t=1.,noise='20dB_calibration',status=status)
+            x=ref.adapter.chart.project(chi-ref.chi0)
+            row.update(surrogateresidual=float(la.norm(ref.matrix()@x-cz)/la.norm(cz)),cold_decode_seconds=elapsed,
+                       warm_decode_seconds=None,common_lambda=decoder.lam,full_dimension=ref.p)
+            # Optional 8 full validations fixed baseline/A23, not selected by error.
+            if method in ('dressed_linear_chi','A23_compressed_feedback'):
+                vstart=time.perf_counter()
+                try:
+                    with book.scope('ONLINE_CALIBRATION_PREDICTION_VALIDATION'):pred,state=ref.predict(chi)
+                    row['datafullresidual']=float(la.norm(pred-caldata)/la.norm(cz));row['full_validation']='RUN'
+                except ValueError as error:
+                    row['full_validation']='REJECTED';append_failure(root,'CALIBRATION_FULL_VALIDATION_REJECTED',scene=sid,method=method,reason=str(error),charged=True)
+                row['full_validation_seconds']=time.perf_counter()-vstart
+            metric.append(row)
+        np.savez_compressed(dest/f'images/scene_{sid}_calibration.npz',truth_OFFLINE=truth,measured=caldata,
+                            source_gain=sg,receiver_gain=rg,noise=epsilon,**calarrays)
         save_csv(dest/'FULL_IMAGE_METRICS.csv',metric);save_csv(dest/'CURVATURE_DECOMPOSITION.csv',curvature)
         write_json(dest/'DECODE_TIMING_RAW.json',timing)
         print(json.dumps({'stage':'pilot','scene':sid,'image_rows':len(metric),'curvature_rows':len(curvature)}),flush=True)

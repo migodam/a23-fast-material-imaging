@@ -14,6 +14,7 @@ import os
 from pathlib import Path, PurePosixPath
 import re
 import stat
+import subprocess
 import tempfile
 import textwrap
 import time
@@ -27,7 +28,7 @@ SHARED_LOCK = SHARED + "/runs/gpu.lock"
 PYTHON = "D:/python/python.exe"
 STAGES = ("micro", "phase0", "h1", "pilot", "report")
 GPU_CAP = 7200.0
-STOP_RESERVE = 12.0
+STOP_RESERVE = 30.0
 MAX_ZIP_BYTES = 2 * 1024**3
 JOB_PATTERN = r"a23-[A-Za-z0-9_-]{1,112}"
 
@@ -51,7 +52,7 @@ def _safe_name(name):
             or "\\" in name or ":" in name or any(ord(c) < 32 for c in name)
             or "//" in name or name.endswith("/")):
         return False
-    parts = PurePosixPath(name).parts
+    parts = name.split('/')
     return bool(parts) and all(p not in (".", "..", "") for p in parts)
 
 
@@ -96,8 +97,20 @@ def _connection(helper, private_config, root):
         raise TransportError("PRIVATE_CONNECTION_CONFIG_UNAVAILABLE")
     if path.is_relative_to(root) and "private" not in path.relative_to(root).parts:
         raise TransportError("PRIVATE_CONFIG_MUST_BE_EXTERNAL_OR_IGNORED_PRIVATE")
+    if path.is_relative_to(root):
+        ignored = subprocess.run(['git', 'check-ignore', '--quiet', '--',
+                                  path.relative_to(root).as_posix()], cwd=root,
+                                 stdout=subprocess.PIPE, stderr=subprocess.PIPE, timeout=8)
+        if ignored.returncode:
+            raise TransportError("IN_ROOT_PRIVATE_CONFIG_MUST_BE_GIT_IGNORED")
     try:
-        return helper.connection(path, root=root)
+        connection = helper.connection(path, root=root)
+        original_checked = connection._checked
+        def bounded_checked(argv, *, category, timeout=None):
+            return original_checked(argv, category=category,
+                                    timeout=120 if timeout is None else timeout)
+        connection._checked = bounded_checked
+        return connection
     except BaseException:
         raise TransportError("PRIVATE_CONNECTION_CONFIG_INVALID") from None
 
@@ -149,7 +162,7 @@ def _prelude(helper, options):
         + "OPTS=" + repr(options) + "\n"
         + "REMOTE=" + repr(REMOTE) + "\nSHARED=" + repr(SHARED)
         + "\nLOCK=" + repr(SHARED_LOCK) + "\nPYTHON=" + repr(PYTHON) + "\n"
-        + "GPU_CAP=7200.0\nSTOP_RESERVE=12.0\nMAX_ZIP_BYTES=" + repr(MAX_ZIP_BYTES) + "\n"
+        + "GPU_CAP=7200.0\nSTOP_RESERVE=30.0\nMAX_ZIP_BYTES=" + repr(MAX_ZIP_BYTES) + "\n"
         + "JOB_PATTERN=" + repr(JOB_PATTERN) + "\n"
         + helper._windows_cpu_source() + "\n"
         + textwrap.dedent(r'''
@@ -167,7 +180,7 @@ def _prelude(helper, options):
                 return (isinstance(name,str) and bool(name) and not name.startswith('/')
                     and '\\' not in name and ':' not in name and '//' not in name and not name.endswith('/')
                     and not any(ord(c)<32 for c in name)
-                    and all(p not in ('','.', '..') for p in pathlib.PurePosixPath(name).parts))
+                    and all(p not in ('','.', '..') for p in name.split('/')))
             def destination(name):
                 if not safe_name(name): refuse('UNSAFE_ARCHIVE_PATH')
                 p=root.joinpath(*pathlib.PurePosixPath(name).parts)
@@ -199,6 +212,9 @@ def _prelude(helper, options):
                 if isinstance(error,Refusal): row['error_code']=error.code
                 return row
             def record(row):
+                if row.get('physics_job_launched') and row.get('device')=='cuda':
+                    row['controller_gpu_elapsed_seconds']=time.perf_counter()-origin
+                    row['gpu_tail_seconds']=max(0.0,row['controller_gpu_elapsed_seconds']-row.get('job_gpu_seconds_already_paid',0.0))
                 row.update(transport_attempt=OPTS['attempt'],action=OPTS['action'],
                     utc=datetime.datetime.now(datetime.timezone.utc).isoformat(),
                     remote_controller_cpu_seconds=time.process_time(),queue_query_cpu_seconds=query_cpu,
@@ -292,7 +308,9 @@ def observe_lock():
     global owned_lock
     try:
         payload=pathlib.Path(LOCK).read_bytes();owner=json.loads(payload)
-        if child is not None and owner.get('pid')==child.pid and owner.get('job_id',owner.get('job',job))==job:
+        if (child is not None and owner.get('pid')==child.pid
+                and owner.get('job_id',owner.get('job',job))==job
+                and owner.get('root',REMOTE)==REMOTE):
             owned_lock=payload
     except (OSError,ValueError): pass
 def stop_child():
@@ -335,6 +353,8 @@ try:
     if pathlib.Path(LOCK).exists(): refuse('SHARED_LOCK_EXISTS')
     queue_clear()
     if pathlib.Path(LOCK).exists(): refuse('SHARED_LOCK_EXISTS')
+    if time.perf_counter()-origin>=allowance-STOP_RESERVE:
+        refuse('CONTROLLER_BUDGET_EXHAUSTED_BEFORE_LAUNCH')
     environment=os.environ.copy()
     environment.update(PYTHONPATH=str(root/'src'),PYTHONDONTWRITEBYTECODE='1',
         OPENBLAS_NUM_THREADS='1',OMP_NUM_THREADS='1',MKL_NUM_THREADS='1',NUMEXPR_NUM_THREADS='1',
@@ -357,6 +377,15 @@ except BaseException as error:
     row.update(**error_fields(error));stop_child()
 finally:
     ended=child is None or child.poll() is not None
+    stopped_queue_clear=True
+    if child is not None and device=='cuda' and row['status'] in ('TIMEOUT','FAILED','STOP_UNCONFIRMED'):
+        try:
+            code,out=query(['nvidia-smi','--query-compute-apps=pid','--format=csv,noheader'])
+            stopped_queue_clear=code==0 and not out.strip()
+        except BaseException:
+            stopped_queue_clear=False
+        row['compute_queue_clear_after_stop']=stopped_queue_clear
+        if not stopped_queue_clear: row['status']='STOP_UNCONFIRMED'
     if not ended: row['status']='STOP_UNCONFIRMED'
     row.update(child_stop_confirmed=ended,exit_status=child.returncode if child else None,
         child_process_CPU_seconds=child_cpu)
@@ -383,11 +412,12 @@ finally:
         else:
             billed=0.0;billed_cpu=0.0
         row['gpu_tail_seconds']=max(0.0,elapsed-billed) if device=='cuda' else 0.0
+        row['job_gpu_seconds_already_paid']=billed
         row['child_CPU_tail_seconds']=max(0.0,child_cpu-billed_cpu)
         row['gpu_charge_scope']='inclusive controller wall minus existing job receipt; includes host work'
     else:
         row['child_CPU_tail_seconds']=0.0
-    if ended and owned_lock is not None:
+    if ended and stopped_queue_clear and owned_lock is not None:
         try:
             lock=pathlib.Path(LOCK)
             if lock.exists() and lock.read_bytes()==owned_lock:
@@ -545,12 +575,20 @@ def _install_results(root, archive):
                     if _same_file(destination, staged):
                         continue
                     raise TransportError("RESULT_CHANGED_DURING_PULL")
-                with destination.open('xb') as output, staged.open('rb') as source:
-                    while True:
-                        chunk = source.read(1024**2)
-                        if not chunk:
-                            break
-                        output.write(chunk)
+                temporary = None
+                try:
+                    with tempfile.NamedTemporaryFile('wb', dir=destination.parent, delete=False) as output:
+                        temporary = Path(output.name)
+                        with staged.open('rb') as source:
+                            while True:
+                                chunk = source.read(1024**2)
+                                if not chunk:
+                                    break
+                                output.write(chunk)
+                    os.link(temporary, destination)  # Atomic new file; refuses replacement.
+                finally:
+                    if temporary is not None:
+                        temporary.unlink(missing_ok=True)
             changed += 1
     return changed
 
@@ -608,6 +646,7 @@ def main(argv=None):
     attempt = uuid.uuid4().hex
     started_wall, started_cpu = time.perf_counter(), time.process_time()
     row = {'status': 'FAILED', 'physics_job_launched': False}
+    launch_outcome_uncertain = False
     try:
         helper = _load_helper(root, args.transport_helper)
         connection = _connection(helper, args.private_config, root)
@@ -616,6 +655,8 @@ def main(argv=None):
         elif args.action == 'deploy':
             row = deploy(helper, connection, root, args.scope, attempt)
         elif args.action == 'run':
+            _job(args.job)
+            launch_outcome_uncertain = True
             row = _call(helper, connection, _remote_code(helper, 'run', attempt,
                         stage=args.stage, job=_job(args.job), device=args.device,
                         timeout_seconds=args.timeout_seconds), timeout=min(GPU_CAP, args.timeout_seconds) + 30)
@@ -624,7 +665,8 @@ def main(argv=None):
     except BaseException as error:
         row = dict(status='FAILED', error_type=type(error).__name__,
                    error_code=error.code if isinstance(error, TransportError) else 'PRIVATE_DIAGNOSTICS_SUPPRESSED',
-                   physics_job_launched=False)
+                   physics_job_launched=None if launch_outcome_uncertain else False,
+                   launch_outcome_uncertain=launch_outcome_uncertain)
         accounting = getattr(error, 'accounting', None)
         if isinstance(accounting, dict):
             row['remote_accounting'] = accounting
