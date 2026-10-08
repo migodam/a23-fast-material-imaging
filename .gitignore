@@ -1,0 +1,6 @@
+__pycache__/
+*.pyc
+private/
+.cache/
+results/a23/cache/
+*.tmp
